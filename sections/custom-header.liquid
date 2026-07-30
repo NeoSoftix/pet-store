@@ -136,6 +136,12 @@
     align-items: center;
   }
 
+  .pet-logo-img {
+    height: 4rem;
+    width: auto;
+    display: block;
+  }
+
   .pet-logo-text {
     display: inline-flex;
     align-items: center;
@@ -685,7 +691,7 @@
       <!-- Brand / Logo Area & Collections Submenu -->
       <div class="pet-main-header__brand">
         <a href="{{ routes.root_url }}" class="pet-main-header__logo">
-          <span class="pet-logo-text">Br<span class="pet-logo-bone">🦴</span>ath</span>
+          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" class="pet-logo-img">
         </a>
         <div class="pet-collections-wrapper">
           <button type="button" class="pet-main-header__collections-badge">
