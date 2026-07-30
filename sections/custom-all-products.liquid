@@ -1,0 +1,293 @@
+{%- style -%}
+  .pet-all-products-section {
+    padding: 6rem 2.4rem;
+    background-color: #f9fafb;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 80vh;
+  }
+
+  .pet-all-products-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .pet-all-products-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .pet-all-products-header h1 {
+    font-size: 4.4rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 1.2rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .pet-all-products-header p {
+    font-size: 1.6rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .pet-all-products-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    background-color: #ffffff;
+    padding: 1.6rem 2.4rem;
+    border-radius: 1.6rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .pet-all-products-filter-tabs {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .pet-all-products-tab {
+    padding: 0.8rem 2.2rem;
+    border-radius: 3rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .pet-all-products-tab.active {
+    background-color: #4c46c4;
+    color: #ffffff;
+  }
+
+  .pet-all-products-tab:not(.active) {
+    background-color: #f3f4f6;
+    color: #4b5563;
+  }
+
+  .pet-all-products-count {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  .pet-all-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.2rem;
+  }
+
+  .pet-product-card-full {
+    background-color: #ffffff;
+    border-radius: 2rem;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .pet-product-card-full:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  }
+
+  .pet-product-card-full__image-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f9fafb;
+    padding: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pet-product-card-full__image-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .pet-product-card-full:hover .pet-product-card-full__image-box img {
+    transform: scale(1.05);
+  }
+
+  .pet-product-card-full__body {
+    padding: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    flex-grow: 1;
+  }
+
+  .pet-product-card-full__title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .pet-product-card-full:hover .pet-product-card-full__title {
+    color: #4c46c4;
+  }
+
+  .pet-product-card-full__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    color: #6b7280;
+  }
+
+  .pet-product-card-full__stars {
+    color: #ea580c;
+  }
+
+  .pet-product-card-full__price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  .pet-product-card-full__price {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #4c46c4;
+  }
+
+  .pet-product-card-full__btn {
+    padding: 1rem 2.2rem;
+    background-color: #4c46c4;
+    color: #ffffff;
+    border: none;
+    border-radius: 3rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .pet-product-card-full__btn:hover {
+    background-color: #3b35ad;
+    box-shadow: 0 4px 14px rgba(76, 70, 196, 0.35);
+  }
+
+  @media screen and (max-width: 989px) {
+    .pet-all-products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media screen and (max-width: 576px) {
+    .pet-all-products-grid { grid-template-columns: 1fr; }
+  }
+{%- endstyle -%}
+
+<section class="pet-all-products-section">
+  <div class="pet-all-products-container">
+    <div class="pet-all-products-header">
+      <h1>Our Products</h1>
+      <p>Premium quality items crafted for your furry friends' happiness &amp; health.</p>
+    </div>
+
+    <div class="pet-all-products-toolbar">
+      <div class="pet-all-products-filter-tabs">
+        <button class="pet-all-products-tab active" type="button">All Products</button>
+        <button class="pet-all-products-tab" type="button">Cat Toys</button>
+        <button class="pet-all-products-tab" type="button">Dog Essentials</button>
+        <button class="pet-all-products-tab" type="button">Beds &amp; Comfort</button>
+      </div>
+      <div class="pet-all-products-count">
+        Showing 3 products
+      </div>
+    </div>
+
+    <div class="pet-all-products-grid">
+      <!-- Product 1 -->
+      <a href="/products/hot-simulated-bird-cat-toy-interactive-toys-dog-rechargeable-chirping-flapping-birdno-flying-touch-activated-plush-toy-pet" class="pet-product-card-full">
+        <div class="pet-product-card-full__image-box">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.46.53_pm.png?v=1785138530" alt="Royal Flapping Bird™ — Interactive Cat Toy">
+        </div>
+        <div class="pet-product-card-full__body">
+          <h3 class="pet-product-card-full__title">Royal Flapping Bird™ — Interactive Cat Toy</h3>
+          <div class="pet-product-card-full__rating">
+            <span class="pet-product-card-full__stars">★★★★★</span>
+            <span>(101 verified reviews)</span>
+          </div>
+          <div class="pet-card__badges">
+            <span class="pet-badge">🐦 touch-activated</span>
+            <span class="pet-badge">🔋 usb rechargeable</span>
+          </div>
+          <div class="pet-product-card-full__price-row">
+            <span class="pet-product-card-full__price">$39.99</span>
+            <span class="pet-product-card-full__btn">View Product Details</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 2 -->
+      <a href="/products/pets-water-bottle-portable-food-grade-material-dog-cat-travel-pet-water-cup-bottle-with-food-dispenser-puppy-water-bottle" class="pet-product-card-full">
+        <div class="pet-product-card-full__image-box">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/S57bfe3f12ed94b34900d27ced7dc719cU.webp?v=1765941139" alt="Pets Water Bottle Portable Travel Cup">
+        </div>
+        <div class="pet-product-card-full__body">
+          <h3 class="pet-product-card-full__title">Pets Water Bottle Portable Travel Cup with Food Dispenser</h3>
+          <div class="pet-product-card-full__rating">
+            <span class="pet-product-card-full__stars">★★★★★</span>
+            <span>(84 verified reviews)</span>
+          </div>
+          <div class="pet-card__badges">
+            <span class="pet-badge">🥤 food grade</span>
+            <span class="pet-badge">💧 travel cup</span>
+          </div>
+          <div class="pet-product-card-full__price-row">
+            <span class="pet-product-card-full__price">$29.99</span>
+            <span class="pet-product-card-full__btn">View Product Details</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 3 -->
+      <a href="/products/royal-pet-cozy-bed" class="pet-product-card-full">
+        <div class="pet-product-card-full__image-box">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/b95b69183a986803d32f849725aafdcd.webp?v=1776385988" alt="Royal Pet Cozy Bed">
+        </div>
+        <div class="pet-product-card-full__body">
+          <h3 class="pet-product-card-full__title">Royal Pet Cozy Bed — Calming Ultra-Soft Plush</h3>
+          <div class="pet-product-card-full__rating">
+            <span class="pet-product-card-full__stars">★★★★★</span>
+            <span>(638 verified reviews)</span>
+          </div>
+          <div class="pet-card__badges">
+            <span class="pet-badge">🐾 calming plush</span>
+            <span class="pet-badge">⚡ joint relief</span>
+          </div>
+          <div class="pet-product-card-full__price-row">
+            <span class="pet-product-card-full__price">$49.99</span>
+            <span class="pet-product-card-full__btn">View Product Details</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom all products",
+  "presets": [
+    {
+      "name": "Custom all products"
+    }
+  ]
+}
+{% endschema %}

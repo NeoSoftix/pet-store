@@ -1,0 +1,630 @@
+{%- style -%}
+  .pet-pdp-section {
+    padding: 3rem 2.4rem 6rem;
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #111827;
+  }
+
+  .pet-pdp-container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  /* BREADCRUMB */
+  .pet-breadcrumb {
+    font-size: 1.3rem;
+    color: #6b7280;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .pet-breadcrumb a {
+    color: #4b5563;
+    text-decoration: none;
+  }
+
+  .pet-breadcrumb a:hover {
+    color: #4c46c4;
+  }
+
+  .pet-breadcrumb__sep {
+    color: #d1d5db;
+  }
+
+  /* MAIN PDP GRID (Thumbnails + Main Img + Info) */
+  .pet-pdp-main-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 8rem;
+    align-items: start;
+  }
+
+  /* VERTICAL THUMBNAIL COLUMN */
+  .pet-pdp-thumbs-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .pet-pdp-thumb-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 1.2rem;
+    border: 2px solid #e5e7eb;
+    background-color: #f9fafb;
+    padding: 0.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .pet-pdp-thumb-box.active,
+  .pet-pdp-thumb-box:hover {
+    border-color: #4c46c4;
+    box-shadow: 0 4px 12px rgba(76, 70, 196, 0.15);
+  }
+
+  .pet-pdp-thumb-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  /* MAIN IMAGE BOX */
+  .pet-pdp-main-img-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f9fafb;
+    border-radius: 2rem;
+    border: 1px solid #f0f0f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .pet-pdp-main-img-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  /* RIGHT INFO COLUMN */
+  .pet-pdp-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+
+  .pet-pdp-vendor {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+
+  .pet-pdp-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #111827;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .pet-pdp-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.4rem;
+  }
+
+  .pet-pdp-price {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #111827;
+  }
+
+  .pet-pdp-compare-price {
+    font-size: 1.8rem;
+    color: #9ca3af;
+    text-decoration: line-through;
+  }
+
+  /* 2-COLUMN FEATURES GRID (Matches petsroyalty screenshot!) */
+  .pet-pdp-features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+    background-color: #fafafa;
+    padding: 2rem;
+    border-radius: 1.6rem;
+    border: 1px solid #f0f0f4;
+  }
+
+  .pet-pdp-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .pet-pdp-feature-icon {
+    font-size: 1.6rem;
+  }
+
+  /* OPTION SWATCHES */
+  .pet-pdp-option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .pet-pdp-option-label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .pet-pdp-swatches {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .pet-pdp-swatch-circle {
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    border: 2px solid #e5e7eb;
+    background-color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .pet-pdp-swatch-circle.active {
+    border-color: #111827;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #111827;
+  }
+
+  .pet-pdp-swatch-inner {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background-color: #e2e8f0;
+  }
+
+  /* QUANTITY & BUY BUTTONS */
+  .pet-pdp-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .pet-pdp-qty-stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    border-radius: 3rem;
+    padding: 0.4rem 1.4rem;
+    gap: 1.6rem;
+    background-color: #ffffff;
+    height: 4.8rem;
+  }
+
+  .pet-pdp-qty-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #4b5563;
+    cursor: pointer;
+  }
+
+  .pet-pdp-qty-val {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #111827;
+    min-width: 2rem;
+    text-align: center;
+  }
+
+  .pet-pdp-add-cart-btn {
+    flex-grow: 1;
+    height: 4.8rem;
+    border-radius: 3rem;
+    background-color: #111827;
+    color: #ffffff;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .pet-pdp-add-cart-btn:hover {
+    background-color: #4c46c4;
+  }
+
+  .pet-pdp-shop-pay-btn {
+    width: 100%;
+    height: 4.8rem;
+    border-radius: 3rem;
+    background-color: #5a31f4;
+    color: #ffffff;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    box-shadow: 0 4px 14px rgba(90, 49, 244, 0.3);
+  }
+
+  /* ACCORDIONS */
+  .pet-pdp-accordions {
+    border-top: 1px solid #e5e7eb;
+    margin-top: 1rem;
+  }
+
+  .pet-pdp-accordion-item {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .pet-pdp-accordion-header {
+    width: 100%;
+    padding: 1.8rem 0;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #111827;
+    cursor: pointer;
+  }
+
+  .pet-pdp-accordion-body {
+    padding-bottom: 2rem;
+    font-size: 1.45rem;
+    color: #4b5563;
+    line-height: 1.6;
+    display: none;
+  }
+
+  .pet-pdp-accordion-item.active .pet-pdp-accordion-body {
+    display: block;
+  }
+
+  /* RELATED PRODUCTS SECTION BELOW */
+  .pet-related-section {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 6rem;
+  }
+
+  .pet-related-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .pet-card-rel {
+    background-color: #ffffff;
+    border-radius: 1.6rem;
+    border: 1px solid #e5e7eb;
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .pet-card-rel:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  }
+
+  .pet-card-rel__img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f9fafb;
+    border-radius: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.6rem;
+    overflow: hidden;
+  }
+
+  .pet-card-rel__img-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .pet-card-rel__btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 3rem;
+    background-color: #4c46c4;
+    color: #ffffff;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: auto;
+  }
+
+  @media screen and (max-width: 989px) {
+    .pet-pdp-main-grid {
+      grid-template-columns: 1fr;
+    }
+    .pet-pdp-thumbs-col {
+      flex-direction: row;
+    }
+  }
+{%- endstyle -%}
+
+<section class="pet-pdp-section">
+  <div class="pet-pdp-container">
+    <!-- Breadcrumb -->
+    <nav class="pet-breadcrumb">
+      <a href="/">Home</a>
+      <span class="pet-breadcrumb__sep">/</span>
+      <a href="/collections/all">Pet Essentials</a>
+      <span class="pet-breadcrumb__sep">/</span>
+      <span id="pdpBreadcrumbTitle">Royal Flapping Bird™ — Interactive Cat Toy</span>
+    </nav>
+
+    <!-- Main PDP Grid -->
+    <div class="pet-pdp-main-grid">
+      <!-- 1. Left Vertical Thumbnails Column -->
+      <div class="pet-pdp-thumbs-col" id="pdpThumbsCol">
+        <div class="pet-pdp-thumb-box active" onclick="switchPdpImage(0)">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.46.53_pm.png?v=1785138530" alt="thumb 1">
+        </div>
+        <div class="pet-pdp-thumb-box" onclick="switchPdpImage(1)">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.48.14_pm.png?v=1785138539" alt="thumb 2">
+        </div>
+        <div class="pet-pdp-thumb-box" onclick="switchPdpImage(2)">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.47.53_pm.png?v=1785138537" alt="thumb 3">
+        </div>
+        <div class="pet-pdp-thumb-box" onclick="switchPdpImage(3)">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Sfac75b7551e64d68a4cb8d046ae3821aF.webp?v=1767934933" alt="thumb 4">
+        </div>
+      </div>
+
+      <!-- 2. Center Main Image Container -->
+      <div class="pet-pdp-main-img-box">
+        <img id="pdpMainImg" src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.46.53_pm.png?v=1785138530" alt="Product main image">
+      </div>
+
+      <!-- 3. Right Product Info Column -->
+      <div class="pet-pdp-info-col">
+        <div class="pet-pdp-vendor">PETS ROYALTY</div>
+        <h1 class="pet-pdp-title" id="pdpTitle">Royal Flapping Bird™ — Interactive Cat Toy</h1>
+
+        <div class="pet-pdp-price-row">
+          <span class="pet-pdp-price" id="pdpPrice">$39.99</span>
+          <span class="pet-pdp-compare-price" id="pdpCompare">$59.99</span>
+        </div>
+
+        <!-- 2-Column Feature Icons Grid (Matches petsroyalty screenshot!) -->
+        <div class="pet-pdp-features-grid">
+          <div class="pet-pdp-feature-item"><span class="pet-pdp-feature-icon">⭐</span> Premium Quality</div>
+          <div class="pet-pdp-feature-item"><span class="pet-pdp-feature-icon">🛡️</span> Pet-Safe</div>
+          <div class="pet-pdp-feature-item"><span class="pet-pdp-feature-icon">🔨</span> Durable Build</div>
+          <div class="pet-pdp-feature-item"><span class="pet-pdp-feature-icon">⚡</span> All-In-One Essentials</div>
+          <div class="pet-pdp-feature-item"><span class="pet-pdp-feature-icon">🔧</span> Practical &amp; Functional</div>
+          <div class="pet-pdp-feature-item"><span class="pet-pdp-feature-icon">💰</span> Value for Money</div>
+        </div>
+
+        <!-- Option Swatch -->
+        <div class="pet-pdp-option-group">
+          <div class="pet-pdp-option-label">Color / Style: <span style="font-weight:400;">Sparrow</span></div>
+          <div class="pet-pdp-swatches">
+            <div class="pet-pdp-swatch-circle active"><div class="pet-pdp-swatch-inner" style="background:#8b5cf6;"></div></div>
+            <div class="pet-pdp-swatch-circle"><div class="pet-pdp-swatch-inner" style="background:#ec4899;"></div></div>
+            <div class="pet-pdp-swatch-circle"><div class="pet-pdp-swatch-inner" style="background:#10b981;"></div></div>
+          </div>
+        </div>
+
+        <!-- Quantity & Add to Cart -->
+        <div class="pet-pdp-actions-row">
+          <div class="pet-pdp-qty-stepper">
+            <button class="pet-pdp-qty-btn" type="button" onclick="adjustPdpQty(-1)">-</button>
+            <span class="pet-pdp-qty-val" id="pdpQtyVal">1</span>
+            <button class="pet-pdp-qty-btn" type="button" onclick="adjustPdpQty(1)">+</button>
+          </div>
+          <button class="pet-pdp-add-cart-btn" type="button">ADD TO CART</button>
+        </div>
+
+        <button class="pet-pdp-shop-pay-btn" type="button">
+          Buy with <strong>Shop Pay</strong>
+        </button>
+
+        <!-- Accordions -->
+        <div class="pet-pdp-accordions">
+          <div class="pet-pdp-accordion-item active">
+            <button class="pet-pdp-accordion-header" onclick="togglePdpAccordion(this)">
+              <span>Description</span>
+              <span>−</span>
+            </button>
+            <div class="pet-pdp-accordion-body" id="pdpFullDesc">
+              The Royal Flapping Bird™ triggers your cat's natural hunting instincts — realistic flapping wings, lifelike chirping sounds, and unpredictable movement. USB rechargeable with catnip pouch included!
+            </div>
+          </div>
+
+          <div class="pet-pdp-accordion-item">
+            <button class="pet-pdp-accordion-header" onclick="togglePdpAccordion(this)">
+              <span>Shipping and Delivery</span>
+              <span>+</span>
+            </button>
+            <div class="pet-pdp-accordion-body">
+              Fast 3-5 business day shipping across North America. Free shipping on orders over $40!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products Section (Shows other CSV products below!) -->
+    <div class="pet-related-section">
+      <h2 class="pet-related-title">Related Products</h2>
+      <div class="pet-product-grid-3">
+        <!-- Product 2 -->
+        <div class="pet-card-rel" onclick="loadPdpProduct(1)">
+          <div class="pet-card-rel__img-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/S57bfe3f12ed94b34900d27ced7dc719cU.webp?v=1765941139" alt="Pets Water Bottle">
+          </div>
+          <div>
+            <h3 style="font-size:1.6rem; font-weight:700; color:#111827;">Pets Water Bottle Portable Travel Cup with Food Dispenser</h3>
+            <div style="font-size:1.4rem; color:#ea580c; font-weight:700; margin-top:0.4rem;">★★★★★ (84)</div>
+            <div style="font-size:1.8rem; font-weight:800; color:#111827; margin-top:0.6rem;">$29.99</div>
+          </div>
+          <button class="pet-card-rel__btn" type="button">Quick View &amp; Details</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="pet-card-rel" onclick="loadPdpProduct(2)">
+          <div class="pet-card-rel__img-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/b95b69183a986803d32f849725aafdcd.webp?v=1776385988" alt="Royal Pet Cozy Bed">
+          </div>
+          <div>
+            <h3 style="font-size:1.6rem; font-weight:700; color:#111827;">Royal Pet Cozy Bed — Calming Ultra-Soft Plush</h3>
+            <div style="font-size:1.4rem; color:#ea580c; font-weight:700; margin-top:0.4rem;">★★★★★ (638)</div>
+            <div style="font-size:1.8rem; font-weight:800; color:#111827; margin-top:0.6rem;">$49.99</div>
+          </div>
+          <button class="pet-card-rel__btn" type="button">Quick View &amp; Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  var pdpProductList = [
+    {
+      title: "Royal Flapping Bird™ — Interactive Cat Toy",
+      price: "$39.99",
+      compare: "$59.99",
+      images: [
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.46.53_pm.png?v=1785138530",
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.48.14_pm.png?v=1785138539",
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.47.53_pm.png?v=1785138537",
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Sfac75b7551e64d68a4cb8d046ae3821aF.webp?v=1767934933"
+      ],
+      desc: "The Royal Flapping Bird™ triggers your cat's natural hunting instincts — realistic flapping wings, lifelike chirping sounds, and unpredictable movement. USB rechargeable with catnip pouch included!"
+    },
+    {
+      title: "Pets Water Bottle Portable Travel Cup with Food Dispenser",
+      price: "$29.99",
+      compare: "$44.99",
+      images: [
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/S57bfe3f12ed94b34900d27ced7dc719cU.webp?v=1765941139",
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Sa10184da43db43ceb5b618b43b4e3859f.webp?v=1765941139",
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Sd7de7ec4524740d985d026dc63816d6d7.webp?v=1765941139"
+      ],
+      desc: "Keep your pet hydrated & fed during outdoor walks with 100% food-grade leak-proof water cup and food compartment. 2-in-1 container!"
+    },
+    {
+      title: "Royal Pet Cozy Bed — Calming Ultra-Soft Plush",
+      price: "$49.99",
+      compare: "$79.99",
+      images: [
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/b95b69183a986803d32f849725aafdcd.webp?v=1776385988",
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/S6ed178911c1e4f2ab42ff29031814af7X.webp?v=1776385988",
+        "https://cdn.shopify.com/s/files/1/0674/7147/4819/files/S4c01d37d5a5040138787c5cf253a51c5Y.webp?v=1776385988"
+      ],
+      desc: "Ultra-soft premium plush bed with calming raised edges. Over 561 pet owners made the switch for anxiety relief and joint support!"
+    }
+  ];
+
+  function switchPdpImage(idx) {
+    var mainImg = document.getElementById('pdpMainImg');
+    var thumbs = document.querySelectorAll('.pet-pdp-thumb-box');
+    if (thumbs[idx]) {
+      thumbs.forEach(function(t){ t.classList.remove('active'); });
+      thumbs[idx].classList.add('active');
+      mainImg.src = thumbs[idx].querySelector('img').src;
+    }
+  }
+
+  function adjustPdpQty(delta) {
+    var valEl = document.getElementById('pdpQtyVal');
+    var currentVal = parseInt(valEl.innerText) || 1;
+    var newVal = Math.max(1, currentVal + delta);
+    valEl.innerText = newVal;
+  }
+
+  function togglePdpAccordion(btn) {
+    var item = btn.parentElement;
+    var isOpen = item.classList.contains('active');
+    item.classList.toggle('active');
+    btn.querySelector('span:last-child').innerText = isOpen ? '+' : '−';
+  }
+
+  function loadPdpProduct(index) {
+    var item = pdpProductList[index];
+    document.getElementById('pdpBreadcrumbTitle').innerText = item.title;
+    document.getElementById('pdpTitle').innerText = item.title;
+    document.getElementById('pdpPrice').innerText = item.price;
+    document.getElementById('pdpCompare').innerText = item.compare;
+    document.getElementById('pdpFullDesc').innerText = item.desc;
+    document.getElementById('pdpMainImg').src = item.images[0];
+
+    var thumbsCol = document.getElementById('pdpThumbsCol');
+    thumbsCol.innerHTML = '';
+    item.images.forEach(function(src, i) {
+      var box = document.createElement('div');
+      box.className = 'pet-pdp-thumb-box' + (i === 0 ? ' active' : '');
+      box.innerHTML = '<img src="' + src + '" alt="thumb">';
+      box.onclick = function() { switchPdpImage(i); };
+      thumbsCol.appendChild(box);
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var path = window.location.pathname.toLowerCase();
+    if (path.indexOf('water-bottle') !== -1) {
+      loadPdpProduct(1);
+    } else if (path.indexOf('cozy-bed') !== -1 || path.indexOf('royal-pet-cozy-bed') !== -1) {
+      loadPdpProduct(2);
+    } else {
+      loadPdpProduct(0);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom product details",
+  "presets": [
+    {
+      "name": "Custom product details"
+    }
+  ]
+}
+{% endschema %}

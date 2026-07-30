@@ -1,0 +1,248 @@
+{%- style -%}
+  .pet-bundle-section {
+    padding: 6rem 2.4rem;
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .pet-bundle-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .pet-bundle-title {
+    font-size: 3.8rem;
+    font-weight: 800;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 4rem;
+    letter-spacing: -0.02em;
+  }
+
+  .pet-bundle-grid {
+    display: grid;
+    grid-template-columns: 1fr 2.4fr;
+    gap: 2.8rem;
+    margin-bottom: 3rem;
+  }
+
+  .pet-bundle-card-yellow {
+    background: linear-gradient(135deg, #facc15 0%, #ca8a04 100%);
+    border-radius: 1.6rem;
+    padding: 3rem 2.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 440px;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(202, 138, 4, 0.25);
+  }
+
+  .pet-bundle-card-yellow img {
+    max-width: 85%;
+    max-height: 260px;
+    object-fit: contain;
+  }
+
+  .pet-bundle-card__tagline {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .pet-bundle-card__title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin: 0.4rem 0 0 0;
+  }
+
+  .pet-bundle-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .pet-bundle-item {
+    background-color: #ffffff;
+    border-radius: 1.6rem;
+    padding: 1.8rem;
+    border: 1px solid #f0f0f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.4rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .pet-bundle-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .pet-bundle-item__img-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f9fafb;
+    border-radius: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.4rem;
+  }
+
+  .pet-bundle-item__img-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .pet-bundle-item__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .pet-bundle-item__price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .pet-bundle-btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 3rem;
+    border: 1px solid #4c46c4;
+    background: transparent;
+    color: #4c46c4;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .pet-bundle-btn:hover {
+    background-color: #4c46c4;
+    color: #ffffff;
+  }
+
+  .pet-bundle-contents-bar {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1.6rem;
+    padding: 2.4rem 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .pet-bundle-contents__info h4 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.4rem 0;
+  }
+
+  .pet-bundle-contents__info p {
+    font-size: 1.4rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .pet-bundle-contents__status {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #9ca3af;
+  }
+
+  @media screen and (max-width: 989px) {
+    .pet-bundle-grid {
+      grid-template-columns: 1fr;
+    }
+    .pet-bundle-products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{%- endstyle -%}
+
+<section class="pet-bundle-section">
+  <div class="pet-bundle-container">
+    <h2 class="pet-bundle-title">Stack Your Bowl, Slash the Price</h2>
+
+    <div class="pet-bundle-grid">
+      <div class="pet-bundle-card-yellow">
+        <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/b95b69183a986803d32f849725aafdcd.webp?v=1776385988" alt="Royal Pet Cozy Bed">
+        <div>
+          <span class="pet-bundle-card__tagline">BEST BUNDLE</span>
+          <h3 class="pet-bundle-card__title">ROYAL BUNDLE</h3>
+        </div>
+      </div>
+
+      <div class="pet-bundle-products-grid">
+        <!-- Item 1 -->
+        <div class="pet-bundle-item">
+          <div class="pet-bundle-item__img-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.46.53_pm.png?v=1785138530" alt="Royal Flapping Bird">
+          </div>
+          <div>
+            <h4 class="pet-bundle-item__title">Royal Flapping Bird™ — Interactive Toy</h4>
+            <div class="pet-bundle-item__price">$39.99</div>
+          </div>
+          <button class="pet-bundle-btn" type="button">ADD TO BUNDLE</button>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="pet-bundle-item">
+          <div class="pet-bundle-item__img-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/S57bfe3f12ed94b34900d27ced7dc719cU.webp?v=1765941139" alt="Pets Water Bottle Portable Travel Cup">
+          </div>
+          <div>
+            <h4 class="pet-bundle-item__title">Pets Water Bottle Portable Travel Cup</h4>
+            <div class="pet-bundle-item__price">$29.99</div>
+          </div>
+          <button class="pet-bundle-btn" type="button">ADD TO BUNDLE</button>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="pet-bundle-item">
+          <div class="pet-bundle-item__img-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/b95b69183a986803d32f849725aafdcd.webp?v=1776385988" alt="Royal Pet Cozy Bed">
+          </div>
+          <div>
+            <h4 class="pet-bundle-item__title">Royal Pet Cozy Bed — Calming Plush</h4>
+            <div class="pet-bundle-item__price">$49.99</div>
+          </div>
+          <button class="pet-bundle-btn" type="button">ADD TO BUNDLE</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pet-bundle-contents-bar">
+      <div class="pet-bundle-contents__info">
+        <h4>Bundle Contents</h4>
+        <p>Add all 3 items to get 50% off</p>
+      </div>
+      <div class="pet-bundle-contents__status">
+        Your bundle is empty.
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom bundle builder",
+  "presets": [
+    {
+      "name": "Custom bundle builder"
+    }
+  ]
+}
+{% endschema %}

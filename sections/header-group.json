@@ -1,0 +1,27 @@
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "custom-header": {
+      "type": "custom-header",
+      "settings": {
+        "announcement_text": "Free shipping over $40",
+        "announcement_bg": "#5B4FE0",
+        "announcement_text_color": "#FFFFFF",
+        "logo_text": "Breath",
+        "logo_color": "#1A1A1A",
+        "menu": "main-menu",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "header_bg": "#FFFFFF",
+        "nav_color": "#1A1A1A",
+        "border_color": "#EAEAEA",
+        "accent_color": "#5B4FE0",
+        "container_width": 1400
+      }
+    }
+  },
+  "order": [
+    "custom-header"
+  ]
+}

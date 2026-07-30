@@ -1,0 +1,159 @@
+{%- style -%}
+  .pet-mega-sale-section {
+    padding: 6rem 2.4rem;
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .pet-mega-sale-banner {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #4c46c4;
+    border-radius: 2rem;
+    padding: 6rem 4rem;
+    color: #ffffff;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pet-mega-sale__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pet-mega-sale__media img {
+    max-width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 1.6rem;
+  }
+
+  .pet-mega-sale__content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .pet-mega-sale__heading {
+    font-size: 4.8rem;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .pet-mega-sale__subtext {
+    font-size: 1.6rem;
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  .pet-countdown-grid {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 1rem 0;
+  }
+
+  .pet-countdown-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .pet-countdown-num {
+    font-size: 3.6rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .pet-countdown-unit {
+    font-size: 1.3rem;
+    opacity: 0.8;
+  }
+
+  .pet-mega-sale-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 3.2rem;
+    background-color: #ffffff;
+    color: #4c46c4;
+    border-radius: 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  }
+
+  .pet-mega-sale-cta:hover {
+    background-color: #f3f1fd;
+    transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 989px) {
+    .pet-mega-sale-banner {
+      grid-template-columns: 1fr;
+      padding: 4rem 2rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="pet-mega-sale-section">
+  <div class="pet-mega-sale-banner">
+    <div class="pet-mega-sale__media">
+      <img src="{{ 'hero-dogs-bath.jpg' | asset_url }}" alt="Dog in pet bed">
+    </div>
+
+    <div class="pet-mega-sale__content">
+      <h2 class="pet-mega-sale__heading">Mega sale 70% OFF</h2>
+      <p class="pet-mega-sale__subtext">Hurry up! Biggest discounts of the year won't last.</p>
+
+      <div class="pet-countdown-grid">
+        <div class="pet-countdown-box">
+          <span class="pet-countdown-num">1</span>
+          <span class="pet-countdown-unit">Days</span>
+        </div>
+        <div class="pet-countdown-box">
+          <span class="pet-countdown-num">6</span>
+          <span class="pet-countdown-unit">Hours</span>
+        </div>
+        <div class="pet-countdown-box">
+          <span class="pet-countdown-num">03</span>
+          <span class="pet-countdown-unit">Minutes</span>
+        </div>
+        <div class="pet-countdown-box">
+          <span class="pet-countdown-num">26</span>
+          <span class="pet-countdown-unit">Seconds</span>
+        </div>
+      </div>
+
+      <a href="/collections/sales" class="pet-mega-sale-cta">Shop all sales</a>
+    </div>
+
+    <div class="pet-mega-sale__media">
+      <img src="{{ 'dog-food-menu.jpg' | asset_url }}" alt="Pet food bowl">
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom mega sale",
+  "presets": [
+    {
+      "name": "Custom mega sale"
+    }
+  ]
+}
+{% endschema %}

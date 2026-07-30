@@ -1,0 +1,495 @@
+{%- style -%}
+  hero-slider {
+    display: block;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .custom-hero {
+    position: relative;
+    width: 100%;
+  }
+
+  .custom-hero__slide {
+    display: none;
+    position: relative;
+    width: 100%;
+    min-height: 580px;
+    padding: 4rem 2rem 6rem;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .custom-hero__slide.is-active {
+    display: block;
+    animation: custom-hero-fade 0.4s ease-out;
+  }
+
+  @keyframes custom-hero-fade {
+    from { opacity: 0; transform: scale(0.99); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .custom-hero__slide--slide-1 {
+    background-image: url('{{ "firstslideimage.png" | asset_url }}');
+    background-color: #e6f4fa;
+  }
+
+  .custom-hero__slide--slide-2 {
+    background-image: url('{{ "secondslideimage.png" | asset_url }}');
+    background-color: #f7f3e3;
+  }
+
+  .custom-hero__slide--slide-3 {
+    background-color: #fce8dc;
+    background-image: none;
+  }
+
+  .custom-hero__inner {
+    max-width: {{ section.settings.container_width | default: 1400 }}px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 480px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .custom-hero__slide--slide-3 .custom-hero__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    text-align: left;
+  }
+
+  .custom-hero__media-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .custom-hero__media-left img {
+    max-width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: contain;
+    border-radius: 1.6rem;
+  }
+
+  .custom-hero__content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+    padding: 0 1rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .custom-hero__slide--slide-3 .custom-hero__content {
+    text-align: left;
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  .custom-hero__label {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #9a3412;
+    margin: 0;
+  }
+
+  .custom-hero__heading {
+    font-size: 5.4rem;
+    line-height: 1.08;
+    font-weight: 800;
+    color: #451a03;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+
+  .custom-hero__subtext {
+    font-size: 1.6rem;
+    color: #78350f;
+    max-width: 50rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .custom-hero__buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    margin-top: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .custom-hero__slide--slide-3 .custom-hero__buttons {
+    justify-content: flex-start;
+  }
+
+  .custom-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 3rem;
+    border-radius: 3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .custom-hero__btn--outline {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid #4c46c4;
+    color: #4c46c4;
+    backdrop-filter: blur(4px);
+  }
+
+  .custom-hero__btn--solid {
+    background: #4c46c4;
+    border: 1px solid #4c46c4;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(76, 70, 196, 0.3);
+  }
+
+  /* Slider Navigation Arrows */
+  .custom-hero__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .custom-hero__arrow:hover {
+    background-color: #4c46c4;
+    color: #ffffff;
+    border-color: #4c46c4;
+  }
+
+  .custom-hero__arrow--prev { left: 2rem; }
+  .custom-hero__arrow--next { right: 2rem; }
+
+  /* Slide Indicator Bar / Lines */
+  .custom-hero__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .custom-hero__dot {
+    width: 4rem;
+    height: 0.4rem;
+    border-radius: 0.2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .custom-hero__dot[aria-current='true'] {
+    background: #ffffff;
+    width: 6rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  }
+
+  /* Features Bar below Hero */
+  .custom-hero__features {
+    border-top: 1px solid #e5e7eb;
+    background: #ffffff;
+    padding: 2.2rem 2.4rem;
+  }
+
+  .custom-hero__features-inner {
+    max-width: {{ section.settings.container_width | default: 1400 }}px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.4rem;
+  }
+
+  .custom-hero__feature {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+  }
+
+  .custom-hero__feature-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: #f3f1fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4c46c4;
+    flex-shrink: 0;
+  }
+
+  .custom-hero__feature-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+  }
+
+  .custom-hero__feature-subtitle {
+    font-size: 1.3rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .custom-hero__slide--slide-3 .custom-hero__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .custom-hero__slide--slide-3 .custom-hero__content {
+      align-items: center;
+      text-align: center;
+    }
+    .custom-hero__heading {
+      font-size: 3.6rem;
+    }
+    .custom-hero__features-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+{%- endstyle -%}
+
+<hero-slider class="custom-hero" data-autoplay="true" data-autoplay-speed="5">
+
+  <button class="custom-hero__arrow custom-hero__arrow--prev" type="button" aria-label="Previous Slide" data-hero-prev>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+
+  <button class="custom-hero__arrow custom-hero__arrow--next" type="button" aria-label="Next Slide" data-hero-next>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+
+  <!-- SLIDE 1 -->
+  <div class="custom-hero__slide custom-hero__slide--slide-1 is-active" data-hero-slide>
+    <div class="custom-hero__inner">
+      <div class="custom-hero__content">
+        <p class="custom-hero__label">TOYS &amp; GEARS</p>
+        <h1 class="custom-hero__heading">Ultimate playtime for your little friends</h1>
+        <p class="custom-hero__subtext">Keep tails wagging and cats purring with durable toys and stylish accessories.</p>
+        <div class="custom-hero__buttons">
+          <a href="/collections/dog-toys" class="custom-hero__btn custom-hero__btn--outline">Shop dog's toy</a>
+          <a href="/collections/cat-toys" class="custom-hero__btn custom-hero__btn--solid">Shop cat's toy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="custom-hero__slide custom-hero__slide--slide-2" data-hero-slide>
+    <div class="custom-hero__inner">
+      <div class="custom-hero__content">
+        <p class="custom-hero__label">OUR BEST OFFERS.</p>
+        <h1 class="custom-hero__heading">Healthy meals, Happier playtime</h1>
+        <p class="custom-hero__subtext">Give your furry family members the wholesome, nutrient-rich meals they deserve.</p>
+        <div class="custom-hero__buttons">
+          <a href="/collections/sales" class="custom-hero__btn custom-hero__btn--outline">View Sales</a>
+          <a href="/collections/food" class="custom-hero__btn custom-hero__btn--solid">Shop Food</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="custom-hero__slide custom-hero__slide--slide-3" data-hero-slide>
+    <div class="custom-hero__inner">
+      <div class="custom-hero__media-left">
+        <img src="{{ 'thirdslideimage.png' | asset_url }}" alt="Everything your Best Friend needs" loading="eager">
+      </div>
+
+      <div class="custom-hero__content">
+        <p class="custom-hero__label">EXCLUSIVE LIFESTYLE</p>
+        <h1 class="custom-hero__heading">Everything your Best Friend needs</h1>
+        <p class="custom-hero__subtext">Give your pet the pampering they deserve. Book now to secure exclusive savings before our slots fill up.</p>
+        <div class="custom-hero__buttons">
+          <a href="/pages/booking" class="custom-hero__btn custom-hero__btn--solid">Book now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide Indicators -->
+  <div class="custom-hero__dots" data-hero-dots>
+    <button class="custom-hero__dot" type="button" aria-current="true" data-hero-dot></button>
+    <button class="custom-hero__dot" type="button" aria-current="false" data-hero-dot></button>
+    <button class="custom-hero__dot" type="button" aria-current="false" data-hero-dot></button>
+  </div>
+</hero-slider>
+
+<!-- FEATURES BAR BELOW HERO -->
+<div class="custom-hero__features">
+  <div class="custom-hero__features-inner">
+    <div class="custom-hero__feature">
+      <div class="custom-hero__feature-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <div>
+        <h4 class="custom-hero__feature-title">Real ingredients</h4>
+        <p class="custom-hero__feature-subtitle">Nothing artificial, ever.</p>
+      </div>
+    </div>
+
+    <div class="custom-hero__feature">
+      <div class="custom-hero__feature-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+      </div>
+      <div>
+        <h4 class="custom-hero__feature-title">Diffuser guarantee</h4>
+        <p class="custom-hero__feature-subtitle">Lifetime efficacy guarantees.</p>
+      </div>
+    </div>
+
+    <div class="custom-hero__feature">
+      <div class="custom-hero__feature-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17 8C17 10.76 14.76 13 12 13C9.24 13 7 10.76 7 8C7 5.24 9.24 3 12 3C14.76 3 17 5.24 17 8ZM12 15C7.58 15 4 17.24 4 20V21H20V20C20 17.24 16.42 15 12 15Z"/></svg>
+      </div>
+      <div>
+        <h4 class="custom-hero__feature-title">Natural &amp; Vegan</h4>
+        <p class="custom-hero__feature-subtitle">Zero harmful chemicals.</p>
+      </div>
+    </div>
+
+    <div class="custom-hero__feature">
+      <div class="custom-hero__feature-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </div>
+      <div>
+        <h4 class="custom-hero__feature-title">Cruelty free</h4>
+        <p class="custom-hero__feature-subtitle">Never tested on animals.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% javascript %}
+  class HeroSlider extends HTMLElement {
+    connectedCallback() {
+      this.slides = Array.from(this.querySelectorAll('[data-hero-slide]'));
+      this.dots = Array.from(this.querySelectorAll('[data-hero-dot]'));
+      this.prevBtn = this.querySelector('[data-hero-prev]');
+      this.nextBtn = this.querySelector('[data-hero-next]');
+      this.current = 0;
+
+      this.dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => this.goTo(index));
+      });
+
+      if (this.prevBtn) {
+        this.prevBtn.addEventListener('click', () => {
+          this.goTo((this.current - 1 + this.slides.length) % this.slides.length);
+        });
+      }
+
+      if (this.nextBtn) {
+        this.nextBtn.addEventListener('click', () => {
+          this.goTo((this.current + 1) % this.slides.length);
+        });
+      }
+
+      if (this.dataset.autoplay === 'true' && this.slides.length > 1) {
+        const speed = parseFloat(this.dataset.autoplaySpeed || '5') * 1000;
+        this.timer = setInterval(() => {
+          this.goTo((this.current + 1) % this.slides.length);
+        }, speed);
+      }
+    }
+
+    disconnectedCallback() {
+      if (this.timer) clearInterval(this.timer);
+    }
+
+    goTo(index) {
+      if (index === this.current) return;
+      this.slides[this.current].classList.remove('is-active');
+      if (this.dots[this.current]) this.dots[this.current].setAttribute('aria-current', 'false');
+      this.current = index;
+      this.slides[this.current].classList.add('is-active');
+      if (this.dots[this.current]) this.dots[this.current].setAttribute('aria-current', 'true');
+    }
+  }
+
+  customElements.define('hero-slider', HeroSlider);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Custom hero banner",
+  "settings": [
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 1000,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1400
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": []
+    },
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom hero banner"
+    }
+  ]
+}
+{% endschema %}

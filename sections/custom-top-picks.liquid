@@ -1,0 +1,295 @@
+{%- style -%}
+  .pet-top-picks-section {
+    padding: 6rem 2.4rem;
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .pet-top-picks-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pet-top-picks-title {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .pet-top-picks-tabs {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .pet-top-picks-tab {
+    padding: 0.8rem 2.4rem;
+    border-radius: 3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .pet-top-picks-tab.active {
+    background-color: #4c46c4;
+    color: #ffffff;
+  }
+
+  .pet-top-picks-tab:not(.active) {
+    background-color: #f3f4f6;
+    color: #4b5563;
+  }
+
+  .pet-top-picks-tab:not(.active):hover {
+    background-color: #e5e7eb;
+    color: #111827;
+  }
+
+  .pet-product-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.2rem;
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  .pet-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+  }
+
+  .pet-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .pet-card__media-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f9fafb;
+    border-radius: 1.6rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border: 1px solid #f0f0f4;
+  }
+
+  .pet-card__media-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .pet-card:hover .pet-card__media-wrapper img {
+    transform: scale(1.05);
+  }
+
+  .pet-card__add-btn {
+    position: absolute;
+    bottom: 1.6rem;
+    left: 1.6rem;
+    right: 1.6rem;
+    background-color: #4c46c4;
+    color: #ffffff;
+    border: none;
+    border-radius: 3rem;
+    padding: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 6px 18px rgba(76, 70, 196, 0.35);
+    z-index: 3;
+    text-align: center;
+  }
+
+  .pet-card:hover .pet-card__add-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pet-card__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .pet-card__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+    color: #111827;
+  }
+
+  .pet-card:hover .pet-card__title {
+    color: #4c46c4;
+  }
+
+  .pet-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.3rem;
+    color: #6b7280;
+  }
+
+  .pet-card__stars {
+    color: #ea580c;
+    font-size: 1.4rem;
+  }
+
+  .pet-card__price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #111827;
+  }
+
+  .pet-card__badges {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.4rem;
+  }
+
+  .pet-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1.2rem;
+    border-radius: 0.6rem;
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #4b5563;
+  }
+
+  .pet-top-picks-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 3.6rem;
+    background-color: #4c46c4;
+    color: #ffffff;
+    border-radius: 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(76, 70, 196, 0.3);
+  }
+
+  @media screen and (max-width: 989px) {
+    .pet-product-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media screen and (max-width: 576px) {
+    .pet-product-grid-3 { grid-template-columns: 1fr; }
+  }
+{%- endstyle -%}
+
+<section class="pet-top-picks-section">
+  <div class="pet-top-picks-container">
+    <h2 class="pet-top-picks-title">Top Picks</h2>
+
+    <div class="pet-top-picks-tabs">
+      <button class="pet-top-picks-tab active" type="button">All Products</button>
+      <button class="pet-top-picks-tab" type="button">For Cats</button>
+      <button class="pet-top-picks-tab" type="button">For Dogs</button>
+    </div>
+
+    <div class="pet-product-grid-3">
+      <!-- Product 1 -->
+      <a href="/products/hot-simulated-bird-cat-toy-interactive-toys-dog-rechargeable-chirping-flapping-birdno-flying-touch-activated-plush-toy-pet" class="pet-card">
+        <div class="pet-card__media-wrapper">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.46.53_pm.png?v=1785138530" alt="Royal Flapping Bird™ — Interactive Cat Toy" loading="lazy">
+          <span class="pet-card__add-btn">View Product Details</span>
+        </div>
+        <div class="pet-card__details">
+          <h3 class="pet-card__title">Royal Flapping Bird™ — Interactive Cat Toy</h3>
+          <div class="pet-card__rating">
+            <span class="pet-card__stars">★★★★★</span>
+            <span>(101)</span>
+          </div>
+          <div class="pet-card__price">$39.99</div>
+          <div class="pet-card__badges">
+            <span class="pet-badge">🐦 touch-activated</span>
+            <span class="pet-badge">🔋 usb rechargeable</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 2 -->
+      <a href="/products/pets-water-bottle-portable-food-grade-material-dog-cat-travel-pet-water-cup-bottle-with-food-dispenser-puppy-water-bottle" class="pet-card">
+        <div class="pet-card__media-wrapper">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/S57bfe3f12ed94b34900d27ced7dc719cU.webp?v=1765941139" alt="Pets Water Bottle Portable Travel Cup" loading="lazy">
+          <span class="pet-card__add-btn">View Product Details</span>
+        </div>
+        <div class="pet-card__details">
+          <h3 class="pet-card__title">Pets Water Bottle Portable Travel Cup with Food Dispenser</h3>
+          <div class="pet-card__rating">
+            <span class="pet-card__stars">★★★★★</span>
+            <span>(84)</span>
+          </div>
+          <div class="pet-card__price">$29.99</div>
+          <div class="pet-card__badges">
+            <span class="pet-badge">🥤 food grade</span>
+            <span class="pet-badge">💧 travel cup</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Product 3 -->
+      <a href="/products/royal-pet-cozy-bed" class="pet-card">
+        <div class="pet-card__media-wrapper">
+          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/b95b69183a986803d32f849725aafdcd.webp?v=1776385988" alt="Royal Pet Cozy Bed" loading="lazy">
+          <span class="pet-card__add-btn">View Product Details</span>
+        </div>
+        <div class="pet-card__details">
+          <h3 class="pet-card__title">Royal Pet Cozy Bed — Calming Ultra-Soft Plush</h3>
+          <div class="pet-card__rating">
+            <span class="pet-card__stars">★★★★★</span>
+            <span>(638)</span>
+          </div>
+          <div class="pet-card__price">$49.99</div>
+          <div class="pet-card__badges">
+            <span class="pet-badge">🐾 calming plush</span>
+            <span class="pet-badge">⚡ joint relief</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <a href="/collections/all" class="pet-top-picks-cta">View all products</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom top picks",
+  "presets": [
+    {
+      "name": "Custom top picks"
+    }
+  ]
+}
+{% endschema %}
