@@ -33,18 +33,27 @@
   }
 
   .custom-hero__slide--slide-1 {
-    background-image: url('{{ "firstslideimage.png" | asset_url }}');
+    background-image: url('{{ "banner3.png" | asset_url }}');
     background-color: #e6f4fa;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 
   .custom-hero__slide--slide-2 {
-    background-image: url('{{ "secondslideimage.png" | asset_url }}');
+    background-image: url('{{ "banner2.png" | asset_url }}');
     background-color: #f7f3e3;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 
   .custom-hero__slide--slide-3 {
+    background-image: url('{{ "banner.png" | asset_url }}');
     background-color: #fce8dc;
-    background-image: none;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 
   .custom-hero__inner {
@@ -60,11 +69,12 @@
   }
 
   .custom-hero__slide--slide-3 .custom-hero__inner {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    text-align: left;
+    justify-content: center;
+    text-align: center;
+    min-height: 520px;
   }
 
   .custom-hero__media-left {
@@ -94,9 +104,10 @@
   }
 
   .custom-hero__slide--slide-3 .custom-hero__content {
-    text-align: left;
-    align-items: flex-start;
-    margin: 0;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 800px;
   }
 
   .custom-hero__label {
@@ -135,7 +146,7 @@
   }
 
   .custom-hero__slide--slide-3 .custom-hero__buttons {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .custom-hero__btn {
@@ -330,10 +341,6 @@
   <!-- SLIDE 3 -->
   <div class="custom-hero__slide custom-hero__slide--slide-3" data-hero-slide>
     <div class="custom-hero__inner">
-      <div class="custom-hero__media-left">
-        <img src="{{ 'thirdslideimage.png' | asset_url }}" alt="Everything your Best Friend needs" loading="eager">
-      </div>
-
       <div class="custom-hero__content">
         <p class="custom-hero__label">EXCLUSIVE LIFESTYLE</p>
         <h1 class="custom-hero__heading">Everything your Best Friend needs</h1>

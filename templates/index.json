@@ -57,10 +57,6 @@
         "container_width": 1400
       }
     },
-    "top_picks": {
-      "type": "custom-top-picks",
-      "settings": {}
-    },
     "all_products": {
       "type": "custom-all-products",
       "settings": {}
@@ -72,18 +68,12 @@
     "mega_sale": {
       "type": "custom-mega-sale",
       "settings": {}
-    },
-    "bundle_builder": {
-      "type": "custom-bundle-builder",
-      "settings": {}
     }
   },
   "order": [
     "custom_hero",
-    "top_picks",
     "all_products",
     "category_deals",
-    "mega_sale",
-    "bundle_builder"
+    "mega_sale"
   ]
 }

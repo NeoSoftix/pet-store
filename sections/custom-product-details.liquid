@@ -316,31 +316,34 @@
   .pet-related-section {
     border-top: 1px solid #e5e7eb;
     padding-top: 6rem;
+    margin-top: 6rem;
   }
 
   .pet-related-title {
-    font-size: 3.2rem;
+    font-size: 3.6rem;
     font-weight: 800;
     color: #111827;
     text-align: center;
-    margin-bottom: 4rem;
+    margin: 0;
+    letter-spacing: -0.02em;
   }
 
   .pet-card-rel {
     background-color: #ffffff;
-    border-radius: 1.6rem;
+    border-radius: 2rem;
     border: 1px solid #e5e7eb;
-    padding: 1.6rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.4rem;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   }
 
   .pet-card-rel:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
   }
 
   .pet-card-rel__img-wrapper {
@@ -348,31 +351,44 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     background-color: #f9fafb;
-    border-radius: 1.2rem;
+    border-radius: 1.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.6rem;
+    padding: 2rem;
     overflow: hidden;
+    border: 1px solid #f0f0f4;
   }
 
   .pet-card-rel__img-wrapper img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    transition: transform 0.35s ease;
+  }
+
+  .pet-card-rel:hover .pet-card-rel__img-wrapper img {
+    transform: scale(1.06);
   }
 
   .pet-card-rel__btn {
     width: 100%;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 3rem;
     background-color: #4c46c4;
     color: #ffffff;
     border: none;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
     font-weight: 700;
     cursor: pointer;
     margin-top: auto;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(76, 70, 196, 0.25);
+  }
+
+  .pet-card-rel:hover .pet-card-rel__btn {
+    background-color: #3b35ad;
+    box-shadow: 0 6px 18px rgba(76, 70, 196, 0.4);
   }
 
   @media screen and (max-width: 989px) {
@@ -456,12 +472,16 @@
             <span class="pet-pdp-qty-val" id="pdpQtyVal">1</span>
             <button class="pet-pdp-qty-btn" type="button" onclick="adjustPdpQty(1)">+</button>
           </div>
-          <button class="pet-pdp-add-cart-btn" type="button">ADD TO CART</button>
+          <button class="pet-pdp-add-cart-btn" type="button" onclick="handlePdpAddToCart()">ADD TO CART</button>
         </div>
 
-        <button class="pet-pdp-shop-pay-btn" type="button">
-          Buy with <strong>Shop Pay</strong>
+        <button class="pet-pdp-shop-pay-btn" type="button" onclick="handlePdpCheckout()">
+          Buy with <strong>Shop Pay / Stripe</strong>
         </button>
+
+        <div id="pdpCartToast" style="display:none; margin-top:1.2rem; padding:1.2rem; background:#ecfdf5; border:1px solid #10b981; color:#065f46; border-radius:0.8rem; font-size:1.4rem; font-weight:700; text-align:center;">
+          ✅ Item added! Redirecting to Stripe Checkout...
+        </div>
 
         <!-- Accordions -->
         <div class="pet-pdp-accordions">
@@ -490,32 +510,50 @@
 
     <!-- Related Products Section (Shows other CSV products below!) -->
     <div class="pet-related-section">
-      <h2 class="pet-related-title">Related Products</h2>
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <span style="display:inline-block; padding:0.4rem 1.6rem; background:#e0e7ff; color:#4c46c4; font-size:1.3rem; font-weight:700; border-radius:2rem; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:1rem;">You May Also Like</span>
+        <h2 class="pet-related-title">Related Products</h2>
+      </div>
+
       <div class="pet-product-grid-3">
         <!-- Product 2 -->
         <div class="pet-card-rel" onclick="loadPdpProduct(1)">
           <div class="pet-card-rel__img-wrapper">
+            <span style="position:absolute; top:1.2rem; right:1.2rem; background:rgba(255,255,255,0.92); padding:0.4rem 1rem; border-radius:2rem; font-size:1.2rem; font-weight:700; color:#111827; box-shadow:0 2px 8px rgba(0,0,0,0.06); z-index:2;">⭐ 4.9 (84)</span>
             <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/S57bfe3f12ed94b34900d27ced7dc719cU.webp?v=1765941139" alt="Pets Water Bottle">
           </div>
-          <div>
-            <h3 style="font-size:1.6rem; font-weight:700; color:#111827;">Pets Water Bottle Portable Travel Cup with Food Dispenser</h3>
-            <div style="font-size:1.4rem; color:#ea580c; font-weight:700; margin-top:0.4rem;">★★★★★ (84)</div>
-            <div style="font-size:1.8rem; font-weight:800; color:#111827; margin-top:0.6rem;">$29.99</div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem; flex-grow:1;">
+            <h3 style="font-size:1.6rem; font-weight:700; color:#111827; line-height:1.35; margin:0;">Pets Water Bottle Portable Travel Cup with Food Dispenser</h3>
+            <div style="font-size:1.3rem; color:#ea580c; font-weight:700; display:flex; align-items:center; gap:0.4rem;">
+              <span>★★★★★</span>
+              <span style="color:#6b7280; font-weight:500;">(84 reviews)</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:0.8rem; margin-top:0.4rem;">
+              <span style="font-size:2rem; font-weight:800; color:#4c46c4;">$29.99</span>
+              <span style="font-size:1.4rem; color:#9ca3af; text-decoration:line-through;">$44.99</span>
+            </div>
           </div>
-          <button class="pet-card-rel__btn" type="button">Quick View &amp; Details</button>
+          <button class="pet-card-rel__btn" type="button">View Details &amp; Shop</button>
         </div>
 
         <!-- Product 3 -->
         <div class="pet-card-rel" onclick="loadPdpProduct(2)">
           <div class="pet-card-rel__img-wrapper">
+            <span style="position:absolute; top:1.2rem; right:1.2rem; background:rgba(255,255,255,0.92); padding:0.4rem 1rem; border-radius:2rem; font-size:1.2rem; font-weight:700; color:#111827; box-shadow:0 2px 8px rgba(0,0,0,0.06); z-index:2;">⭐ 5.0 (638)</span>
             <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/b95b69183a986803d32f849725aafdcd.webp?v=1776385988" alt="Royal Pet Cozy Bed">
           </div>
-          <div>
-            <h3 style="font-size:1.6rem; font-weight:700; color:#111827;">Royal Pet Cozy Bed — Calming Ultra-Soft Plush</h3>
-            <div style="font-size:1.4rem; color:#ea580c; font-weight:700; margin-top:0.4rem;">★★★★★ (638)</div>
-            <div style="font-size:1.8rem; font-weight:800; color:#111827; margin-top:0.6rem;">$49.99</div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem; flex-grow:1;">
+            <h3 style="font-size:1.6rem; font-weight:700; color:#111827; line-height:1.35; margin:0;">Royal Pet Cozy Bed — Calming Ultra-Soft Plush</h3>
+            <div style="font-size:1.3rem; color:#ea580c; font-weight:700; display:flex; align-items:center; gap:0.4rem;">
+              <span>★★★★★</span>
+              <span style="color:#6b7280; font-weight:500;">(638 reviews)</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:0.8rem; margin-top:0.4rem;">
+              <span style="font-size:2rem; font-weight:800; color:#4c46c4;">$49.99</span>
+              <span style="font-size:1.4rem; color:#9ca3af; text-decoration:line-through;">$79.99</span>
+            </div>
           </div>
-          <button class="pet-card-rel__btn" type="button">Quick View &amp; Details</button>
+          <button class="pet-card-rel__btn" type="button">View Details &amp; Shop</button>
         </div>
       </div>
     </div>
@@ -603,7 +641,23 @@
       thumbsCol.appendChild(box);
     });
 
+    document.title = item.title + " – Pets Royalty";
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function handlePdpAddToCart() {
+    var toast = document.getElementById('pdpCartToast');
+    if (toast) {
+      toast.style.display = 'block';
+      toast.innerText = '✅ Item added to cart! Opening Stripe Checkout...';
+    }
+    setTimeout(function() {
+      window.location.href = '/checkout';
+    }, 800);
+  }
+
+  function handlePdpCheckout() {
+    window.location.href = '/checkout';
   }
 
   document.addEventListener('DOMContentLoaded', function() {

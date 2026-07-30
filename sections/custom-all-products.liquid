@@ -1,112 +1,71 @@
 {%- style -%}
   .pet-all-products-section {
-    padding: 6rem 2.4rem;
+    padding: 5rem 2rem;
     background-color: #f9fafb;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    min-height: 80vh;
   }
 
   .pet-all-products-container {
-    max-width: 1400px;
+    max-width: 1050px;
     margin: 0 auto;
   }
 
   .pet-all-products-header {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 2.8rem;
   }
 
   .pet-all-products-header h1 {
-    font-size: 4.4rem;
+    font-size: 3.2rem;
     font-weight: 800;
     color: #111827;
-    margin: 0 0 1.2rem 0;
+    margin: 0 0 0.6rem 0;
     letter-spacing: -0.02em;
   }
 
   .pet-all-products-header p {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: #6b7280;
     margin: 0;
-  }
-
-  .pet-all-products-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-bottom: 4rem;
-    background-color: #ffffff;
-    padding: 1.6rem 2.4rem;
-    border-radius: 1.6rem;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  }
-
-  .pet-all-products-filter-tabs {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .pet-all-products-tab {
-    padding: 0.8rem 2.2rem;
-    border-radius: 3rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .pet-all-products-tab.active {
-    background-color: #4c46c4;
-    color: #ffffff;
-  }
-
-  .pet-all-products-tab:not(.active) {
-    background-color: #f3f4f6;
-    color: #4b5563;
-  }
-
-  .pet-all-products-count {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #6b7280;
   }
 
   .pet-all-products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 3.2rem;
+    gap: 2rem;
   }
 
   .pet-product-card-full {
     background-color: #ffffff;
-    border-radius: 2rem;
+    border-radius: 1.4rem;
     border: 1px solid #e5e7eb;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+    padding: 1rem;
   }
 
   .pet-product-card-full:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
   }
 
   .pet-product-card-full__image-box {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: 190px;
     background-color: #f9fafb;
-    padding: 2.4rem;
+    border-radius: 1rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    border: 1px solid #f0f0f4;
   }
 
   .pet-product-card-full__image-box img {
@@ -121,19 +80,24 @@
   }
 
   .pet-product-card-full__body {
-    padding: 2.4rem;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 0.6rem;
     flex-grow: 1;
   }
 
   .pet-product-card-full__title {
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-size: 1.4rem;
+    font-weight: 700;
     color: #111827;
     line-height: 1.3;
     margin: 0;
+    height: 3.6rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .pet-product-card-full:hover .pet-product-card-full__title {
@@ -143,13 +107,35 @@
   .pet-product-card-full__rating {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 1.4rem;
+    gap: 0.4rem;
+    font-size: 1.15rem;
     color: #6b7280;
   }
 
   .pet-product-card-full__stars {
     color: #ea580c;
+    font-weight: 700;
+  }
+
+  .pet-card__badges {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.2rem;
+  }
+
+  .pet-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 0.4rem;
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4b5563;
   }
 
   .pet-product-card-full__price-row {
@@ -157,30 +143,31 @@
     align-items: center;
     justify-content: space-between;
     margin-top: auto;
-    padding-top: 1rem;
+    padding-top: 0.6rem;
   }
 
   .pet-product-card-full__price {
-    font-size: 2.2rem;
-    font-weight: 900;
+    font-size: 1.6rem;
+    font-weight: 800;
     color: #4c46c4;
   }
 
   .pet-product-card-full__btn {
-    padding: 1rem 2.2rem;
+    padding: 0.6rem 1.4rem;
     background-color: #4c46c4;
     color: #ffffff;
     border: none;
-    border-radius: 3rem;
-    font-size: 1.4rem;
+    border-radius: 2rem;
+    font-size: 1.2rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: 0 3px 8px rgba(76, 70, 196, 0.25);
   }
 
   .pet-product-card-full__btn:hover {
     background-color: #3b35ad;
-    box-shadow: 0 4px 14px rgba(76, 70, 196, 0.35);
+    box-shadow: 0 5px 14px rgba(76, 70, 196, 0.4);
   }
 
   @media screen and (max-width: 989px) {
@@ -197,18 +184,6 @@
     <div class="pet-all-products-header">
       <h1>Our Products</h1>
       <p>Premium quality items crafted for your furry friends' happiness &amp; health.</p>
-    </div>
-
-    <div class="pet-all-products-toolbar">
-      <div class="pet-all-products-filter-tabs">
-        <button class="pet-all-products-tab active" type="button">All Products</button>
-        <button class="pet-all-products-tab" type="button">Cat Toys</button>
-        <button class="pet-all-products-tab" type="button">Dog Essentials</button>
-        <button class="pet-all-products-tab" type="button">Beds &amp; Comfort</button>
-      </div>
-      <div class="pet-all-products-count">
-        Showing 3 products
-      </div>
     </div>
 
     <div class="pet-all-products-grid">
@@ -229,7 +204,7 @@
           </div>
           <div class="pet-product-card-full__price-row">
             <span class="pet-product-card-full__price">$39.99</span>
-            <span class="pet-product-card-full__btn">View Product Details</span>
+            <span class="pet-product-card-full__btn">View Details</span>
           </div>
         </div>
       </a>
@@ -251,7 +226,7 @@
           </div>
           <div class="pet-product-card-full__price-row">
             <span class="pet-product-card-full__price">$29.99</span>
-            <span class="pet-product-card-full__btn">View Product Details</span>
+            <span class="pet-product-card-full__btn">View Details</span>
           </div>
         </div>
       </a>
@@ -273,7 +248,7 @@
           </div>
           <div class="pet-product-card-full__price-row">
             <span class="pet-product-card-full__price">$49.99</span>
-            <span class="pet-product-card-full__btn">View Product Details</span>
+            <span class="pet-product-card-full__btn">View Details</span>
           </div>
         </div>
       </a>
