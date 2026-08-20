@@ -1,97 +1,42 @@
 {%- style -%}
   .pet-custom-footer {
-    position: relative;
+    background-color: #f6f4fc;
+    color: #1e1b3a;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: #4b5563;
-    overflow: hidden;
-  }
-
-  .pet-custom-footer-main {
-    background-image: url('{{ "footer.png" | asset_url }}');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    padding-top: 10rem;
-    padding-bottom: 8rem;
   }
 
   .pet-footer-container {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 0 2.4rem;
+    padding: 6rem 2.4rem 3rem 2.4rem;
   }
 
   .pet-footer-grid {
     display: grid;
-    grid-template-columns: 1.3fr 0.8fr 0.9fr 1.2fr;
-    gap: 4rem;
+    grid-template-columns: 1.4fr 0.9fr 1fr 1fr 1.1fr;
+    gap: 3.2rem;
   }
 
   /* BRAND COLUMN */
   .pet-footer-brand-logo {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.8rem;
     text-decoration: none;
   }
 
-  .pet-footer-logo-icon {
-    width: 4.4rem;
-    height: 4.4rem;
-    background-color: #4c46c4;
-    color: #ffffff;
-    border-radius: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(76, 70, 196, 0.3);
-  }
-
-  .pet-footer-brand-name {
-    font-size: 2.6rem;
-    font-weight: 900;
-    color: #111827;
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-
-  .pet-footer-brand-name span {
+  .pet-footer-logo-img {
+    height: 3.6rem;
+    width: auto;
     display: block;
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: #4c46c4;
-    letter-spacing: 0.25em;
-    margin-top: 0.4rem;
   }
 
   .pet-footer-about-text {
-    font-size: 1.45rem;
-    line-height: 1.6;
-    color: #4b5563;
-    margin-bottom: 2.4rem;
-    max-width: 340px;
-  }
-
-  .pet-footer-contact-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    margin-bottom: 2.4rem;
-  }
-
-  .pet-footer-contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
     font-size: 1.4rem;
-    color: #374151;
-    font-weight: 600;
-  }
-
-  .pet-footer-contact-item svg {
-    color: #4c46c4;
-    flex-shrink: 0;
+    line-height: 1.6;
+    color: #6b667f;
+    margin-bottom: 2.4rem;
+    max-width: 300px;
   }
 
   .pet-footer-socials {
@@ -101,11 +46,11 @@
   }
 
   .pet-footer-social-btn {
-    width: 3.8rem;
-    height: 3.8rem;
+    width: 3.6rem;
+    height: 3.6rem;
     border-radius: 50%;
-    border: 1px solid #c7d2fe;
-    background-color: #ffffff;
+    border: 1px solid #ded9f7;
+    background-color: transparent;
     color: #4c46c4;
     display: flex;
     align-items: center;
@@ -118,31 +63,16 @@
     background-color: #4c46c4;
     color: #ffffff;
     border-color: #4c46c4;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(76, 70, 196, 0.25);
   }
 
   /* COLUMN HEADINGS */
   .pet-footer-heading {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 800;
-    color: #4c46c4;
+    color: #1e1b3a;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin: 0 0 1.6rem 0;
-    position: relative;
-    padding-bottom: 0.8rem;
-  }
-
-  .pet-footer-heading::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 3rem;
-    height: 3px;
-    background-color: #4c46c4;
-    border-radius: 2px;
+    letter-spacing: 0.06em;
+    margin: 0 0 1.8rem 0;
   }
 
   /* LINKS LIST */
@@ -156,32 +86,23 @@
   }
 
   .pet-footer-link-item a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 1.45rem;
-    font-weight: 600;
-    color: #374151;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #6b667f;
     text-decoration: none;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 0.2s ease;
   }
 
   .pet-footer-link-item a:hover {
     color: #4c46c4;
-    transform: translateX(4px);
   }
 
-  .pet-footer-link-arrow {
-    color: #4c46c4;
-    font-weight: 800;
-  }
-
-  /* NEWSLETTER BOX */
+  /* NEWSLETTER */
   .pet-footer-newsletter-sub {
-    font-size: 1.45rem;
-    color: #4b5563;
+    font-size: 1.35rem;
+    color: #6b667f;
     line-height: 1.5;
-    margin-bottom: 2rem;
+    margin-bottom: 1.6rem;
   }
 
   .pet-footer-form-wrapper {
@@ -189,303 +110,242 @@
     display: flex;
     align-items: center;
     background-color: #ffffff;
-    border: 1px solid #c7d2fe;
+    border: 1px solid #ded9f7;
     border-radius: 3rem;
     padding: 0.4rem 0.4rem 0.4rem 1.6rem;
-    box-shadow: 0 4px 14px rgba(76, 70, 196, 0.08);
   }
 
   .pet-footer-input {
     width: 100%;
     border: none;
     background: transparent;
-    font-size: 1.4rem;
-    color: #111827;
+    font-size: 1.3rem;
+    color: #1e1b3a;
     outline: none;
   }
 
   .pet-footer-submit-btn {
-    padding: 1rem 2rem;
-    border-radius: 2.5rem;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
     background-color: #4c46c4;
     color: #ffffff;
     border: none;
-    font-size: 1.4rem;
-    font-weight: 700;
-    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(76, 70, 196, 0.3);
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
   }
 
   .pet-footer-submit-btn:hover {
     background-color: #3b35ad;
-    transform: translateY(-1px);
-  }
-
-  /* FLOATING FEATURES BAR */
-  .pet-footer-features-bar {
-    max-width: 1200px;
-    margin: -5rem auto 0 auto;
-    position: relative;
-    z-index: 10;
-    background-color: #ffffff;
-    border-radius: 2rem;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
-    padding: 2.4rem 3rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    border: 1px solid #f0f0f4;
-  }
-
-  .pet-footer-feature-col {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-    position: relative;
-  }
-
-  .pet-footer-feature-col:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: -1rem;
-    top: 15%;
-    bottom: 15%;
-    width: 1px;
-    background-color: #e5e7eb;
-  }
-
-  .pet-footer-feature-icon-box {
-    width: 4.8rem;
-    height: 4.8rem;
-    border-radius: 50%;
-    background-color: #4c46c4;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(76, 70, 196, 0.25);
-  }
-
-  .pet-footer-feature-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #111827;
-    margin: 0 0 0.3rem 0;
-  }
-
-  .pet-footer-feature-desc {
-    font-size: 1.25rem;
-    color: #6b7280;
-    margin: 0;
-    line-height: 1.35;
   }
 
   /* BOTTOM COPYRIGHT BAR */
   .pet-footer-bottom {
-    background-color: #4c46c4;
-    padding: 4rem 2.4rem 2.4rem 2.4rem;
-    color: #ffffff;
+    border-top: 1px solid #ded9f7;
   }
 
   .pet-footer-bottom-container {
     max-width: 1300px;
     margin: 0 auto;
+    padding: 2.4rem 2.4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    font-size: 1.35rem;
+    font-size: 1.3rem;
   }
 
   .pet-footer-copyright-text {
-    opacity: 0.9;
+    color: #6b667f;
     font-weight: 500;
   }
 
-  .pet-footer-policy-links {
+  .pet-footer-dev-link {
+    color: #4c46c4;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .pet-footer-dev-link:hover {
+    text-decoration: underline;
+  }
+
+  .pet-footer-legal-links {
     display: flex;
     align-items: center;
-    gap: 1.6rem;
+    gap: 2rem;
   }
 
-  .pet-footer-policy-links a {
-    color: #ffffff;
-    text-decoration: none;
-    opacity: 0.9;
+  .pet-footer-legal-links a {
+    color: #6b667f;
+    font-size: 1.3rem;
     font-weight: 500;
-    transition: opacity 0.2s ease;
+    text-decoration: none;
   }
 
-  .pet-footer-policy-links a:hover {
-    opacity: 1;
+  .pet-footer-legal-links a:hover {
+    color: #4c46c4;
     text-decoration: underline;
   }
 
   @media screen and (max-width: 989px) {
+    .pet-footer-container {
+      padding: 4.8rem 2.4rem 2.4rem;
+    }
+
     .pet-footer-grid {
       grid-template-columns: repeat(2, 1fr);
-    }
-    .pet-footer-features-bar {
-      grid-template-columns: repeat(2, 1fr);
-      margin-top: -3rem;
-    }
-    .pet-footer-feature-col:nth-child(2)::after {
-      display: none;
+      gap: 3.2rem 2.4rem;
     }
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 749px) {
     .pet-footer-grid {
       grid-template-columns: 1fr;
+      gap: 3.2rem;
     }
-    .pet-footer-features-bar {
-      grid-template-columns: 1fr;
-    }
-    .pet-footer-feature-col::after {
-      display: none;
-    }
+
     .pet-footer-bottom-container {
       flex-direction: column;
       text-align: center;
+      gap: 1.6rem;
+    }
+
+    .pet-footer-about-text {
+      max-width: 100%;
+    }
+
+    .pet-footer-legal-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pet-footer-container {
+      padding: 3.6rem 1.6rem 1.6rem;
+    }
+
+    .pet-footer-bottom-container {
+      padding: 2rem 1.6rem;
+    }
+
+    .pet-footer-heading {
+      font-size: 1.3rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .pet-footer-about-text,
+    .pet-footer-link-item a,
+    .pet-footer-newsletter-sub {
+      font-size: 1.3rem;
+    }
+
+    .pet-footer-social-btn {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .pet-footer-form-wrapper {
+      padding: 0.4rem 0.4rem 0.4rem 1.2rem;
+    }
+
+    .pet-footer-submit-btn {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .pet-footer-legal-links {
+      gap: 1.4rem;
+    }
+
+    .pet-footer-legal-links a {
+      font-size: 1.2rem;
     }
   }
 {%- endstyle -%}
 
 <footer class="pet-custom-footer">
-  <div class="pet-custom-footer-main">
-    <div class="pet-footer-container">
-      <div class="pet-footer-grid">
+  <div class="pet-footer-container">
+    <div class="pet-footer-grid">
 
-        <!-- COLUMN 1: BRAND & CONTACT -->
-        <div>
-          <a href="/" class="pet-footer-brand-logo">
-            <div class="pet-footer-logo-icon">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                <path d="M12 2a3 3 0 0 0-3 3c0 .38.08.73.21 1.06A4.98 4.98 0 0 0 5 11c0 2.76 2.24 5 5 5h4c2.76 0 5-2.24 5-5 0-2.27-1.52-4.18-3.61-4.75.13-.33.21-.68.21-1.06a3 3 0 0 0-3-3zm-6 9c0 1.65 1.35 3 3 3h6c1.65 0 3-1.35 3-3 0-1.65-1.35-3-3-3h-6c-1.65 0-3 1.35-3 3z"/>
-              </svg>
-            </div>
-            <div class="pet-footer-brand-name">
-              Neosoftix
-              <span>PET STORE</span>
-            </div>
+      <!-- COLUMN 1: BRAND -->
+      <div>
+        <a href="/" class="pet-footer-brand-logo">
+          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" class="pet-footer-logo-img">
+        </a>
+
+        <p class="pet-footer-about-text">
+          {{ 'custom.footer.about_text' | t }}
+        </p>
+
+        <div class="pet-footer-socials">
+          <a href="#" class="pet-footer-social-btn" aria-label="{{ 'custom.footer.aria_social_facebook' | t }}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-
-          <p class="pet-footer-about-text">
-            Healthy meals, happier pets! Premium products and tasty treats for your furry family members.
-          </p>
-
-          <div class="pet-footer-contact-list">
-            <div class="pet-footer-contact-item">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-              <span>123 Pet Street, Happy Town, Petland 45678</span>
-            </div>
-            <div class="pet-footer-contact-item">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span>+1 (555) 123-4567</span>
-            </div>
-            <div class="pet-footer-contact-item">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-              <span>support@neosoftixpetstore.com</span>
-            </div>
-          </div>
-
-          <div class="pet-footer-socials">
-            <a href="#" class="pet-footer-social-btn" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-            <a href="#" class="pet-footer-social-btn" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <a href="#" class="pet-footer-social-btn" aria-label="TikTok">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.29-2.73.91-5.46 3.08-7.1 1.53-1.17 3.49-1.74 5.41-1.57.04 1.39.02 2.78.02 4.17-1.16-.13-2.35.19-3.27.87-.96.69-1.54 1.83-1.52 3.01.03 1.25.68 2.42 1.74 3.08 1.05.67 2.42.76 3.56.24 1.07-.46 1.85-1.47 1.99-2.63.07-2.6.02-5.2.03-7.8.01-4.8.01-9.6.01-14.4z"/></svg>
-            </a>
-            <a href="#" class="pet-footer-social-btn" aria-label="YouTube">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#ffffff"/></svg>
-            </a>
-          </div>
+          <a href="#" class="pet-footer-social-btn" aria-label="{{ 'custom.footer.aria_social_instagram' | t }}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="pet-footer-social-btn" aria-label="{{ 'custom.footer.aria_social_tiktok' | t }}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.29-2.73.91-5.46 3.08-7.1 1.53-1.17 3.49-1.74 5.41-1.57.04 1.39.02 2.78.02 4.17-1.16-.13-2.35.19-3.27.87-.96.69-1.54 1.83-1.52 3.01.03 1.25.68 2.42 1.74 3.08 1.05.67 2.42.76 3.56.24 1.07-.46 1.85-1.47 1.99-2.63.07-2.6.02-5.2.03-7.8.01-4.8.01-9.6.01-14.4z"/></svg>
+          </a>
+          <a href="#" class="pet-footer-social-btn" aria-label="{{ 'custom.footer.aria_social_youtube' | t }}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#ffffff"/></svg>
+          </a>
         </div>
-
-        <!-- COLUMN 2: QUICK LINKS -->
-        <div>
-          <h3 class="pet-footer-heading">Quick Links</h3>
-          <ul class="pet-footer-links">
-            <li class="pet-footer-link-item">
-              <a href="/">
-                <span class="pet-footer-link-arrow">›</span>
-                <span>Home</span>
-              </a>
-            </li>
-            <li class="pet-footer-link-item">
-              <a href="/collections/all">
-                <span class="pet-footer-link-arrow">›</span>
-                <span>Shop</span>
-              </a>
-            </li>
-            <li class="pet-footer-link-item">
-              <a href="/collections/all">
-                <span class="pet-footer-link-arrow">›</span>
-                <span>All Products</span>
-              </a>
-            </li>
-            <li class="pet-footer-link-item">
-              <a href="/pages/contact">
-                <span class="pet-footer-link-arrow">›</span>
-                <span>Contact Us</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- COLUMN 3: CATEGORIES -->
-        <div>
-          <h3 class="pet-footer-heading">Categories</h3>
-          <ul class="pet-footer-links">
-            <li class="pet-footer-link-item">
-              <a href="/products/royal-pet-cozy-bed">
-                <span class="pet-footer-link-arrow">›</span>
-                <span>Cozy Bed</span>
-              </a>
-            </li>
-            <li class="pet-footer-link-item">
-              <a href="/products/pets-water-bottle-portable-food-grade-material-dog-cat-travel-pet-water-cup-bottle-with-food-dispenser-puppy-water-bottle">
-                <span class="pet-footer-link-arrow">›</span>
-                <span>Portable Water Bottle</span>
-              </a>
-            </li>
-            <li class="pet-footer-link-item">
-              <a href="/products/hot-simulated-bird-cat-toy-interactive-toys-dog-rechargeable-chirping-flapping-birdno-flying-touch-activated-plush-toy-pet">
-                <span class="pet-footer-link-arrow">›</span>
-                <span>Flapping Bird (Cat Toy)</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- COLUMN 4: NEWSLETTER -->
-        <div>
-          <h3 class="pet-footer-heading">Newsletter</h3>
-          <p class="pet-footer-newsletter-sub">
-            Subscribe to get special offers, pet care tips, and updates.
-          </p>
-
-          <form action="/contact#contact_form" method="post" class="pet-footer-form-wrapper">
-            <input type="hidden" name="form_type" value="customer">
-            <input type="hidden" name="utf8" value="✓">
-            <input type="email" name="contact[email]" class="pet-footer-input" placeholder="Enter your email" required>
-            <button type="submit" class="pet-footer-submit-btn">
-              <span>Subscribe</span>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            </button>
-          </form>
-        </div>
-
       </div>
+
+      <!-- COLUMN 2: SHOP -->
+      <div>
+        <h3 class="pet-footer-heading">{{ 'custom.footer.shop_heading' | t }}</h3>
+        <ul class="pet-footer-links">
+          <li class="pet-footer-link-item"><a href="/collections/all">{{ 'custom.footer.shop_all_products' | t }}</a></li>
+          <li class="pet-footer-link-item"><a href="/collections/dog">{{ 'custom.footer.shop_dog' | t }}</a></li>
+          <li class="pet-footer-link-item"><a href="/collections/cat">{{ 'custom.footer.shop_cat' | t }}</a></li>
+          <li class="pet-footer-link-item"><a href="/collections/all">{{ 'custom.footer.shop_supplements' | t }}</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 3: CUSTOMER CARE -->
+      <div>
+        <h3 class="pet-footer-heading">{{ 'custom.footer.customer_care_heading' | t }}</h3>
+        <ul class="pet-footer-links">
+          <li class="pet-footer-link-item"><a href="/account">{{ 'custom.footer.customer_care_my_account' | t }}</a></li>
+          <li class="pet-footer-link-item"><a href="/policies/shipping-policy">{{ 'custom.footer.customer_care_shipping' | t }}</a></li>
+          <li class="pet-footer-link-item"><a href="/policies/refund-policy">{{ 'custom.footer.customer_care_returns' | t }}</a></li>
+          <li class="pet-footer-link-item"><a href="/pages/contact">{{ 'custom.footer.customer_care_contact' | t }}</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 4: ABOUT -->
+      <div>
+        <h3 class="pet-footer-heading">{{ 'custom.footer.about_heading' | t }}</h3>
+        <ul class="pet-footer-links">
+          <li class="pet-footer-link-item"><a href="/pages/about-us">{{ 'custom.footer.about_our_story' | t }}</a></li>
+          <li class="pet-footer-link-item"><a href="/pages/about-us">{{ 'custom.footer.about_why_petvona' | t }}</a></li>
+          <li class="pet-footer-link-item"><a href="/pages/about-us">{{ 'custom.footer.about_sustainability' | t }}</a></li>
+          <li class="pet-footer-link-item"><a href="/blogs/news">{{ 'custom.footer.about_blog' | t }}</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 5: NEWSLETTER -->
+      <div>
+        <h3 class="pet-footer-heading">{{ 'custom.footer.newsletter_heading' | t }}</h3>
+        <p class="pet-footer-newsletter-sub">{{ 'custom.footer.newsletter_sub' | t }}</p>
+        <form action="/contact#contact_form" method="post" class="pet-footer-form-wrapper">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="email" name="contact[email]" class="pet-footer-input" placeholder="{{ 'custom.footer.newsletter_placeholder' | t }}" required>
+          <button type="submit" class="pet-footer-submit-btn" aria-label="{{ 'custom.footer.newsletter_submit' | t }}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </button>
+        </form>
+      </div>
+
     </div>
   </div>
 
@@ -493,16 +353,11 @@
   <div class="pet-footer-bottom">
     <div class="pet-footer-bottom-container">
       <div class="pet-footer-copyright-text">
-        &copy; 2025 Neosoftix Pet Store. All rights reserved.
+        © 2026 Petvona. {{ 'custom.footer.developed_by' | t }} <a href="https://neosoftix.com" target="_blank" rel="noopener noreferrer" class="pet-footer-dev-link">Neosoftix</a>. {{ 'custom.footer.all_rights_reserved' | t }}
       </div>
-      <div class="pet-footer-policy-links">
-        <a href="/policies/privacy-policy">Privacy Policy</a>
-        <span>|</span>
-        <a href="/policies/terms-of-service">Terms &amp; Conditions</a>
-        <span>|</span>
-        <a href="/policies/shipping-policy">Shipping Policy</a>
-        <span>|</span>
-        <a href="/policies/refund-policy">Refund Policy</a>
+      <div class="pet-footer-legal-links">
+        <a href="/pages/privacy-policy">{{ 'custom.footer.privacy_policy' | t }}</a>
+        <a href="/pages/terms-conditions">{{ 'custom.footer.terms_conditions' | t }}</a>
       </div>
     </div>
   </div>

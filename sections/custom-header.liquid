@@ -1,105 +1,15 @@
 {%- style -%}
-  /* Sticky Header Wrapper */
-  .pet-header-sticky-wrapper {
+  #shopify-section-{{ section.id }} {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   }
 
-  /* Top Announcement Bar */
-  .pet-announcement-bar {
-    background-color: {{ section.settings.announcement_bg | default: '#4c46c4' }};
-    color: {{ section.settings.announcement_text_color | default: '#ffffff' }};
-    font-size: 1.3rem;
-    font-weight: 500;
-    padding: 0.7rem 2.4rem;
+  .pet-header-sticky-wrapper {
     position: relative;
-    z-index: 1002;
+    z-index: 1;
   }
 
-  .pet-announcement-bar__inner {
-    max-width: {{ section.settings.container_width | default: 1400 }}px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-  }
-
-  .pet-announcement-bar__center {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin: 0 auto;
-  }
-
-  .pet-announcement-bar__arrow {
-    background: none;
-    border: none;
-    color: currentColor;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.2rem;
-    opacity: 0.85;
-    transition: opacity 0.2s ease;
-  }
-
-  .pet-announcement-bar__arrow:hover {
-    opacity: 1;
-  }
-
-  .pet-announcement-bar__content {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    white-space: nowrap;
-  }
-
-  .pet-announcement-bar__right {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-  }
-
-  .pet-announcement-bar__socials {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-  }
-
-  .pet-announcement-bar__socials a {
-    color: currentColor;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.9;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-  }
-
-  .pet-announcement-bar__socials a:hover {
-    opacity: 1;
-  }
-
-  .pet-announcement-bar__divider {
-    width: 1px;
-    height: 1.4rem;
-    background-color: rgba(255, 255, 255, 0.35);
-  }
-
-  .pet-announcement-bar__select {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    cursor: pointer;
-    font-size: 1.25rem;
-    opacity: 0.95;
-  }
-
-  /* Main Header Styling */
   .pet-main-header {
     background-color: {{ section.settings.header_bg | default: '#ffffff' }};
     border-bottom: 1px solid {{ section.settings.border_color | default: '#f0f0f4' }};
@@ -114,112 +24,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.2rem 2.4rem;
+    padding: 1.6rem 2.4rem;
     gap: 2rem;
-  }
-
-  /* Brand / Logo & Collections Badge */
-  .pet-main-header__brand {
-    display: flex;
-    align-items: center;
-    gap: 1.4rem;
-    flex-shrink: 0;
-  }
-
-  .pet-main-header__logo {
-    text-decoration: none;
-    color: {{ section.settings.logo_color | default: '#111827' }};
-    font-size: 2.8rem;
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    display: flex;
-    align-items: center;
-  }
-
-  .pet-logo-img {
-    height: 4rem;
-    width: auto;
-    display: block;
-  }
-
-  .pet-logo-text {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .pet-logo-bone {
-    font-size: 2rem;
-    margin: 0 1px;
-    display: inline-block;
-    transform: rotate(-15deg);
-  }
-
-  /* Collections Dropdown Link */
-  .pet-collections-wrapper {
     position: relative;
   }
 
-  .pet-main-header__collections-badge {
-    display: inline-flex;
+  .pet-main-header__left {
+    display: flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.4rem 1.6rem;
-    color: #4b5563;
-    font-size: 1.3rem;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 3rem;
-    border: 1px solid #d1d5db;
-    cursor: pointer;
-    background: transparent;
-    transition: all 0.2s ease;
+    gap: 4rem;
+    min-width: 0;
   }
 
-  .pet-main-header__collections-badge:hover,
-  .pet-collections-wrapper:hover .pet-main-header__collections-badge {
-    border-color: #4c46c4;
-    color: #4c46c4;
-  }
-
-  /* Navigation Bar */
   .pet-main-header__nav {
     display: flex;
     align-items: center;
-  }
-
-  .pet-nav-list {
-    display: flex;
-    align-items: center;
     gap: 2.8rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
   }
 
   .pet-nav-item {
     position: relative;
-  }
-
-  .pet-nav-link-wrapper {
-    position: relative;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .pet-nav-badge {
-    background-color: #e53935;
-    color: #ffffff;
-    font-size: 0.85rem;
-    font-weight: 800;
-    padding: 0.1rem 0.5rem;
-    border-radius: 0.4rem;
-    line-height: 1;
-    position: absolute;
-    top: -1.1rem;
-    left: 0.6rem;
-    letter-spacing: 0.05em;
-    box-shadow: 0 2px 4px rgba(229, 57, 53, 0.25);
   }
 
   .pet-nav-link {
@@ -233,18 +57,15 @@
     padding: 0.8rem 0;
     transition: color 0.15s ease;
     cursor: pointer;
+    background: none;
+    border: none;
   }
 
-  .pet-nav-link:hover {
+  .pet-nav-link:hover,
+  .pet-nav-link.is-active {
     color: #4c46c4;
   }
 
-  .pet-nav-link--purple {
-    color: #4c46c4;
-    font-weight: 700;
-  }
-
-  /* DROPDOWNS & SUBMENUS FOR ALL NAV ITEMS */
   .pet-dropdown-menu {
     position: absolute;
     top: 100%;
@@ -254,7 +75,7 @@
     border: 1px solid #f0f0f4;
     border-radius: 1.2rem;
     padding: 1.2rem 0;
-    min-width: 220px;
+    min-width: 200px;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
     opacity: 0;
     visibility: hidden;
@@ -262,8 +83,7 @@
     z-index: 1050;
   }
 
-  .pet-nav-item:hover .pet-dropdown-menu,
-  .pet-collections-wrapper:hover .pet-dropdown-menu {
+  .pet-nav-item:hover .pet-dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
@@ -284,290 +104,81 @@
   .pet-dropdown-menu a:hover {
     background: #f3f1fd;
     color: #4c46c4;
-    font-weight: 600;
   }
 
-  /* OVERLAY BACKDROP FOR MEGA MENU OVER HERO SECTION */
-  .pet-megamenu-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(17, 24, 39, 0.35);
-    backdrop-filter: blur(2px);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-    pointer-events: none;
-  }
-
-  .pet-header-sticky-wrapper:has(.pet-megamenu:hover) ~ .pet-megamenu-backdrop,
-  body.has-megamenu-open .pet-megamenu-backdrop {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  /* MEGA MENU DROPDOWN OVERLAY ON HERO SECTION */
-  .pet-nav-item--has-megamenu {
-    position: static;
-  }
-
-  .pet-megamenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background-color: #ffffff;
-    border-top: 1px solid #f0f0f4;
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.14);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px);
-    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
-    pointer-events: none;
-    z-index: 1010;
-  }
-
-  .pet-nav-item--has-megamenu:hover .pet-megamenu,
-  .pet-megamenu.is-open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .pet-megamenu__inner {
-    max-width: {{ section.settings.container_width | default: 1400 }}px;
-    margin: 0 auto;
-    display: flex;
-    min-height: 460px;
-  }
-
-  /* Sidebar Tabs */
-  .pet-megamenu__sidebar {
-    width: 240px;
-    flex-shrink: 0;
-    border-right: 1px solid #f0f0f4;
-    padding: 2.4rem 1.6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    background-color: #ffffff;
-  }
-
-  .pet-megamenu__tab {
+  .pet-main-header__brand {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1.2rem 1.6rem;
-    border: none;
-    background: transparent;
-    border-radius: 1rem;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #374151;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.15s ease;
   }
 
-  .pet-megamenu__tab:hover {
-    background-color: #f9fafb;
-    color: #111827;
-  }
-
-  .pet-megamenu__tab.active {
-    background-color: #f3f1fd;
-    color: #111827;
-    font-weight: 700;
-  }
-
-  .pet-megamenu__tab svg {
-    color: #9ca3af;
-    transition: transform 0.2s ease;
-  }
-
-  .pet-megamenu__tab.active svg {
-    color: #111827;
-    transform: translateX(2px);
-  }
-
-  /* Right Content Panels */
-  .pet-megamenu__content {
-    flex-grow: 1;
-    padding: 2.8rem 3.2rem;
-    background-color: #ffffff;
-  }
-
-  .pet-megamenu__panel {
-    display: none;
-  }
-
-  .pet-megamenu__panel.active {
-    display: block;
-    animation: petFadeIn 0.25s ease-out forwards;
-  }
-
-  @keyframes petFadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Mega Menu Grid */
-  .pet-megamenu__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3.2rem 2.8rem;
-  }
-
-  .pet-megamenu__col {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .pet-megamenu__title {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #111827;
-    margin: 0 0 1.2rem 0;
-    letter-spacing: -0.01em;
-  }
-
-  .pet-megamenu__image-card {
-    width: 100%;
-    height: 145px;
-    border-radius: 1.2rem;
-    overflow: hidden;
-    margin-bottom: 1.4rem;
-    background-color: #f3f4f6;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-
-  .pet-megamenu__image-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-  }
-
-  .pet-megamenu__image-card:hover img {
-    transform: scale(1.04);
-  }
-
-  .pet-megamenu__links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-
-  .pet-megamenu__links a {
-    color: #4b5563;
+  .pet-main-header__logo {
     text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: 500;
-    transition: color 0.15s ease;
-  }
-
-  .pet-megamenu__links a:hover {
-    color: #4c46c4;
-  }
-
-  /* Image 5 Subnav Product Cards Grid */
-  .pet-subnav-filters {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #f0f0f4;
-    padding-bottom: 1.2rem;
   }
 
-  .pet-subnav-filter-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.8rem 1.6rem;
-    border-radius: 0.8rem;
-    border: 1px solid #e5e7eb;
-    background: #ffffff;
-    font-size: 1.35rem;
-    font-weight: 600;
-    color: #374151;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  .pet-logo-img {
+    height: 3.6rem;
+    width: auto;
+    display: block;
+    max-width: 100%;
   }
 
-  .pet-subnav-filter-btn.active {
-    background: #f3f1fd;
-    border-color: #4c46c4;
-    color: #4c46c4;
-  }
-
-  .pet-product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .pet-product-card {
-    background: #ffffff;
-    border-radius: 1.2rem;
-    padding: 1.2rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .pet-product-card__title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #111827;
-    margin: 0;
-  }
-
-  .pet-product-card__img {
-    width: 100%;
-    height: 120px;
-    object-fit: contain;
-    background: #f9fafb;
-    border-radius: 0.8rem;
-  }
-
-  /* Header Right Actions */
   .pet-main-header__actions {
     display: flex;
     align-items: center;
-    gap: 1.4rem;
+    gap: 2rem;
     flex-shrink: 0;
   }
 
-  .pet-location-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 3rem;
-    padding: 0.6rem 1.4rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #111827;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  .pet-lang-switcher {
+    position: relative;
   }
 
-  .pet-location-pill:hover {
-    border-color: #4c46c4;
+  .pet-lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #6b7280;
+    padding: 0;
+  }
+
+  .pet-lang-toggle:hover {
+    color: #4c46c4;
+  }
+
+  .pet-lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.8rem;
+    background: #ffffff;
+    border-radius: 0.8rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+    list-style: none;
+    padding: 0.6rem 0;
+    min-width: 140px;
+    z-index: 1100;
+  }
+
+  .pet-lang-dropdown a {
+    display: block;
+    padding: 0.6rem 1.4rem;
+    color: #374151;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .pet-lang-dropdown a:hover,
+  .pet-lang-dropdown a.is-active {
+    background: #f3f1fd;
     color: #4c46c4;
   }
 
@@ -583,6 +194,7 @@
     border-radius: 50%;
     transition: background-color 0.15s ease, color 0.15s ease;
     text-decoration: none;
+    position: relative;
   }
 
   .pet-action-icon-btn:hover {
@@ -590,223 +202,317 @@
     color: #4c46c4;
   }
 
-  .pet-action-theme-btn {
-    width: 3.8rem;
-    height: 3.8rem;
+  .pet-cart-count {
+    position: absolute;
+    top: -0.2rem;
+    right: -0.2rem;
+    background-color: #4c46c4;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 1.8rem;
+    height: 1.8rem;
     border-radius: 50%;
-    border: 1px solid #e5e7eb;
-    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    color: #111827;
-    transition: all 0.2s ease;
   }
 
-  .pet-action-theme-btn:hover {
-    border-color: #4c46c4;
-    color: #4c46c4;
-    background-color: #f8f7ff;
-  }
-
-  /* Responsive Mobile Menu Toggle */
   .pet-mobile-toggle {
     display: none;
     background: none;
     border: none;
     color: #111827;
     cursor: pointer;
-    padding: 0.4rem;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.4rem;
+    min-height: 4.4rem;
+    border-radius: 0.6rem;
   }
 
+  .pet-mobile-toggle:hover {
+    background-color: #f3f4f6;
+  }
+
+  /* TABLET & MOBILE (<=989px): hide inline nav, show hamburger toggle */
   @media screen and (max-width: 989px) {
-    .pet-announcement-bar__socials,
-    .pet-announcement-bar__select {
+    .pet-main-header__nav {
       display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background-color: {{ section.settings.header_bg | default: '#ffffff' }};
+      border-bottom: 1px solid {{ section.settings.border_color | default: '#f0f0f4' }};
+      box-shadow: 0 16px 24px rgba(0, 0, 0, 0.08);
+      padding: 0.8rem 2.4rem 1.6rem;
+      z-index: 1002;
     }
 
-    .pet-main-header__nav,
-    .pet-location-pill {
+    .pet-main-header__nav.is-open {
+      display: flex;
+    }
+
+    .pet-nav-item {
+      width: 100%;
+    }
+
+    .pet-nav-link {
+      width: 100%;
+      padding: 1.2rem 0;
+      font-size: 1.6rem;
+      min-height: 4.4rem;
+    }
+
+    .pet-dropdown-menu {
+      position: static;
       display: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      padding: 0 0 0 1.6rem;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .pet-nav-item:hover .pet-dropdown-menu {
+      transform: none;
     }
 
     .pet-mobile-toggle {
-      display: block;
+      display: flex;
+    }
+  }
+
+  /* TABLET (750px-989px) */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .pet-main-header__container {
+      padding: 1.6rem 3.2rem;
+    }
+  }
+
+  /* MOBILE (<=749px) */
+  @media screen and (max-width: 749px) {
+    .pet-main-header__container {
+      padding: 1.2rem 1.6rem;
+      gap: 1.2rem;
+    }
+
+    .pet-main-header__left {
+      gap: 1.2rem;
+    }
+
+    .pet-logo-img {
+      height: 2.8rem;
+    }
+
+    .pet-main-header__actions {
+      gap: 0.8rem;
+    }
+
+    .pet-lang-toggle span {
+      max-width: 6rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pet-action-icon-btn {
+      padding: 1rem;
+      min-width: 4.2rem;
+      min-height: 4.2rem;
+    }
+  }
+
+  /* SMALL PHONES (<=480px) */
+  @media screen and (max-width: 480px) {
+    .pet-main-header__container {
+      padding: 1rem 1.2rem;
+      gap: 0.8rem;
+    }
+
+    .pet-main-header__left {
+      gap: 0.8rem;
+    }
+
+    .pet-logo-img {
+      height: 2.4rem;
+    }
+
+    .pet-main-header__actions {
+      gap: 0.4rem;
+    }
+
+    .pet-mobile-toggle {
+      min-width: 4rem;
+      min-height: 4rem;
+      padding: 0.8rem;
+    }
+
+    .pet-lang-toggle {
+      font-size: 1.15rem;
+    }
+
+    .pet-lang-toggle span {
+      max-width: 4.4rem;
+    }
+
+    .pet-lang-dropdown {
+      right: -1rem;
+      min-width: 120px;
+    }
+
+    .pet-cart-count {
+      width: 1.6rem;
+      height: 1.6rem;
+      font-size: 0.9rem;
     }
   }
 {%- endstyle -%}
 
 <!-- STICKY HEADER WRAPPER -->
 <div class="pet-header-sticky-wrapper">
-  <!-- Top Announcement Bar -->
-  <div class="pet-announcement-bar">
-    <div class="pet-announcement-bar__inner">
-      <div class="pet-announcement-bar__center">
-        <button type="button" class="pet-announcement-bar__arrow" aria-label="Previous announcement">
-          <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-        </button>
-        <div class="pet-announcement-bar__content">
-          <svg class="pet-announcement-bar__truck-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="1" y="3" width="15" height="13"></rect>
-            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-            <circle cx="5.5" cy="18.5" r="2.5"></circle>
-            <circle cx="18.5" cy="18.5" r="2.5"></circle>
-          </svg>
-          <span>{{ section.settings.announcement_text | default: 'Free shipping over $40' }}</span>
-        </div>
-        <button type="button" class="pet-announcement-bar__arrow" aria-label="Next announcement">
-          <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-        </button>
-      </div>
-
-      <div class="pet-announcement-bar__right">
-        <div class="pet-announcement-bar__socials">
-          <a href="#" aria-label="X (Twitter)">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="#" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a href="#" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-        </div>
-        <span class="pet-announcement-bar__divider"></span>
-        <div class="pet-announcement-bar__select">
-          <span>English</span>
-          <svg viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
-        </div>
-        <div class="pet-announcement-bar__select">
-          <span>United States (USD $)</span>
-          <svg viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Navigation Header -->
   <header class="pet-main-header">
     <div class="pet-main-header__container">
-      <!-- Brand / Logo Area & Collections Submenu -->
-      <div class="pet-main-header__brand">
-        <a href="{{ routes.root_url }}" class="pet-main-header__logo">
-          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" class="pet-logo-img">
-        </a>
-        <div class="pet-collections-wrapper">
-          <button type="button" class="pet-main-header__collections-badge">
-            <span>Collections</span>
-            <svg viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
-          </button>
-          <div class="pet-dropdown-menu">
-            <a href="/collections/dog">🐶 Dog Collections</a>
-            <a href="/collections/cat">🐱 Cat Collections</a>
-            <a href="/collections/toys">🧸 Toys &amp; Accessories</a>
-            <a href="/collections/food">🍖 Healthy Food &amp; Treats</a>
-            <a href="/collections/bestsellers">🔥 Best Sellers</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Center Navigation Links with Submenus -->
-      <nav class="pet-main-header__nav">
-        <ul class="pet-nav-list">
-          <li class="pet-nav-item">
-            <a href="/" class="pet-nav-link">Home</a>
-          </li>
-          <li class="pet-nav-item">
-            <a href="/collections/all" class="pet-nav-link">Shop</a>
-          </li>
-          <li class="pet-nav-item">
-            <a href="/collections/all" class="pet-nav-link pet-nav-link--purple">All Products</a>
-          </li>
-          <li class="pet-nav-item">
-            <a href="/pages/contact" class="pet-nav-link">Contact Us</a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Header Actions -->
-      <div class="pet-main-header__actions">
-        <!-- Location Selector Pill -->
-        <button type="button" class="pet-location-pill">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-            <circle cx="12" cy="9" r="2.5"/>
-          </svg>
-          <span>Canada</span>
-          <svg viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
-        </button>
-
-        <!-- Search Icon -->
-        <button type="button" class="pet-action-icon-btn" aria-label="Search">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M21 21l-4.35-4.35"/>
-          </svg>
-        </button>
-
-        <!-- Cart Icon -->
-        <a href="{{ routes.cart_url }}" class="pet-action-icon-btn" aria-label="Cart">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <path d="M16 10a4 4 0 0 1-8 0"/>
-          </svg>
-        </a>
-
-        <!-- Theme Mode Switcher -->
-        <button type="button" class="pet-action-theme-btn" data-theme-toggle aria-label="Toggle dark mode">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 0 1 0-16z"/>
-            <path d="M12 4v16a8 8 0 0 0 0-16z"/>
-          </svg>
-        </button>
-
-        <!-- Mobile Hamburger -->
-        <button type="button" class="pet-mobile-toggle" aria-label="Toggle mobile menu">
+      <div class="pet-main-header__left">
+        <button type="button" class="pet-mobile-toggle" aria-label="{{ 'custom.header.aria_toggle_mobile_menu' | t }}" aria-expanded="false" aria-controls="PetMainHeaderNav" data-mobile-toggle>
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="6" x2="21" y2="6"/>
             <line x1="3" y1="12" x2="21" y2="12"/>
             <line x1="3" y1="18" x2="21" y2="18"/>
           </svg>
         </button>
+
+        <!-- Logo -->
+        <div class="pet-main-header__brand">
+          <a href="{{ routes.root_url }}" class="pet-main-header__logo">
+            <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" class="pet-logo-img">
+          </a>
+        </div>
+
+        <!-- Left Navigation -->
+        <nav class="pet-main-header__nav" id="PetMainHeaderNav">
+          <div class="pet-nav-item">
+            <a href="/pages/about-us" class="pet-nav-link{% if request.path contains '/about' %} is-active{% endif %}">{{ 'custom.header.nav_about_us' | t }}</a>
+          </div>
+          <div class="pet-nav-item">
+            <a href="/collections/all" class="pet-nav-link{% if request.path contains '/collections' %} is-active{% endif %}">{{ 'custom.header.nav_all_products' | t }}</a>
+          </div>
+          <div class="pet-nav-item">
+            <a href="/pages/contact" class="pet-nav-link{% if request.path contains '/contact' %} is-active{% endif %}">{{ 'custom.header.nav_contact' | t }}</a>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Right Navigation & Actions -->
+      <div class="pet-main-header__actions">
+        <div class="pet-lang-switcher" data-lang-switcher>
+          {%- form 'localization', id: 'HeaderLanguageForm', class: 'pet-lang-form' -%}
+            <button type="button" class="pet-lang-toggle" data-lang-toggle aria-expanded="false" aria-haspopup="listbox">
+              <span data-lang-current>{{ localization.language.endonym_name | capitalize }}</span>
+              <svg viewBox="0 0 24 24" width="10" height="10"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <ul class="pet-lang-dropdown" data-lang-dropdown hidden>
+              {%- for language in localization.available_languages -%}
+                <li>
+                  <a
+                    href="#"
+                    data-value="{{ language.iso_code }}"
+                    class="pet-lang-option{% if language.iso_code == localization.language.iso_code %} is-active{% endif %}"
+                  >{{ language.endonym_name | capitalize }}</a>
+                </li>
+              {%- endfor -%}
+            </ul>
+            <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}" data-lang-input>
+          {%- endform -%}
+        </div>
+
+        <!-- Cart Icon -->
+        <a href="{{ routes.cart_url }}" id="petCartLink" class="pet-action-icon-btn" aria-label="{{ 'custom.header.aria_cart' | t }}">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          {%- if cart.item_count > 0 -%}
+            <span id="petCartCount" class="pet-cart-count">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </a>
       </div>
     </div>
   </header>
 </div>
 
-<!-- Backdrop Overlay for Mega Menu -->
-<div class="pet-megamenu-backdrop"></div>
-
 {% javascript %}
   document.addEventListener('DOMContentLoaded', function () {
-    // Dark mode toggle
-    var themeToggleBtn = document.querySelector('[data-theme-toggle]');
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', function () {
-        document.documentElement.classList.toggle('custom-dark-mode');
+    // Mobile nav toggle
+    var mobileToggle = document.querySelector('[data-mobile-toggle]');
+    var mobileNav = document.getElementById('PetMainHeaderNav');
+    if (mobileToggle && mobileNav) {
+      mobileToggle.addEventListener('click', function () {
+        var isOpen = mobileNav.classList.toggle('is-open');
+        mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (!mobileNav.contains(event.target) && !mobileToggle.contains(event.target)) {
+          mobileNav.classList.remove('is-open');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 989) {
+          mobileNav.classList.remove('is-open');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
       });
     }
 
-    // Mega menu tabs switching
-    var tabs = document.querySelectorAll('.pet-megamenu__tab');
-    var panels = document.querySelectorAll('.pet-megamenu__panel');
+    // Language switcher
+    var langSwitcher = document.querySelector('[data-lang-switcher]');
+    if (langSwitcher) {
+      var langToggle = langSwitcher.querySelector('[data-lang-toggle]');
+      var langDropdown = langSwitcher.querySelector('[data-lang-dropdown]');
+      var langInput = langSwitcher.querySelector('[data-lang-input]');
+      var langForm = langSwitcher.querySelector('form');
 
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        var target = this.getAttribute('data-tab-target');
-
-        tabs.forEach(function (t) { t.classList.remove('active'); });
-        panels.forEach(function (p) { p.classList.remove('active'); });
-
-        this.classList.add('active');
-        var targetPanel = document.querySelector('.pet-megamenu__panel[data-tab-content="' + target + '"]');
-        if (targetPanel) {
-          targetPanel.classList.add('active');
+      langToggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+        var isHidden = langDropdown.hasAttribute('hidden');
+        if (isHidden) {
+          langDropdown.removeAttribute('hidden');
+          langToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          langDropdown.setAttribute('hidden', '');
+          langToggle.setAttribute('aria-expanded', 'false');
         }
       });
-    });
+
+      langSwitcher.querySelectorAll('[data-value]').forEach(function (option) {
+        option.addEventListener('click', function (event) {
+          event.preventDefault();
+          langInput.value = option.getAttribute('data-value');
+          document.cookie = 'pet_vona_lang_set=1; path=/; max-age=31536000';
+          if (langForm) langForm.submit();
+        });
+      });
+
+      document.addEventListener('click', function (event) {
+        if (!langSwitcher.contains(event.target)) {
+          langDropdown.setAttribute('hidden', '');
+          langToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
   });
 {% endjavascript %}
 
@@ -815,34 +521,10 @@
   "name": "Custom header",
   "settings": [
     {
-      "type": "text",
-      "id": "announcement_text",
-      "label": "Announcement text",
-      "default": "Free shipping over $40"
-    },
-    {
-      "type": "color",
-      "id": "announcement_bg",
-      "label": "Announcement background",
-      "default": "#4c46c4"
-    },
-    {
-      "type": "color",
-      "id": "announcement_text_color",
-      "label": "Announcement text color",
-      "default": "#ffffff"
-    },
-    {
       "type": "color",
       "id": "header_bg",
       "label": "Header background",
       "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "logo_color",
-      "label": "Logo color",
-      "default": "#111827"
     },
     {
       "type": "color",

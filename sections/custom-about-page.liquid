@@ -1,0 +1,559 @@
+{%- style -%}
+  .pv-about {
+    background-color: #ffffff;
+    color: #1e1b3a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .pv-about__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+  }
+
+  .pv-about-label {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #4c46c4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 1.2rem 0;
+  }
+
+  .pv-about-link-arrow {
+    color: #4c46c4;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .pv-about-link-arrow:hover {
+    text-decoration: underline;
+  }
+
+  /* ===== HERO ===== */
+  .pv-about-hero {
+    background-image: url('{{ "abouthero.png" | asset_url }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f1eefc;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    padding: 8rem 2.4rem;
+  }
+
+  .pv-about-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .pv-about-hero__heading {
+    font-size: 4.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 1.6rem 0;
+    max-width: 480px;
+  }
+
+  .pv-about-hero__heading span {
+    color: #4c46c4;
+  }
+
+  .pv-about-hero__desc {
+    font-size: 1.5rem;
+    color: #4b4763;
+    line-height: 1.6;
+    max-width: 440px;
+    margin: 0;
+  }
+
+  .pv-about-hero__mobile-img {
+    display: none;
+  }
+
+  /* ===== STORY ===== */
+  .pv-about-story {
+    padding: 6rem 0;
+  }
+
+  .pv-about-story__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .pv-about-story__photo {
+    border-radius: 2rem;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+
+  .pv-about-story__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pv-about-story__heading {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 1.6rem 0;
+  }
+
+  .pv-about-story__desc {
+    font-size: 1.5rem;
+    color: #4b4763;
+    line-height: 1.65;
+    margin: 0 0 2.4rem 0;
+  }
+
+  .pv-about-story__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #4c46c4;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 1.2rem 2.4rem;
+    border-radius: 3rem;
+    transition: background 0.2s ease;
+  }
+
+  .pv-about-story__cta:hover {
+    background: #3b35ad;
+  }
+
+  /* ===== PROMISE ===== */
+  .pv-about-promise {
+    padding-bottom: 3rem;
+  }
+
+  .pv-about-promise__wrap {
+    border: 1px solid #eeecf9;
+    border-radius: 2rem;
+    padding: 3.2rem;
+    text-align: center;
+  }
+
+  .pv-about-promise__label {
+    text-align: center;
+  }
+
+  .pv-about-promise__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.4rem;
+    margin-top: 1.6rem;
+  }
+
+  .pv-about-promise-item__icon {
+    width: 5.2rem;
+    height: 5.2rem;
+    border-radius: 50%;
+    background: #f0eefa;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.4rem auto;
+  }
+
+  .pv-about-promise-item__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 0.6rem 0;
+  }
+
+  .pv-about-promise-item__desc {
+    font-size: 1.3rem;
+    color: #6b667f;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ===== STATS ===== */
+  .pv-about-stats {
+    padding-bottom: 4rem;
+  }
+
+  .pv-about-stats__grid {
+    background: #f6f4fc;
+    border-radius: 2rem;
+    padding: 3.2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .pv-about-stat__icon {
+    color: #4c46c4;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pv-about-stat__value {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 0 0 0.3rem 0;
+  }
+
+  .pv-about-stat__label {
+    font-size: 1.3rem;
+    color: #6b667f;
+    margin: 0;
+  }
+
+  /* ===== JOIN FAMILY ===== */
+  .pv-about-join {
+    padding-bottom: 6rem;
+  }
+
+  .pv-about-join__card {
+    background: #f1eefc;
+    border-radius: 2rem;
+    padding: 3.2rem 3.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.4rem;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pv-about-join__left {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pv-about-join__avatar {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .pv-about-join__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pv-about-join__heading {
+    font-size: 1.9rem;
+    font-weight: 800;
+    margin: 0 0 0.4rem 0;
+  }
+
+  .pv-about-join__desc {
+    font-size: 1.35rem;
+    color: #4b4763;
+    max-width: 400px;
+    margin: 0;
+  }
+
+  .pv-about-join__cta {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #4c46c4;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 1.2rem 2.4rem;
+    border-radius: 3rem;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+
+  .pv-about-join__cta:hover {
+    background: #3b35ad;
+  }
+
+  @media screen and (max-width: 989px) {
+    .pv-about-hero {
+      padding: 6rem 2.4rem;
+    }
+    .pv-about-hero__heading {
+      font-size: 3.4rem;
+    }
+    .pv-about-story__grid {
+      grid-template-columns: 1fr;
+      gap: 3.2rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pv-about__container {
+      padding: 0 2rem;
+    }
+    .pv-about-hero {
+      min-height: auto;
+      padding: 4rem 2rem;
+      background-image: none;
+      background-color: #f1eefc;
+    }
+    .pv-about-hero__heading {
+      font-size: 2.8rem;
+      max-width: 100%;
+    }
+    .pv-about-hero__desc {
+      max-width: 100%;
+      font-size: 1.4rem;
+    }
+    .pv-about-hero__mobile-img {
+      display: block;
+      margin-top: 2.4rem;
+      border-radius: 1.6rem;
+      overflow: hidden;
+    }
+    .pv-about-hero__mobile-img img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .pv-about-story {
+      padding: 4rem 0;
+    }
+    .pv-about-story__heading {
+      font-size: 2.4rem;
+    }
+    .pv-about-promise__wrap {
+      padding: 2.4rem 2rem;
+    }
+    .pv-about-promise__grid,
+    .pv-about-stats__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .pv-about-stats__grid {
+      padding: 2.4rem 2rem;
+    }
+    .pv-about-join {
+      padding-bottom: 4rem;
+    }
+    .pv-about-join__card {
+      padding: 2.4rem;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .pv-about-join__cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pv-about__container {
+      padding: 0 1.6rem;
+    }
+    .pv-about-hero {
+      padding: 3rem 1.6rem;
+    }
+    .pv-about-hero__heading {
+      font-size: 2.4rem;
+    }
+    .pv-about-hero__desc {
+      font-size: 1.35rem;
+    }
+    .pv-about-hero__mobile-img img {
+      height: 180px;
+    }
+    .pv-about-story__heading {
+      font-size: 2.1rem;
+    }
+    .pv-about-promise__grid,
+    .pv-about-stats__grid {
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+    }
+    .pv-about-promise__wrap {
+      padding: 2rem 1.6rem;
+    }
+    .pv-about-stats__grid {
+      padding: 2rem 1.6rem;
+    }
+    .pv-about-story__cta {
+      width: 100%;
+      justify-content: center;
+    }
+    .pv-about-join__left {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+    .pv-about-join__heading {
+      font-size: 1.7rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="pv-about">
+
+  <!-- ===== HERO ===== -->
+  <section class="pv-about-hero">
+    <div class="pv-about-hero__inner">
+      <p class="pv-about-label">{{ 'custom.about_page.hero_label' | t }}</p>
+      <h1 class="pv-about-hero__heading">
+        {{ 'custom.about_page.hero_heading_line1' | t }}<br>
+        {{ 'custom.about_page.hero_heading_line2' | t }} <span>{{ 'custom.about_page.hero_heading_highlight' | t }}</span>
+      </h1>
+      <p class="pv-about-hero__desc">{{ 'custom.about_page.hero_desc' | t }}</p>
+      <div class="pv-about-hero__mobile-img">
+        <img src="{{ 'abouthero.png' | asset_url }}" alt="{{ 'custom.about_page.hero_heading_line1' | t }}" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STORY ===== -->
+  <section class="pv-about-story">
+    <div class="pv-about__container">
+      <div class="pv-about-story__grid">
+        <div class="pv-about-story__photo">
+          <img src="{{ 'hero-cat-hammock.jpg' | asset_url }}" alt="{{ 'custom.about_page.story_heading' | t }}" loading="lazy">
+        </div>
+        <div>
+          <p class="pv-about-label">{{ 'custom.about_page.story_label' | t }}</p>
+          <h2 class="pv-about-story__heading">{{ 'custom.about_page.story_heading' | t }}</h2>
+          <p class="pv-about-story__desc">{{ 'custom.about_page.story_desc' | t }}</p>
+          <a href="/collections/all" class="pv-about-story__cta">
+            <span>{{ 'custom.about_page.story_cta' | t }}</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROMISE ===== -->
+  <section class="pv-about-promise">
+    <div class="pv-about__container">
+      <div class="pv-about-promise__wrap">
+        <p class="pv-about-label pv-about-promise__label">{{ 'custom.about_page.promise_label' | t }}</p>
+        <div class="pv-about-promise__grid">
+          <div>
+            <span class="pv-about-promise-item__icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 11 13 11 11"/></svg>
+            </span>
+            <p class="pv-about-promise-item__title">{{ 'custom.about_page.promise1_title' | t }}</p>
+            <p class="pv-about-promise-item__desc">{{ 'custom.about_page.promise1_desc' | t }}</p>
+          </div>
+          <div>
+            <span class="pv-about-promise-item__icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            <p class="pv-about-promise-item__title">{{ 'custom.about_page.promise2_title' | t }}</p>
+            <p class="pv-about-promise-item__desc">{{ 'custom.about_page.promise2_desc' | t }}</p>
+          </div>
+          <div>
+            <span class="pv-about-promise-item__icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.3 1.6 6.9 4.4 5.4 6.6 4.2 9 5 12 7.8 15 5 17.4 4.2 19.6 5.4c2.8 1.5 3.4 4.9 1.7 7.5C18.7 16.65 12 21 12 21z"/></svg>
+            </span>
+            <p class="pv-about-promise-item__title">{{ 'custom.about_page.promise3_title' | t }}</p>
+            <p class="pv-about-promise-item__desc">{{ 'custom.about_page.promise3_desc' | t }}</p>
+          </div>
+          <div>
+            <span class="pv-about-promise-item__icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="4" width="15" height="12"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </span>
+            <p class="pv-about-promise-item__title">{{ 'custom.about_page.promise4_title' | t }}</p>
+            <p class="pv-about-promise-item__desc">{{ 'custom.about_page.promise4_desc' | t }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="pv-about-stats">
+    <div class="pv-about__container">
+      <div class="pv-about-stats__grid">
+        <div>
+          <div class="pv-about-stat__icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.3 1.6 6.9 4.4 5.4 6.6 4.2 9 5 12 7.8 15 5 17.4 4.2 19.6 5.4c2.8 1.5 3.4 4.9 1.7 7.5C18.7 16.65 12 21 12 21z"/></svg>
+          </div>
+          <p class="pv-about-stat__value">{{ 'custom.about_page.stat1_value' | t }}</p>
+          <p class="pv-about-stat__label">{{ 'custom.about_page.stat1_label' | t }}</p>
+        </div>
+        <div>
+          <div class="pv-about-stat__icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="pv-about-stat__value">{{ 'custom.about_page.stat2_value' | t }}</p>
+          <p class="pv-about-stat__label">{{ 'custom.about_page.stat2_label' | t }}</p>
+        </div>
+        <div>
+          <div class="pv-about-stat__icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <p class="pv-about-stat__value">{{ 'custom.about_page.stat3_value' | t }}</p>
+          <p class="pv-about-stat__label">{{ 'custom.about_page.stat3_label' | t }}</p>
+        </div>
+        <div>
+          <div class="pv-about-stat__icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.3 1.6 6.9 4.4 5.4 6.6 4.2 9 5 12 7.8 15 5 17.4 4.2 19.6 5.4c2.8 1.5 3.4 4.9 1.7 7.5C18.7 16.65 12 21 12 21z"/></svg>
+          </div>
+          <p class="pv-about-stat__value">{{ 'custom.about_page.stat4_value' | t }}</p>
+          <p class="pv-about-stat__label">{{ 'custom.about_page.stat4_label' | t }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOIN FAMILY ===== -->
+  <section class="pv-about-join">
+    <div class="pv-about__container">
+      <div class="pv-about-join__card">
+        <div class="pv-about-join__left">
+          <div class="pv-about-join__avatar">
+            <img src="{{ 'hero-dog-giraffe.jpg' | asset_url }}" alt="{{ 'custom.about_page.join_heading' | t }}" loading="lazy">
+          </div>
+          <div>
+            <p class="pv-about-join__heading">{{ 'custom.about_page.join_heading' | t }}</p>
+            <p class="pv-about-join__desc">{{ 'custom.about_page.join_desc' | t }}</p>
+          </div>
+        </div>
+        <a href="/collections/all" class="pv-about-join__cta">
+          <span>{{ 'custom.about_page.join_cta' | t }}</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Petvona About Page",
+  "settings": []
+}
+{% endschema %}

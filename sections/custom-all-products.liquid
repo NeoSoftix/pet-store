@@ -171,87 +171,130 @@
   }
 
   @media screen and (max-width: 989px) {
-    .pet-all-products-grid { grid-template-columns: repeat(2, 1fr); }
+    .pet-all-products-section {
+      padding: 4rem 1.5rem;
+    }
+
+    .pet-all-products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.6rem;
+    }
+
+    .pet-all-products-header h1 {
+      font-size: 2.6rem;
+    }
   }
 
-  @media screen and (max-width: 576px) {
-    .pet-all-products-grid { grid-template-columns: 1fr; }
+  @media screen and (max-width: 749px) {
+    .pet-all-products-section {
+      padding: 3rem 1.2rem;
+    }
+
+    .pet-all-products-header {
+      margin-bottom: 2rem;
+    }
+
+    .pet-all-products-header h1 {
+      font-size: 2.2rem;
+    }
+
+    .pet-all-products-header p {
+      font-size: 1.2rem;
+    }
+
+    .pet-all-products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+
+    .pet-product-card-full {
+      padding: 0.8rem;
+      border-radius: 1rem;
+    }
+
+    .pet-product-card-full__image-box {
+      height: 140px;
+      padding: 0.6rem;
+    }
+
+    .pet-product-card-full__title {
+      font-size: 1.2rem;
+      height: 3.1rem;
+    }
+
+    .pet-product-card-full__rating {
+      font-size: 1rem;
+    }
+
+    .pet-badge {
+      font-size: 0.95rem;
+      padding: 0.2rem 0.5rem;
+    }
+
+    .pet-product-card-full__price {
+      font-size: 1.3rem;
+    }
+
+    .pet-product-card-full__btn {
+      padding: 0.6rem 1rem;
+      font-size: 1.05rem;
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pet-all-products-grid {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+
+    .pet-product-card-full__image-box {
+      height: 190px;
+    }
+
+    .pet-product-card-full__price-row {
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .pet-product-card-full__btn {
+      width: 100%;
+    }
   }
 {%- endstyle -%}
 
-<section class="pet-all-products-section">
+<section class="pet-all-products-section" id="pet-all-products-section">
   <div class="pet-all-products-container">
     <div class="pet-all-products-header">
-      <h1>Our Products</h1>
-      <p>Premium quality items crafted for your furry friends' happiness &amp; health.</p>
+      <h1>{{ 'custom.all_products.heading' | t }}</h1>
+      <p>{{ 'custom.all_products.subheading' | t }}</p>
     </div>
 
     <div class="pet-all-products-grid">
-      <!-- Product 1 -->
-      <a href="/products/hot-simulated-bird-cat-toy-interactive-toys-dog-rechargeable-chirping-flapping-birdno-flying-touch-activated-plush-toy-pet" class="pet-product-card-full">
-        <div class="pet-product-card-full__image-box">
-          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/Screenshot_2026-07-27_at_5.46.53_pm.png?v=1785138530" alt="Royal Flapping Bird™ — Interactive Cat Toy">
-        </div>
-        <div class="pet-product-card-full__body">
-          <h3 class="pet-product-card-full__title">Royal Flapping Bird™ — Interactive Cat Toy</h3>
-          <div class="pet-product-card-full__rating">
-            <span class="pet-product-card-full__stars">★★★★★</span>
-            <span>(101 verified reviews)</span>
+      {%- for product in collections.all.products -%}
+        <a href="{{ product.url }}" class="pet-product-card-full">
+          <div class="pet-product-card-full__image-box">
+            {%- if product.featured_image -%}
+              {{ product.featured_image | image_url: width: 500 | image_tag: alt: product.title, loading: 'lazy' }}
+            {%- endif -%}
           </div>
-          <div class="pet-card__badges">
-            <span class="pet-badge">🐦 touch-activated</span>
-            <span class="pet-badge">🔋 usb rechargeable</span>
+          <div class="pet-product-card-full__body">
+            <h3 class="pet-product-card-full__title">{{ product.title }}</h3>
+            <div class="pet-product-card-full__rating">
+              <span class="pet-product-card-full__stars">★★★★★</span>
+            </div>
+            <div class="pet-product-card-full__price-row">
+              <span class="pet-product-card-full__price">{{ product.price | money }}</span>
+              <span class="pet-product-card-full__btn">{{ 'custom.all_products.view_details' | t }}</span>
+            </div>
           </div>
-          <div class="pet-product-card-full__price-row">
-            <span class="pet-product-card-full__price">$39.99</span>
-            <span class="pet-product-card-full__btn">View Details</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Product 2 -->
-      <a href="/products/pets-water-bottle-portable-food-grade-material-dog-cat-travel-pet-water-cup-bottle-with-food-dispenser-puppy-water-bottle" class="pet-product-card-full">
-        <div class="pet-product-card-full__image-box">
-          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/S57bfe3f12ed94b34900d27ced7dc719cU.webp?v=1765941139" alt="Pets Water Bottle Portable Travel Cup">
-        </div>
-        <div class="pet-product-card-full__body">
-          <h3 class="pet-product-card-full__title">Pets Water Bottle Portable Travel Cup with Food Dispenser</h3>
-          <div class="pet-product-card-full__rating">
-            <span class="pet-product-card-full__stars">★★★★★</span>
-            <span>(84 verified reviews)</span>
-          </div>
-          <div class="pet-card__badges">
-            <span class="pet-badge">🥤 food grade</span>
-            <span class="pet-badge">💧 travel cup</span>
-          </div>
-          <div class="pet-product-card-full__price-row">
-            <span class="pet-product-card-full__price">$29.99</span>
-            <span class="pet-product-card-full__btn">View Details</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Product 3 -->
-      <a href="/products/royal-pet-cozy-bed" class="pet-product-card-full">
-        <div class="pet-product-card-full__image-box">
-          <img src="https://cdn.shopify.com/s/files/1/0674/7147/4819/files/b95b69183a986803d32f849725aafdcd.webp?v=1776385988" alt="Royal Pet Cozy Bed">
-        </div>
-        <div class="pet-product-card-full__body">
-          <h3 class="pet-product-card-full__title">Royal Pet Cozy Bed — Calming Ultra-Soft Plush</h3>
-          <div class="pet-product-card-full__rating">
-            <span class="pet-product-card-full__stars">★★★★★</span>
-            <span>(638 verified reviews)</span>
-          </div>
-          <div class="pet-card__badges">
-            <span class="pet-badge">🐾 calming plush</span>
-            <span class="pet-badge">⚡ joint relief</span>
-          </div>
-          <div class="pet-product-card-full__price-row">
-            <span class="pet-product-card-full__price">$49.99</span>
-            <span class="pet-product-card-full__btn">View Details</span>
-          </div>
-        </div>
-      </a>
+        </a>
+      {%- else -%}
+        <p style="grid-column: 1 / -1; text-align: center; color: #6b7280;">{{ 'custom.all_products.no_products' | t }}</p>
+      {%- endfor -%}
     </div>
   </div>
 </section>

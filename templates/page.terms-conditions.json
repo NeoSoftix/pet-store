@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "terms_page": {
+      "type": "custom-terms-page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "terms_page"
+  ]
+}

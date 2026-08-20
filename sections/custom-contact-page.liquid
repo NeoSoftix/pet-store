@@ -1,0 +1,606 @@
+{%- style -%}
+  .pv-contact {
+    background-color: #ffffff;
+    color: #1e1b3a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .pv-contact__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+  }
+
+  /* ===== HERO ===== */
+  .pv-contact-hero {
+    background-image: url('{{ "contacthero.png" | asset_url }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f6f4fc;
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+    padding: 8rem 2.4rem;
+  }
+
+  .pv-contact-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .pv-contact-hero__label {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #4c46c4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 1.2rem 0;
+  }
+
+  .pv-contact-hero__heading {
+    font-size: 4.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 1.6rem 0;
+    max-width: 560px;
+  }
+
+  .pv-contact-hero__heading span {
+    color: #4c46c4;
+  }
+
+  .pv-contact-hero__desc {
+    font-size: 1.5rem;
+    color: #4b4763;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0;
+  }
+
+  /* ===== MAIN GRID ===== */
+  .pv-contact-main {
+    padding: 5rem 0;
+  }
+
+  .pv-contact-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4rem;
+  }
+
+  .pv-contact-heading {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 2.4rem 0;
+  }
+
+  /* GET IN TOUCH CARDS */
+  .pv-contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .pv-contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.4rem;
+  }
+
+  .pv-contact-method__icon {
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: #f0eefa;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pv-contact-method__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 0.3rem 0;
+  }
+
+  .pv-contact-method__detail {
+    font-size: 1.4rem;
+    color: #4b4763;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .pv-contact-method__detail a {
+    color: #4c46c4;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .pv-contact-method__detail a:hover {
+    text-decoration: underline;
+  }
+
+  /* MESSAGE FORM CARD */
+  .pv-contact-form-card {
+    background: #f6f4fc;
+    border-radius: 2rem;
+    padding: 3.2rem;
+  }
+
+  .pv-contact-form-card__sub {
+    font-size: 1.4rem;
+    color: #4b4763;
+    margin: -1.6rem 0 2.4rem 0;
+  }
+
+  .pv-contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .pv-contact-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pv-contact-field--full {
+    margin-bottom: 1.6rem;
+  }
+
+  .pv-contact-field label {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #4b4763;
+    margin-bottom: 0.6rem;
+  }
+
+  .pv-contact-field input,
+  .pv-contact-field textarea {
+    border: 1px solid #ded9f7;
+    border-radius: 0.8rem;
+    padding: 1.2rem 1.4rem;
+    font-size: 1.4rem;
+    font-family: inherit;
+    color: #1e1b3a;
+    background: #ffffff;
+    outline: none;
+    resize: vertical;
+  }
+
+  .pv-contact-field input:focus,
+  .pv-contact-field textarea:focus {
+    border-color: #4c46c4;
+  }
+
+  .pv-contact-submit-btn {
+    width: 100%;
+    background: #4c46c4;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.8rem;
+    padding: 1.4rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    transition: background 0.2s ease;
+  }
+
+  .pv-contact-submit-btn:hover {
+    background: #3b35ad;
+  }
+
+  .pv-contact-form-note {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #6b667f;
+    margin-top: 1.4rem;
+  }
+
+  .pv-contact-form-success {
+    background: #ecfdf5;
+    border: 1px solid #10b981;
+    color: #065f46;
+    border-radius: 0.8rem;
+    padding: 1.4rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  /* ===== FAQ ===== */
+  .pv-contact-faq {
+    padding: 2rem 0 6rem 0;
+    text-align: center;
+  }
+
+  .pv-contact-faq__label {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #4c46c4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 1rem 0;
+  }
+
+  .pv-contact-faq__heading {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 0 0 3.2rem 0;
+  }
+
+  .pv-contact-faq__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 1.4rem;
+    text-align: left;
+  }
+
+  .pv-contact-faq-item {
+    border: 1px solid #eeecf9;
+    border-radius: 1.2rem;
+    padding: 1.6rem 2rem;
+  }
+
+  .pv-contact-faq-item__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    color: #1e1b3a;
+    outline: none;
+  }
+
+  .pv-contact-faq-item__q:focus-visible {
+    outline: 2px solid #4c46c4;
+    outline-offset: 2px;
+    border-radius: 0.4rem;
+  }
+
+  .pv-contact-faq-item__q-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    background: #f0eefa;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    transition: transform 0.2s ease;
+  }
+
+  .pv-contact-faq-item.is-open .pv-contact-faq-item__q-icon {
+    transform: rotate(45deg);
+  }
+
+  .pv-contact-faq-item__a {
+    display: none;
+    font-size: 1.4rem;
+    color: #4b4763;
+    line-height: 1.6;
+    margin-top: 1.2rem;
+    padding-right: 3.2rem;
+  }
+
+  .pv-contact-faq-item.is-open .pv-contact-faq-item__a {
+    display: block;
+  }
+
+  @media screen and (max-width: 989px) {
+    .pv-contact-hero {
+      padding: 6rem 2.4rem;
+    }
+    .pv-contact-hero__heading {
+      font-size: 3.4rem;
+    }
+    .pv-contact-grid {
+      grid-template-columns: 1fr;
+      gap: 3.2rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pv-contact__container {
+      padding: 0 2rem;
+    }
+    .pv-contact-hero {
+      min-height: auto;
+      padding: 4.8rem 2rem;
+    }
+    .pv-contact-hero__heading {
+      font-size: 2.8rem;
+      max-width: 100%;
+    }
+    .pv-contact-hero__desc {
+      max-width: 100%;
+      font-size: 1.4rem;
+    }
+    .pv-contact-main {
+      padding: 3.6rem 0;
+    }
+    .pv-contact-form-row {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+    .pv-contact-form-card {
+      padding: 2.4rem;
+    }
+    .pv-contact-faq {
+      padding: 1.6rem 0 4rem 0;
+    }
+    .pv-contact-faq__heading {
+      font-size: 2.2rem;
+    }
+    .pv-contact-faq__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pv-contact__container {
+      padding: 0 1.6rem;
+    }
+    .pv-contact-hero {
+      padding: 3.6rem 1.6rem;
+    }
+    .pv-contact-hero__heading {
+      font-size: 2.4rem;
+    }
+    .pv-contact-hero__desc {
+      font-size: 1.35rem;
+    }
+    .pv-contact-form-card {
+      padding: 2rem 1.6rem;
+    }
+    .pv-contact-heading {
+      font-size: 1.8rem;
+    }
+    .pv-contact-method {
+      gap: 1.2rem;
+    }
+    .pv-contact-method__icon {
+      width: 4rem;
+      height: 4rem;
+    }
+    .pv-contact-faq__heading {
+      font-size: 1.9rem;
+    }
+    .pv-contact-faq-item {
+      padding: 1.4rem 1.6rem;
+    }
+    .pv-contact-faq-item__q {
+      font-size: 1.4rem;
+    }
+    .pv-contact-faq-item__a {
+      padding-right: 0;
+    }
+  }
+{%- endstyle -%}
+
+<div class="pv-contact">
+
+  <!-- ===== HERO ===== -->
+  <section class="pv-contact-hero">
+    <div class="pv-contact-hero__inner">
+      <p class="pv-contact-hero__label">{{ 'custom.contact_page.hero_label' | t }}</p>
+      <h1 class="pv-contact-hero__heading">
+        {{ 'custom.contact_page.hero_heading_line1' | t }}<br>
+        {{ 'custom.contact_page.hero_heading_line2' | t }} <span>{{ 'custom.contact_page.hero_heading_highlight' | t }}</span>
+      </h1>
+      <p class="pv-contact-hero__desc">{{ 'custom.contact_page.hero_desc' | t }}</p>
+    </div>
+  </section>
+
+  <!-- ===== MAIN GRID ===== -->
+  <section class="pv-contact-main">
+    <div class="pv-contact__container">
+      <div class="pv-contact-grid">
+
+        <!-- GET IN TOUCH -->
+        <div>
+          <h2 class="pv-contact-heading">{{ 'custom.contact_page.get_in_touch' | t }}</h2>
+          <div class="pv-contact-methods">
+            <div class="pv-contact-method">
+              <span class="pv-contact-method__icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+              </span>
+              <div>
+                <p class="pv-contact-method__title">{{ 'custom.contact_page.email_title' | t }}</p>
+                <p class="pv-contact-method__detail">
+                  <a href="mailto:{{ 'custom.contact_page.email_address' | t }}">{{ 'custom.contact_page.email_address' | t }}</a><br>
+                  {{ 'custom.contact_page.email_sub' | t }}
+                </p>
+              </div>
+            </div>
+
+            <div class="pv-contact-method">
+              <span class="pv-contact-method__icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <div>
+                <p class="pv-contact-method__title">{{ 'custom.contact_page.call_title' | t }}</p>
+                <p class="pv-contact-method__detail">
+                  <a href="tel:{{ 'custom.contact_page.call_number' | t }}">{{ 'custom.contact_page.call_number' | t }}</a><br>
+                  {{ 'custom.contact_page.call_sub' | t }}
+                </p>
+              </div>
+            </div>
+
+            <div class="pv-contact-method">
+              <span class="pv-contact-method__icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </span>
+              <div>
+                <p class="pv-contact-method__title">{{ 'custom.contact_page.chat_title' | t }}</p>
+                <p class="pv-contact-method__detail">
+                  {{ 'custom.contact_page.chat_sub1' | t }}<br>
+                  {{ 'custom.contact_page.chat_sub2' | t }}
+                </p>
+              </div>
+            </div>
+
+            <div class="pv-contact-method">
+              <span class="pv-contact-method__icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              </span>
+              <div>
+                <p class="pv-contact-method__title">{{ 'custom.contact_page.location_title' | t }}</p>
+                <p class="pv-contact-method__detail">
+                  {{ 'custom.contact_page.location_line1' | t }}<br>
+                  {{ 'custom.contact_page.location_line2' | t }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEND MESSAGE FORM -->
+        <div class="pv-contact-form-card">
+          <h2 class="pv-contact-heading">{{ 'custom.contact_page.form_heading' | t }}</h2>
+          <p class="pv-contact-form-card__sub">{{ 'custom.contact_page.form_sub' | t }}</p>
+
+          {%- if form.posted_successfully? -%}
+            <div class="pv-contact-form-success">✅ {{ 'custom.contact_page.form_success' | t }}</div>
+          {%- endif -%}
+
+          {%- form 'contact', id: 'PvContactForm' -%}
+            {%- if form.errors -%}
+              <div class="pv-contact-form-success" style="background:#fef2f2; border-color:#ef4444; color:#991b1b;">
+                {{ form.errors | default_errors }}
+              </div>
+            {%- endif -%}
+
+            <div class="pv-contact-form-row">
+              <div class="pv-contact-field">
+                <label for="PvContactName">{{ 'custom.contact_page.field_name' | t }}</label>
+                <input type="text" id="PvContactName" name="contact[name]" value="{{ form.name }}" placeholder="{{ 'custom.contact_page.field_name_placeholder' | t }}" required>
+              </div>
+              <div class="pv-contact-field">
+                <label for="PvContactEmail">{{ 'custom.contact_page.field_email' | t }}</label>
+                <input type="email" id="PvContactEmail" name="contact[email]" value="{{ form.email }}" placeholder="{{ 'custom.contact_page.field_email_placeholder' | t }}" required>
+              </div>
+            </div>
+
+            <div class="pv-contact-form-row">
+              <div class="pv-contact-field">
+                <label for="PvContactOrder">{{ 'custom.contact_page.field_order' | t }}</label>
+                <input type="text" id="PvContactOrder" name="contact[{{ 'custom.contact_page.field_order' | t }}]" placeholder="{{ 'custom.contact_page.field_order_placeholder' | t }}">
+              </div>
+              <div class="pv-contact-field">
+                <label for="PvContactSubject">{{ 'custom.contact_page.field_subject' | t }}</label>
+                <input type="text" id="PvContactSubject" name="contact[{{ 'custom.contact_page.field_subject' | t }}]" placeholder="{{ 'custom.contact_page.field_subject_placeholder' | t }}">
+              </div>
+            </div>
+
+            <div class="pv-contact-field pv-contact-field--full">
+              <label for="PvContactMessage">{{ 'custom.contact_page.field_message' | t }}</label>
+              <textarea id="PvContactMessage" name="contact[body]" rows="5" placeholder="{{ 'custom.contact_page.field_message_placeholder' | t }}" required>{{ form.body }}</textarea>
+            </div>
+
+            <button type="submit" class="pv-contact-submit-btn">
+              <span>{{ 'custom.contact_page.submit_btn' | t }}</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          {%- endform -%}
+
+          <p class="pv-contact-form-note">🔒 {{ 'custom.contact_page.form_note' | t }}</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="pv-contact-faq">
+    <div class="pv-contact__container">
+      <p class="pv-contact-faq__label">{{ 'custom.contact_page.faq_label' | t }}</p>
+      <h2 class="pv-contact-faq__heading">{{ 'custom.contact_page.faq_heading' | t }}</h2>
+
+      <div class="pv-contact-faq__grid" data-pv-faq-list>
+        <div class="pv-contact-faq-item" data-pv-faq-item>
+          <button type="button" class="pv-contact-faq-item__q" data-pv-faq-toggle>
+            <span>{{ 'custom.contact_page.faq1_q' | t }}</span>
+            <span class="pv-contact-faq-item__q-icon">+</span>
+          </button>
+          <p class="pv-contact-faq-item__a">{{ 'custom.contact_page.faq1_a' | t }}</p>
+        </div>
+        <div class="pv-contact-faq-item" data-pv-faq-item>
+          <button type="button" class="pv-contact-faq-item__q" data-pv-faq-toggle>
+            <span>{{ 'custom.contact_page.faq2_q' | t }}</span>
+            <span class="pv-contact-faq-item__q-icon">+</span>
+          </button>
+          <p class="pv-contact-faq-item__a">{{ 'custom.contact_page.faq2_a' | t }}</p>
+        </div>
+        <div class="pv-contact-faq-item" data-pv-faq-item>
+          <button type="button" class="pv-contact-faq-item__q" data-pv-faq-toggle>
+            <span>{{ 'custom.contact_page.faq3_q' | t }}</span>
+            <span class="pv-contact-faq-item__q-icon">+</span>
+          </button>
+          <p class="pv-contact-faq-item__a">{{ 'custom.contact_page.faq3_a' | t }}</p>
+        </div>
+        <div class="pv-contact-faq-item" data-pv-faq-item>
+          <button type="button" class="pv-contact-faq-item__q" data-pv-faq-toggle>
+            <span>{{ 'custom.contact_page.faq4_q' | t }}</span>
+            <span class="pv-contact-faq-item__q-icon">+</span>
+          </button>
+          <p class="pv-contact-faq-item__a">{{ 'custom.contact_page.faq4_a' | t }}</p>
+        </div>
+        <div class="pv-contact-faq-item" data-pv-faq-item>
+          <button type="button" class="pv-contact-faq-item__q" data-pv-faq-toggle>
+            <span>{{ 'custom.contact_page.faq5_q' | t }}</span>
+            <span class="pv-contact-faq-item__q-icon">+</span>
+          </button>
+          <p class="pv-contact-faq-item__a">{{ 'custom.contact_page.faq5_a' | t }}</p>
+        </div>
+        <div class="pv-contact-faq-item" data-pv-faq-item>
+          <button type="button" class="pv-contact-faq-item__q" data-pv-faq-toggle>
+            <span>{{ 'custom.contact_page.faq6_q' | t }}</span>
+            <span class="pv-contact-faq-item__q-icon">+</span>
+          </button>
+          <p class="pv-contact-faq-item__a">{{ 'custom.contact_page.faq6_a' | t }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', function () {
+    var faqItems = document.querySelectorAll('[data-pv-faq-item]');
+    faqItems.forEach(function (item) {
+      var toggle = item.querySelector('[data-pv-faq-toggle]');
+      toggle.addEventListener('click', function () {
+        item.classList.toggle('is-open');
+      });
+    });
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Petvona Contact Page",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,2079 @@
+{%- style -%}
+  .pv-home {
+    background-color: #ffffff;
+    color: #1e1b3a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .pv-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+  }
+
+  .pv-home img,
+  .pv-home video {
+    max-width: 100%;
+  }
+
+  .pv-link-arrow {
+    color: #4c46c4;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .pv-link-arrow:hover {
+    text-decoration: underline;
+  }
+
+  /* ===== HERO ===== */
+  .pv-hero {
+    width: 100%;
+  }
+
+  pv-hero-slider {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-height: 620px;
+    overflow: hidden;
+  }
+
+  .pv-hero__slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f1eefc;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease;
+    z-index: 0;
+  }
+
+  .pv-hero__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+  }
+
+  .pv-hero__slide--1 {
+    background-image: url('{{ "hero2.png" | asset_url }}');
+  }
+
+  .pv-hero__slide--2 {
+    background-image: url('{{ "hero1.png" | asset_url }}');
+  }
+
+  .pv-hero__content-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1360px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2.4rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pv-hero__paw {
+    position: absolute;
+    left: 4%;
+    bottom: 8%;
+    width: 9rem;
+    height: auto;
+    opacity: 0.35;
+    color: #c9c2f2;
+    z-index: 0;
+  }
+
+  .pv-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 0;
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .pv-hero__dots {
+    position: absolute;
+    left: 50%;
+    bottom: 2.4rem;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .pv-hero__dot {
+    width: 2.4rem;
+    height: 0.5rem;
+    border-radius: 0.4rem;
+    background: rgba(30, 27, 58, 0.25);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s ease, width 0.2s ease;
+  }
+
+  .pv-hero__dot.is-active {
+    background: #4c46c4;
+    width: 3.6rem;
+  }
+
+  .pv-hero__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: #ffffff;
+    border: none;
+    color: #1e1b3a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s ease;
+  }
+
+  .pv-hero__arrow:hover {
+    background: #4c46c4;
+    color: #ffffff;
+  }
+
+  .pv-hero__arrow--prev {
+    left: 2.4rem;
+  }
+
+  .pv-hero__arrow--next {
+    right: 2.4rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .pv-hero__arrow {
+      display: none;
+    }
+  }
+
+  /* ===== VIDEO SHOWCASE ===== */
+  .pv-video-showcase {
+    padding: 6rem 0 5rem 0;
+    text-align: center;
+  }
+
+  .pv-video-showcase__heading {
+    font-size: 3.2rem;
+    font-weight: 800;
+    margin: 0 0 3.2rem 0;
+  }
+
+  .pv-video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .pv-video-card {
+    position: relative;
+    width: 100%;
+    border-radius: 1.8rem;
+    overflow: hidden;
+    background: #f1eefc;
+    aspect-ratio: 3 / 4;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(30, 27, 58, 0.1);
+  }
+
+  .pv-video-card__preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pv-video-card__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .pv-video-card:hover .pv-video-card__play {
+    background: #4c46c4;
+    color: #ffffff;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+
+  .pv-video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pv-video-modal[hidden] {
+    display: none;
+  }
+
+  .pv-video-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 15, 35, 0.85);
+  }
+
+  .pv-video-modal__inner {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - 4.8rem);
+    max-width: 420px;
+    max-height: 85vh;
+    aspect-ratio: 9 / 16;
+    margin: 2.4rem auto;
+    box-sizing: border-box;
+  }
+
+  .pv-video-modal__video {
+    width: 100%;
+    height: 100%;
+    border-radius: 1.2rem;
+    background: #000000;
+    display: block;
+  }
+
+  .pv-video-modal__close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    z-index: 2;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    border: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 749px) {
+    .pv-video-grid {
+      grid-template-columns: 1fr;
+    }
+    .pv-video-card {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  .pv-hero__heading {
+    font-size: 5.2rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .pv-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: #ffffff;
+    border-radius: 4rem;
+    padding: 0.6rem 0.6rem 0.6rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #1e1b3a;
+    box-shadow: 0 8px 24px rgba(76, 70, 196, 0.14);
+  }
+
+  .pv-hero__cta-icon {
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    background: #4c46c4;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pv-hero__subheading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* ===== MISSION ROW ===== */
+  .pv-mission {
+    padding: 6rem 0 4rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.4rem;
+    align-items: center;
+  }
+
+  .pv-mission__text {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #4b4763;
+    max-width: 320px;
+  }
+
+  .pv-mission__circle {
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .pv-mission__circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pv-mission__heading {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    text-align: right;
+  }
+
+  /* ===== TRUST CARDS ROW ===== */
+  .pv-trust-row {
+    padding-bottom: 6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .pv-trust-card {
+    border: 1px solid #eeecf9;
+    border-radius: 1.6rem;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .pv-trust-card__icon {
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: #f0eefa;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pv-trust-card__text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  /* ===== TOP PICKS ===== */
+  .pv-picks {
+    padding: 2rem 0 5rem 0;
+    text-align: center;
+  }
+
+  .pv-pill-badge {
+    background: #f0eefa;
+    border-radius: 3rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #4c46c4;
+    display: inline-block;
+    margin-bottom: 1.6rem;
+  }
+
+  .pv-picks__heading {
+    font-size: 3.4rem;
+    font-weight: 800;
+    margin: 0 0 1.2rem 0;
+  }
+
+  .pv-picks__desc {
+    font-size: 1.5rem;
+    color: #6b667f;
+    max-width: 480px;
+    margin: 0 auto 4rem auto;
+  }
+
+  .pv-picks__slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .pv-picks__arrow {
+    flex-shrink: 0;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    border: 1px solid #ded9f7;
+    background: #ffffff;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .pv-picks__arrow:hover {
+    background: #4c46c4;
+    color: #ffffff;
+  }
+
+  .pv-product-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc(33.333% - 1.6rem);
+    gap: 2.4rem;
+    text-align: left;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0.4rem;
+    flex: 1;
+    scrollbar-width: none;
+  }
+
+  .pv-product-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pv-product-card {
+    scroll-snap-align: start;
+    background: #ffffff;
+    border: 1px solid #f0eefa;
+    border-radius: 1.8rem;
+    padding: 1.8rem;
+  }
+
+  .pv-product-card__img-wrap {
+    background: #f6f4fc;
+    border-radius: 1.2rem;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: 1.6rem;
+  }
+
+  .pv-product-card__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pv-product-card__title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin: 0 0 0.6rem 0;
+  }
+
+  .pv-product-card__desc {
+    font-size: 1.3rem;
+    color: #6b667f;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+  }
+
+  .pv-product-card__rating {
+    font-size: 1.3rem;
+    color: #6b667f;
+    margin-bottom: 1.4rem;
+  }
+
+  .pv-product-card__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .pv-product-card__price {
+    font-size: 1.9rem;
+    font-weight: 800;
+  }
+
+  .pv-product-card__compare {
+    font-size: 1.3rem;
+    color: #9d99b3;
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+    font-weight: 500;
+  }
+
+  .pv-product-card__link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+
+  .pv-qty-stepper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid #ded9f7;
+    border-radius: 2.4rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .pv-qty-btn {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    border: none;
+    background: #f0eefa;
+    color: #4c46c4;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .pv-qty-btn:hover {
+    background: #4c46c4;
+    color: #ffffff;
+  }
+
+  .pv-qty-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    min-width: 1.6rem;
+    text-align: center;
+  }
+
+  .pv-picks__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2.4rem;
+  }
+
+  .pv-picks__dot {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    border: none;
+    background: #ded9f7;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease;
+  }
+
+  .pv-picks__dot.is-active {
+    background: #4c46c4;
+    width: 2rem;
+    border-radius: 1rem;
+  }
+
+  /* ===== TRUST BADGES ROW ===== */
+  .pv-badges-row {
+    background: #f6f4fc;
+    border-radius: 2rem;
+    padding: 3.2rem 2rem;
+    margin-bottom: 6rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .pv-badge-item__icon {
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem auto;
+    box-shadow: 0 4px 12px rgba(76, 70, 196, 0.1);
+  }
+
+  .pv-badge-item__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 0.3rem 0;
+  }
+
+  .pv-badge-item__sub {
+    font-size: 1.25rem;
+    color: #6b667f;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    pv-hero-slider {
+      min-height: 460px;
+    }
+    .pv-hero__content {
+      max-width: 100%;
+    }
+    .pv-hero__heading {
+      font-size: 3.6rem;
+    }
+    .pv-hero__subheading {
+      font-size: 1.9rem;
+      max-width: 100%;
+    }
+    .pv-mission,
+    .pv-trust-row {
+      grid-template-columns: 1fr;
+    }
+    .pv-product-grid {
+      grid-auto-columns: calc(50% - 1.2rem);
+    }
+    .pv-badges-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pv-mission__heading {
+      text-align: left;
+    }
+    .pv-video-showcase__heading,
+    .pv-picks__heading {
+      font-size: 2.6rem;
+    }
+    .pv-mission__heading {
+      font-size: 2.6rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pv-container {
+      padding: 0 1.8rem;
+    }
+    .pv-hero__content-wrap {
+      padding: 0 1.8rem;
+    }
+    .pv-product-grid {
+      grid-auto-columns: 82%;
+    }
+    .pv-picks__slider-wrap {
+      gap: 0.8rem;
+    }
+    .pv-picks__arrow {
+      width: 3.6rem;
+      height: 3.6rem;
+    }
+    .pv-video-showcase {
+      padding: 4rem 0 3.5rem 0;
+    }
+    .pv-mission {
+      padding: 4rem 0 3rem 0;
+    }
+    .pv-picks {
+      padding: 1.6rem 0 3.5rem 0;
+    }
+    .pv-trust-row {
+      padding-bottom: 4rem;
+    }
+    .pv-badges-row {
+      margin-bottom: 4rem;
+      padding: 2.4rem 1.6rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pv-container {
+      padding: 0 1.2rem;
+    }
+    .pv-hero__content-wrap {
+      padding: 0 1.2rem;
+    }
+    pv-hero-slider {
+      min-height: 420px;
+    }
+    .pv-hero__content {
+      padding: 2.8rem 0;
+      gap: 1.4rem;
+    }
+    .pv-hero__heading {
+      font-size: 2.6rem;
+    }
+    .pv-hero__subheading {
+      font-size: 1.6rem;
+    }
+    .pv-hero__cta {
+      font-size: 1.3rem;
+      padding: 0.5rem 0.5rem 0.5rem 1.6rem;
+    }
+    .pv-hero__paw {
+      width: 6rem;
+    }
+    .pv-video-showcase__heading {
+      font-size: 2rem;
+    }
+    .pv-mission__heading {
+      font-size: 2.2rem;
+    }
+    .pv-mission__text {
+      max-width: 100%;
+    }
+    .pv-picks__heading {
+      font-size: 2.2rem;
+    }
+    .pv-picks__desc {
+      max-width: 100%;
+    }
+    .pv-product-grid {
+      gap: 1.6rem;
+    }
+    .pv-badges-row {
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+      text-align: left;
+    }
+    .pv-badge-item__icon {
+      margin: 0 0 1rem 0;
+    }
+    .pv-trust-card {
+      padding: 1.6rem;
+    }
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .pv-testimonials {
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .pv-testimonials__heading {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 1.4rem 0 1.2rem 0;
+  }
+
+  .pv-testimonials__heading span {
+    color: #4c46c4;
+    display: block;
+  }
+
+  .pv-testimonials__desc {
+    font-size: 1.5rem;
+    color: #6b667f;
+    max-width: 520px;
+    margin: 0 auto 4rem auto;
+  }
+
+  .pv-testimonials__wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .pv-testimonials__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc(33.333% - 1.1rem);
+    gap: 1.6rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0.4rem;
+    flex: 1;
+    scrollbar-width: none;
+  }
+
+  .pv-testimonials__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pv-testimonial-card {
+    scroll-snap-align: start;
+    background: #ffffff;
+    border: 1px solid #f0eefa;
+    border-radius: 1.8rem;
+    padding: 2.4rem 2rem;
+    text-align: left;
+    box-shadow: 0 4px 16px rgba(76, 70, 196, 0.06);
+  }
+
+  .pv-testimonial-card__quote {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #ded9f7;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.8rem;
+    font-family: Georgia, serif;
+  }
+
+  .pv-testimonial-card__text {
+    font-size: 1.4rem;
+    color: #4b4763;
+    line-height: 1.6;
+    margin: 0 0 1.4rem 0;
+    min-height: 7.2rem;
+  }
+
+  .pv-testimonial-card__stars {
+    color: #f5a623;
+    letter-spacing: 0.1em;
+    font-size: 1.3rem;
+    margin: 0 0 1.6rem 0;
+  }
+
+  .pv-testimonial-card__author {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .pv-testimonial-card__avatar {
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: #4c46c4;
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pv-testimonial-card__name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0 0 0.2rem 0;
+  }
+
+  .pv-testimonial-card__role {
+    font-size: 1.2rem;
+    color: #6b667f;
+    margin: 0;
+  }
+
+  .pv-testimonials__arrow {
+    flex-shrink: 0;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    border: 1px solid #ded9f7;
+    background: #ffffff;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .pv-testimonials__arrow:hover {
+    background: #4c46c4;
+    color: #ffffff;
+  }
+
+  .pv-testimonials__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2.4rem;
+  }
+
+  .pv-testimonials__dot {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    border: none;
+    background: #ded9f7;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease;
+  }
+
+  .pv-testimonials__dot.is-active {
+    background: #4c46c4;
+    width: 2rem;
+    border-radius: 1rem;
+  }
+
+  @media screen and (max-width: 989px) {
+    .pv-testimonials {
+      padding: 4.8rem 0;
+    }
+    .pv-testimonials__heading {
+      font-size: 2.6rem;
+    }
+    .pv-testimonials__track {
+      grid-auto-columns: calc(50% - 0.8rem);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pv-testimonials {
+      padding: 4rem 0;
+    }
+    .pv-testimonials__heading {
+      font-size: 2.2rem;
+    }
+    .pv-testimonials__desc {
+      font-size: 1.4rem;
+      margin-bottom: 2.8rem;
+    }
+    .pv-testimonials__wrap {
+      gap: 0.8rem;
+    }
+    .pv-testimonials__arrow {
+      width: 3.6rem;
+      height: 3.6rem;
+    }
+    .pv-testimonial-card__text {
+      min-height: 0;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pv-testimonials__heading {
+      font-size: 1.9rem;
+    }
+    .pv-testimonials__track {
+      grid-auto-columns: 85%;
+    }
+    .pv-testimonials__wrap {
+      gap: 0.6rem;
+    }
+    .pv-testimonials__arrow {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+    .pv-testimonial-card {
+      padding: 2rem 1.6rem;
+    }
+  }
+
+  /* ===== FAQ ===== */
+  .pv-faq {
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .pv-faq__heading {
+    font-size: 3.2rem;
+    font-weight: 800;
+    margin: 1.4rem 0 1.2rem 0;
+  }
+
+  .pv-faq__heading span {
+    color: #4c46c4;
+  }
+
+  .pv-faq__desc {
+    font-size: 1.5rem;
+    color: #6b667f;
+    max-width: 520px;
+    margin: 0 auto 4rem auto;
+  }
+
+  .pv-faq__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2.4rem;
+    text-align: left;
+    align-items: start;
+  }
+
+  .pv-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .pv-faq-item {
+    background: #f6f4fc;
+    border-radius: 1.4rem;
+    overflow: hidden;
+    transition: background-color 0.2s ease;
+  }
+
+  .pv-faq-item.is-open {
+    background: #ffffff;
+    border: 1px solid #ded9f7;
+    box-shadow: 0 4px 16px rgba(76, 70, 196, 0.08);
+  }
+
+  .pv-faq-item__question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: none;
+    border: none;
+    padding: 1.6rem 1.8rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e1b3a;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .pv-faq-item__icon {
+    flex-shrink: 0;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .pv-faq-item.is-open .pv-faq-item__icon {
+    background: #4c46c4;
+    color: #ffffff;
+    transform: rotate(45deg);
+  }
+
+  .pv-faq-item__answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+  }
+
+  .pv-faq-item.is-open .pv-faq-item__answer {
+    grid-template-rows: 1fr;
+  }
+
+  .pv-faq-item__answer > div {
+    overflow: hidden;
+  }
+
+  .pv-faq-item__answer p {
+    margin: 0;
+    padding: 0 1.8rem 1.8rem 6.2rem;
+    font-size: 1.4rem;
+    color: #4b4763;
+    line-height: 1.6;
+  }
+
+  .pv-faq__side {
+    background: #f1eefc;
+    border-radius: 1.8rem;
+    padding: 2.4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .pv-faq__side-icon {
+    width: 5.2rem;
+    height: 5.2rem;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.6rem auto;
+  }
+
+  .pv-faq__side-heading {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 0.8rem 0;
+  }
+
+  .pv-faq__side-desc {
+    font-size: 1.4rem;
+    color: #4b4763;
+    line-height: 1.5;
+    margin: 0 0 2rem 0;
+  }
+
+  .pv-faq__side-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #4c46c4;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 1.2rem 2.4rem;
+    border-radius: 3rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .pv-faq__side-cta:hover {
+    background: #3b35ad;
+  }
+
+  .pv-faq__side-whatsapp {
+    display: block;
+    margin-top: 1.2rem;
+    color: #4c46c4;
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .pv-faq__side-whatsapp:hover {
+    text-decoration: underline;
+  }
+
+  .pv-faq__side-img {
+    margin-top: 2rem;
+    border-radius: 1.4rem;
+    overflow: hidden;
+    flex: 1;
+    min-height: 18rem;
+  }
+
+  .pv-faq__side-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pv-faq__trust-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 4.8rem;
+    padding-top: 3.2rem;
+    border-top: 1px solid #eeecf9;
+  }
+
+  .pv-faq__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    justify-content: center;
+  }
+
+  .pv-faq__trust-icon {
+    flex-shrink: 0;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: #f0eefa;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pv-faq__trust-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0 0 0.2rem 0;
+  }
+
+  .pv-faq__trust-sub {
+    font-size: 1.2rem;
+    color: #6b667f;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .pv-faq {
+      padding: 4.8rem 0;
+    }
+    .pv-faq__heading {
+      font-size: 2.6rem;
+    }
+    .pv-faq__grid {
+      grid-template-columns: 1fr;
+    }
+    .pv-faq__side {
+      order: -1;
+    }
+    .pv-faq__trust-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pv-faq {
+      padding: 4rem 0;
+    }
+    .pv-faq__heading {
+      font-size: 2.2rem;
+    }
+    .pv-faq__desc {
+      font-size: 1.4rem;
+      margin-bottom: 2.8rem;
+    }
+    .pv-faq-item__question {
+      font-size: 1.4rem;
+      padding: 1.4rem 1.6rem;
+    }
+    .pv-faq-item__answer p {
+      padding: 0 1.6rem 1.6rem 5rem;
+    }
+    .pv-faq__trust-item {
+      justify-content: flex-start;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pv-faq__heading {
+      font-size: 1.9rem;
+    }
+    .pv-faq__side {
+      padding: 2rem;
+    }
+    .pv-faq-item__question {
+      gap: 0.8rem;
+      padding: 1.2rem 1.4rem;
+      font-size: 1.3rem;
+    }
+    .pv-faq-item__icon {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+    .pv-faq-item__answer p {
+      padding: 0 1.4rem 1.4rem 3.6rem;
+      font-size: 1.3rem;
+    }
+    .pv-faq__trust-row {
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="pv-home">
+
+  <!-- ===== HERO ===== -->
+  <section class="pv-hero">
+    <pv-hero-slider data-autoplay="true" data-autoplay-speed="6">
+      <button type="button" class="pv-hero__arrow pv-hero__arrow--prev" aria-label="{{ 'custom.pv_home.aria_prev_slide' | t }}" data-pv-hero-prev>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="pv-hero__arrow pv-hero__arrow--next" aria-label="{{ 'custom.pv_home.aria_next_slide' | t }}" data-pv-hero-next>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div class="pv-hero__slide pv-hero__slide--1 is-active" data-pv-hero-slide>
+        <div class="pv-hero__content-wrap">
+          <div class="pv-hero__content">
+            <svg class="pv-hero__paw" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2a3 3 0 0 0-3 3c0 .38.08.73.21 1.06A4.98 4.98 0 0 0 5 11c0 2.76 2.24 5 5 5h4c2.76 0 5-2.24 5-5 0-2.27-1.52-4.18-3.61-4.75.13-.33.21-.68.21-1.06a3 3 0 0 0-3-3zm-6 9c0 1.65 1.35 3 3 3h6c1.65 0 3-1.35 3-3 0-1.65-1.35-3-3-3h-6c-1.65 0-3 1.35-3 3z"/>
+            </svg>
+            <h1 class="pv-hero__heading">{{ 'custom.pv_home.hero_heading' | t }}</h1>
+            <a href="/collections/all" class="pv-hero__cta">
+              <span>🐕 {{ 'custom.pv_home.hero_cta' | t }}</span>
+              <span class="pv-hero__cta-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </span>
+            </a>
+            <p class="pv-hero__subheading">{{ 'custom.pv_home.hero_card2_title' | t }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv-hero__slide pv-hero__slide--2" data-pv-hero-slide>
+        <div class="pv-hero__content-wrap">
+          <div class="pv-hero__content">
+            <svg class="pv-hero__paw" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2a3 3 0 0 0-3 3c0 .38.08.73.21 1.06A4.98 4.98 0 0 0 5 11c0 2.76 2.24 5 5 5h4c2.76 0 5-2.24 5-5 0-2.27-1.52-4.18-3.61-4.75.13-.33.21-.68.21-1.06a3 3 0 0 0-3-3zm-6 9c0 1.65 1.35 3 3 3h6c1.65 0 3-1.35 3-3 0-1.65-1.35-3-3-3h-6c-1.65 0-3 1.35-3 3z"/>
+            </svg>
+            <h1 class="pv-hero__heading">{{ 'custom.pv_home.slide2_heading' | t }}</h1>
+            <a href="/collections/all" class="pv-hero__cta">
+              <span>🛍️ {{ 'custom.pv_home.slide2_cta' | t }}</span>
+              <span class="pv-hero__cta-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </span>
+            </a>
+            <p class="pv-hero__subheading">{{ 'custom.pv_home.slide2_subheading' | t }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv-hero__dots" data-pv-hero-dots></div>
+    </pv-hero-slider>
+  </section>
+
+  <!-- ===== VIDEO SHOWCASE ===== -->
+  <section class="pv-video-showcase">
+    <div class="pv-container">
+      <p class="pv-pill-badge" style="margin: 0 auto 1.2rem auto; display: table;">{{ 'custom.pv_home.video_pill' | t }}</p>
+      <h2 class="pv-video-showcase__heading">{{ 'custom.pv_home.video_heading' | t }}</h2>
+
+      <div class="pv-video-grid" data-pv-video-grid>
+        <button type="button" class="pv-video-card" data-pv-video-open data-video-src="{{ 'video1.mp4' | asset_url }}">
+          <video class="pv-video-card__preview" src="{{ 'video1.mp4' | asset_url }}" muted loop autoplay playsinline preload="metadata"></video>
+          <span class="pv-video-card__play">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </button>
+        <button type="button" class="pv-video-card" data-pv-video-open data-video-src="{{ 'video2.mp4' | asset_url }}">
+          <video class="pv-video-card__preview" src="{{ 'video2.mp4' | asset_url }}" muted loop autoplay playsinline preload="metadata"></video>
+          <span class="pv-video-card__play">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </button>
+        <button type="button" class="pv-video-card" data-pv-video-open data-video-src="{{ 'video3.mp4' | asset_url }}">
+          <video class="pv-video-card__preview" src="{{ 'video3.mp4' | asset_url }}" muted loop autoplay playsinline preload="metadata"></video>
+          <span class="pv-video-card__play">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="pv-video-modal" data-pv-video-modal hidden>
+    <div class="pv-video-modal__backdrop" data-pv-video-close></div>
+    <div class="pv-video-modal__inner">
+      <button type="button" class="pv-video-modal__close" data-pv-video-close aria-label="{{ 'custom.pv_home.close_video' | t }}">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <video class="pv-video-modal__video" data-pv-video-modal-player controls playsinline></video>
+    </div>
+  </div>
+
+  <div class="pv-container">
+
+    <!-- ===== MISSION ===== -->
+    <section class="pv-mission">
+      <div>
+        <p class="pv-mission__text">{{ 'custom.pv_home.mission_text' | t }}</p>
+        <a href="/pages/about-us" class="pv-link-arrow" style="margin-top: 1.6rem;">{{ 'custom.pv_home.learn_more' | t }} →</a>
+      </div>
+      <div class="pv-mission__circle">
+        <img src="{{ 'hero-cat-hammock.jpg' | asset_url }}" alt="{{ 'custom.pv_home.mission_heading' | t }}" loading="lazy">
+      </div>
+      <h2 class="pv-mission__heading">{{ 'custom.pv_home.mission_heading' | t }}</h2>
+    </section>
+
+    <!-- ===== TRUST CARDS ===== -->
+    <section class="pv-trust-row">
+      <div class="pv-trust-card">
+        <span class="pv-trust-card__icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        </span>
+        <span class="pv-trust-card__text">{{ 'custom.pv_home.trust_card1' | t }}</span>
+      </div>
+      <div class="pv-trust-card">
+        <span class="pv-trust-card__icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.3 1.6 6.9 4.4 5.4 6.6 4.2 9 5 12 7.8 15 5 17.4 4.2 19.6 5.4c2.8 1.5 3.4 4.9 1.7 7.5C18.7 16.65 12 21 12 21z"/></svg>
+        </span>
+        <span class="pv-trust-card__text">{{ 'custom.pv_home.trust_card2' | t }}</span>
+      </div>
+      <div class="pv-trust-card">
+        <span class="pv-trust-card__icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </span>
+        <span class="pv-trust-card__text">{{ 'custom.pv_home.trust_card3' | t }}</span>
+      </div>
+    </section>
+
+    <!-- ===== TOP PICKS ===== -->
+    <section class="pv-picks">
+      <span class="pv-pill-badge">{{ 'custom.pv_home.picks_pill' | t }}</span>
+      <h2 class="pv-picks__heading">{{ 'custom.pv_home.picks_heading' | t }}</h2>
+      <p class="pv-picks__desc">{{ 'custom.pv_home.picks_desc' | t }}</p>
+
+      <div class="pv-picks__slider-wrap">
+        <button type="button" class="pv-picks__arrow" data-pv-picks-prev aria-label="{{ 'custom.pv_home.testimonials_prev' | t }}">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
+        <div class="pv-product-grid" data-pv-product-grid>
+          {%- for product in collections.all.products -%}
+            <div class="pv-product-card">
+              <a href="{{ product.url }}" class="pv-product-card__link">
+                <div class="pv-product-card__img-wrap">
+                  {%- if product.featured_image -%}
+                    {{ product.featured_image | image_url: width: 500 | image_tag: alt: product.title, loading: 'lazy' }}
+                  {%- endif -%}
+                </div>
+                <p class="pv-product-card__title">{{ product.title | truncate: 32 }}</p>
+              </a>
+              <p class="pv-product-card__desc">{{ product.description | strip_html | truncate: 80 }}</p>
+              <p class="pv-product-card__rating">⭐⭐⭐⭐⭐ 4.8</p>
+              <div class="pv-product-card__row">
+                <div>
+                  <span class="pv-product-card__price">{{ product.price | money }}</span>
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="pv-product-card__compare">{{ product.compare_at_price | money }}</span>
+                  {%- endif -%}
+                </div>
+                <div data-pv-cart-widget data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+                  <div class="pv-qty-stepper" data-pv-qty-stepper>
+                    <button type="button" class="pv-qty-btn" data-pv-qty-minus aria-label="{{ 'custom.pv_home.decrease_qty' | t }}">−</button>
+                    <span class="pv-qty-value" data-pv-qty-value>0</span>
+                    <button type="button" class="pv-qty-btn" data-pv-qty-plus aria-label="{{ 'custom.pv_home.increase_qty' | t }}">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- else -%}
+            <p style="grid-column: 1 / -1; text-align: center; color: #6b667f;">{{ 'custom.pv_home.no_products' | t }}</p>
+          {%- endfor -%}
+        </div>
+
+        <button type="button" class="pv-picks__arrow" data-pv-picks-next aria-label="{{ 'custom.pv_home.testimonials_next' | t }}">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <div class="pv-picks__dots" data-pv-picks-dots></div>
+    </section>
+
+    <!-- ===== TRUST BADGES ===== -->
+    <section class="pv-badges-row">
+      <div>
+        <span class="pv-badge-item__icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 11 13 11 11"/></svg>
+        </span>
+        <p class="pv-badge-item__title">{{ 'custom.pv_home.badge1_title' | t }}</p>
+        <p class="pv-badge-item__sub">{{ 'custom.pv_home.badge1_sub' | t }}</p>
+      </div>
+      <div>
+        <span class="pv-badge-item__icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>
+        </span>
+        <p class="pv-badge-item__title">{{ 'custom.pv_home.badge2_title' | t }}</p>
+        <p class="pv-badge-item__sub">{{ 'custom.pv_home.badge2_sub' | t }}</p>
+      </div>
+      <div>
+        <span class="pv-badge-item__icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="15" height="12"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+        </span>
+        <p class="pv-badge-item__title">{{ 'custom.pv_home.badge3_title' | t }}</p>
+        <p class="pv-badge-item__sub">{{ 'custom.pv_home.badge3_sub' | t }}</p>
+      </div>
+      <div>
+        <span class="pv-badge-item__icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        </span>
+        <p class="pv-badge-item__title">{{ 'custom.pv_home.badge4_title' | t }}</p>
+        <p class="pv-badge-item__sub">{{ 'custom.pv_home.badge4_sub' | t }}</p>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="pv-testimonials">
+      <span class="pv-pill-badge">🐾 {{ 'custom.pv_home.testimonials_pill' | t }}</span>
+      <h2 class="pv-testimonials__heading">
+        {{ 'custom.pv_home.testimonials_heading_line1' | t }}
+        <span>{{ 'custom.pv_home.testimonials_heading_line2' | t }}</span>
+      </h2>
+      <p class="pv-testimonials__desc">{{ 'custom.pv_home.testimonials_desc' | t }}</p>
+
+      <div class="pv-testimonials__wrap">
+        <button type="button" class="pv-testimonials__arrow" data-pv-test-prev aria-label="{{ 'custom.pv_home.testimonials_prev' | t }}">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
+        <div class="pv-testimonials__track" data-pv-test-track>
+          <div class="pv-testimonial-card">
+            <span class="pv-testimonial-card__quote">&ldquo;</span>
+            <p class="pv-testimonial-card__text">{{ 'custom.pv_home.testimonial1_text' | t }}</p>
+            <p class="pv-testimonial-card__stars">★★★★★</p>
+            <div class="pv-testimonial-card__author">
+              <span class="pv-testimonial-card__avatar">{{ 'custom.pv_home.testimonial1_name' | t | slice: 0 }}</span>
+              <div>
+                <p class="pv-testimonial-card__name">{{ 'custom.pv_home.testimonial1_name' | t }}</p>
+                <p class="pv-testimonial-card__role">🐾 {{ 'custom.pv_home.testimonial1_role' | t }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pv-testimonial-card">
+            <span class="pv-testimonial-card__quote">&ldquo;</span>
+            <p class="pv-testimonial-card__text">{{ 'custom.pv_home.testimonial2_text' | t }}</p>
+            <p class="pv-testimonial-card__stars">★★★★★</p>
+            <div class="pv-testimonial-card__author">
+              <span class="pv-testimonial-card__avatar">{{ 'custom.pv_home.testimonial2_name' | t | slice: 0 }}</span>
+              <div>
+                <p class="pv-testimonial-card__name">{{ 'custom.pv_home.testimonial2_name' | t }}</p>
+                <p class="pv-testimonial-card__role">🐾 {{ 'custom.pv_home.testimonial2_role' | t }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pv-testimonial-card">
+            <span class="pv-testimonial-card__quote">&ldquo;</span>
+            <p class="pv-testimonial-card__text">{{ 'custom.pv_home.testimonial3_text' | t }}</p>
+            <p class="pv-testimonial-card__stars">★★★★★</p>
+            <div class="pv-testimonial-card__author">
+              <span class="pv-testimonial-card__avatar">{{ 'custom.pv_home.testimonial3_name' | t | slice: 0 }}</span>
+              <div>
+                <p class="pv-testimonial-card__name">{{ 'custom.pv_home.testimonial3_name' | t }}</p>
+                <p class="pv-testimonial-card__role">🐾 {{ 'custom.pv_home.testimonial3_role' | t }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pv-testimonial-card">
+            <span class="pv-testimonial-card__quote">&ldquo;</span>
+            <p class="pv-testimonial-card__text">{{ 'custom.pv_home.testimonial4_text' | t }}</p>
+            <p class="pv-testimonial-card__stars">★★★★★</p>
+            <div class="pv-testimonial-card__author">
+              <span class="pv-testimonial-card__avatar">{{ 'custom.pv_home.testimonial4_name' | t | slice: 0 }}</span>
+              <div>
+                <p class="pv-testimonial-card__name">{{ 'custom.pv_home.testimonial4_name' | t }}</p>
+                <p class="pv-testimonial-card__role">🐾 {{ 'custom.pv_home.testimonial4_role' | t }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="pv-testimonials__arrow" data-pv-test-next aria-label="{{ 'custom.pv_home.testimonials_next' | t }}">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <div class="pv-testimonials__dots" data-pv-test-dots></div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="pv-faq">
+      <span class="pv-pill-badge">❓ {{ 'custom.pv_home.faq_pill' | t }}</span>
+      <h2 class="pv-faq__heading">
+        {{ 'custom.pv_home.faq_heading_line1' | t }} <span>{{ 'custom.pv_home.faq_heading_highlight' | t }}</span>
+      </h2>
+      <p class="pv-faq__desc">{{ 'custom.pv_home.faq_desc' | t }}</p>
+
+      <div class="pv-faq__grid">
+        <div class="pv-faq__list" data-pv-faq-list>
+          <div class="pv-faq-item is-open" data-pv-faq-item>
+            <button type="button" class="pv-faq-item__question" data-pv-faq-toggle aria-expanded="true">
+              <span class="pv-faq-item__icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+              <span>{{ 'custom.pv_home.faq1_q' | t }}</span>
+            </button>
+            <div class="pv-faq-item__answer" data-pv-faq-answer>
+              <div><p>{{ 'custom.pv_home.faq1_a' | t }}</p></div>
+            </div>
+          </div>
+
+          <div class="pv-faq-item" data-pv-faq-item>
+            <button type="button" class="pv-faq-item__question" data-pv-faq-toggle aria-expanded="false">
+              <span class="pv-faq-item__icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+              <span>{{ 'custom.pv_home.faq2_q' | t }}</span>
+            </button>
+            <div class="pv-faq-item__answer" data-pv-faq-answer>
+              <div><p>{{ 'custom.pv_home.faq2_a' | t }}</p></div>
+            </div>
+          </div>
+
+          <div class="pv-faq-item" data-pv-faq-item>
+            <button type="button" class="pv-faq-item__question" data-pv-faq-toggle aria-expanded="false">
+              <span class="pv-faq-item__icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+              <span>{{ 'custom.pv_home.faq3_q' | t }}</span>
+            </button>
+            <div class="pv-faq-item__answer" data-pv-faq-answer>
+              <div><p>{{ 'custom.pv_home.faq3_a' | t }}</p></div>
+            </div>
+          </div>
+
+          <div class="pv-faq-item" data-pv-faq-item>
+            <button type="button" class="pv-faq-item__question" data-pv-faq-toggle aria-expanded="false">
+              <span class="pv-faq-item__icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+              <span>{{ 'custom.pv_home.faq4_q' | t }}</span>
+            </button>
+            <div class="pv-faq-item__answer" data-pv-faq-answer>
+              <div><p>{{ 'custom.pv_home.faq4_a' | t }}</p></div>
+            </div>
+          </div>
+
+          <div class="pv-faq-item" data-pv-faq-item>
+            <button type="button" class="pv-faq-item__question" data-pv-faq-toggle aria-expanded="false">
+              <span class="pv-faq-item__icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+              <span>{{ 'custom.pv_home.faq5_q' | t }}</span>
+            </button>
+            <div class="pv-faq-item__answer" data-pv-faq-answer>
+              <div><p>{{ 'custom.pv_home.faq5_a' | t }}</p></div>
+            </div>
+          </div>
+
+          <div class="pv-faq-item" data-pv-faq-item>
+            <button type="button" class="pv-faq-item__question" data-pv-faq-toggle aria-expanded="false">
+              <span class="pv-faq-item__icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+              <span>{{ 'custom.pv_home.faq6_q' | t }}</span>
+            </button>
+            <div class="pv-faq-item__answer" data-pv-faq-answer>
+              <div><p>{{ 'custom.pv_home.faq6_a' | t }}</p></div>
+            </div>
+          </div>
+
+          <div class="pv-faq-item" data-pv-faq-item>
+            <button type="button" class="pv-faq-item__question" data-pv-faq-toggle aria-expanded="false">
+              <span class="pv-faq-item__icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+              <span>{{ 'custom.pv_home.faq7_q' | t }}</span>
+            </button>
+            <div class="pv-faq-item__answer" data-pv-faq-answer>
+              <div><p>{{ 'custom.pv_home.faq7_a' | t }}</p></div>
+            </div>
+          </div>
+
+          <div class="pv-faq-item" data-pv-faq-item>
+            <button type="button" class="pv-faq-item__question" data-pv-faq-toggle aria-expanded="false">
+              <span class="pv-faq-item__icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+              <span>{{ 'custom.pv_home.faq8_q' | t }}</span>
+            </button>
+            <div class="pv-faq-item__answer" data-pv-faq-answer>
+              <div><p>{{ 'custom.pv_home.faq8_a' | t }}</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pv-faq__side">
+          <span class="pv-faq__side-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          </span>
+          <h3 class="pv-faq__side-heading">{{ 'custom.pv_home.faq_side_heading' | t }}</h3>
+          <p class="pv-faq__side-desc">{{ 'custom.pv_home.faq_side_desc' | t }}</p>
+          <a href="/pages/contact" class="pv-faq__side-cta">
+            <span>{{ 'custom.pv_home.faq_side_cta' | t }}</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </a>
+          {%- if section.settings.whatsapp_number != blank -%}
+            <a href="https://wa.me/{{ section.settings.whatsapp_number }}" target="_blank" rel="noopener noreferrer" class="pv-faq__side-whatsapp">{{ 'custom.pv_home.faq_side_whatsapp' | t }}</a>
+          {%- endif -%}
+          <div class="pv-faq__side-img">
+            <img src="{{ 'faqsectionimg.png' | asset_url }}" alt="{{ 'custom.pv_home.faq_side_heading' | t }}" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <div class="pv-faq__trust-row">
+        <div class="pv-faq__trust-item">
+          <span class="pv-faq__trust-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </span>
+          <div>
+            <p class="pv-faq__trust-title">{{ 'custom.pv_home.faq_trust1_title' | t }}</p>
+            <p class="pv-faq__trust-sub">{{ 'custom.pv_home.faq_trust1_sub' | t }}</p>
+          </div>
+        </div>
+        <div class="pv-faq__trust-item">
+          <span class="pv-faq__trust-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="15" height="12"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </span>
+          <div>
+            <p class="pv-faq__trust-title">{{ 'custom.pv_home.faq_trust2_title' | t }}</p>
+            <p class="pv-faq__trust-sub">{{ 'custom.pv_home.faq_trust2_sub' | t }}</p>
+          </div>
+        </div>
+        <div class="pv-faq__trust-item">
+          <span class="pv-faq__trust-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          </span>
+          <div>
+            <p class="pv-faq__trust-title">{{ 'custom.pv_home.faq_trust3_title' | t }}</p>
+            <p class="pv-faq__trust-sub">{{ 'custom.pv_home.faq_trust3_sub' | t }}</p>
+          </div>
+        </div>
+        <div class="pv-faq__trust-item">
+          <span class="pv-faq__trust-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 21s-6.7-4.35-9.3-8.1C1 10.3 1.6 6.9 4.4 5.4 6.6 4.2 9 5 12 7.8 15 5 17.4 4.2 19.6 5.4c2.8 1.5 3.4 4.9 1.7 7.5C18.7 16.65 12 21 12 21z"/></svg>
+          </span>
+          <div>
+            <p class="pv-faq__trust-title">{{ 'custom.pv_home.faq_trust4_title' | t }}</p>
+            <p class="pv-faq__trust-sub">{{ 'custom.pv_home.faq_trust4_sub' | t }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+{% javascript %}
+  if (!customElements.get('pv-hero-slider')) {
+    customElements.define(
+      'pv-hero-slider',
+      class PvHeroSlider extends HTMLElement {
+        connectedCallback() {
+          this.slides = Array.from(this.querySelectorAll('[data-pv-hero-slide]'));
+          this.dotsWrap = this.querySelector('[data-pv-hero-dots]');
+          this.current = 0;
+          this.timer = null;
+
+          if (this.slides.length < 2) return;
+
+          this.slides.forEach((slide, index) => {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'pv-hero__dot' + (index === 0 ? ' is-active' : '');
+            dot.setAttribute('aria-label', 'Slide ' + (index + 1));
+            dot.addEventListener('click', this.goTo.bind(this, index));
+            this.dotsWrap.appendChild(dot);
+          });
+          this.dots = Array.from(this.dotsWrap.querySelectorAll('.pv-hero__dot'));
+
+          var prevBtn = this.querySelector('[data-pv-hero-prev]');
+          var nextBtn = this.querySelector('[data-pv-hero-next]');
+          if (prevBtn) prevBtn.addEventListener('click', this.prev.bind(this));
+          if (nextBtn) nextBtn.addEventListener('click', this.next.bind(this));
+
+          if (this.dataset.autoplay === 'true') {
+            this.startAutoplay();
+            this.addEventListener('mouseenter', this.stopAutoplay.bind(this));
+            this.addEventListener('mouseleave', this.startAutoplay.bind(this));
+          }
+        }
+
+        goTo(index) {
+          this.slides[this.current].classList.remove('is-active');
+          this.dots[this.current].classList.remove('is-active');
+          this.current = index;
+          this.slides[this.current].classList.add('is-active');
+          this.dots[this.current].classList.add('is-active');
+        }
+
+        next() {
+          this.goTo((this.current + 1) % this.slides.length);
+        }
+
+        prev() {
+          this.goTo((this.current - 1 + this.slides.length) % this.slides.length);
+        }
+
+        startAutoplay() {
+          var speed = parseInt(this.dataset.autoplaySpeed, 10) || 6;
+          this.stopAutoplay();
+          this.timer = setInterval(this.next.bind(this), speed * 1000);
+        }
+
+        stopAutoplay() {
+          if (this.timer) clearInterval(this.timer);
+        }
+      }
+    );
+  }
+
+  // Video showcase modal
+  var pvVideoModal = document.querySelector('[data-pv-video-modal]');
+  if (pvVideoModal) {
+    var pvVideoModalPlayer = pvVideoModal.querySelector('[data-pv-video-modal-player]');
+
+    document.querySelectorAll('[data-pv-video-open]').forEach(function (card) {
+      card.addEventListener('click', function () {
+        pvVideoModalPlayer.src = card.getAttribute('data-video-src');
+        pvVideoModal.removeAttribute('hidden');
+        pvVideoModalPlayer.play().catch(function () {});
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closePvVideoModal() {
+      pvVideoModalPlayer.pause();
+      pvVideoModalPlayer.removeAttribute('src');
+      pvVideoModal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+    }
+
+    pvVideoModal.querySelectorAll('[data-pv-video-close]').forEach(function (btn) {
+      btn.addEventListener('click', closePvVideoModal);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !pvVideoModal.hasAttribute('hidden')) {
+        closePvVideoModal();
+      }
+    });
+  }
+
+  // Top Picks — add to cart / quantity stepper
+  var pvProductGrid = document.querySelector('[data-pv-product-grid]');
+  if (pvProductGrid) {
+    var pvSetHeaderCartCount = function (count) {
+      var countEl = document.getElementById('petCartCount');
+      var cartLink = document.getElementById('petCartLink');
+      if (count > 0) {
+        if (!countEl && cartLink) {
+          countEl = document.createElement('span');
+          countEl.className = 'pet-cart-count';
+          countEl.id = 'petCartCount';
+          cartLink.appendChild(countEl);
+        }
+        if (countEl) countEl.textContent = count;
+      } else if (countEl) {
+        countEl.remove();
+      }
+    };
+
+    var pvRefreshCartCount = function () {
+      fetch('/cart.js')
+        .then(function (res) { return res.json(); })
+        .then(function (cart) { pvSetHeaderCartCount(cart.item_count); })
+        .catch(function () {});
+    };
+
+    pvProductGrid.addEventListener('click', function (event) {
+      var minusBtn = event.target.closest('[data-pv-qty-minus]');
+      var plusBtn = event.target.closest('[data-pv-qty-plus]');
+      if (!minusBtn && !plusBtn) return;
+
+      event.preventDefault();
+      var widget = event.target.closest('[data-pv-cart-widget]');
+      if (!widget) return;
+      var variantId = widget.getAttribute('data-variant-id');
+      if (!variantId) return;
+
+      var valueEl = widget.querySelector('[data-pv-qty-value]');
+      var currentQty = parseInt(valueEl.textContent, 10) || 0;
+
+      if (minusBtn && currentQty <= 0) return;
+
+      var newQty = currentQty + (plusBtn ? 1 : -1);
+
+      var request = currentQty === 0
+        ? fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] })
+          })
+        : fetch('/cart/change.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ id: variantId, quantity: newQty })
+          });
+
+      request
+        .then(function (res) { return res.json(); })
+        .then(function () {
+          valueEl.textContent = newQty;
+          pvRefreshCartCount();
+        })
+        .catch(function () {});
+    });
+  }
+
+  // Top Picks slider (arrows + dots)
+  var pvPicksTrack = document.querySelector('[data-pv-product-grid]');
+  if (pvPicksTrack && pvPicksTrack.children.length) {
+    var pvPicksCards = Array.prototype.slice.call(pvPicksTrack.children);
+    var pvPicksDotsWrap = document.querySelector('[data-pv-picks-dots]');
+    var pvPicksPrevBtn = document.querySelector('[data-pv-picks-prev]');
+    var pvPicksNextBtn = document.querySelector('[data-pv-picks-next]');
+
+    pvPicksCards.forEach(function (card, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'pv-picks__dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', 'Product ' + (i + 1));
+      dot.addEventListener('click', function () {
+        pvPicksTrack.scrollTo({ left: card.offsetLeft - pvPicksTrack.offsetLeft, behavior: 'smooth' });
+      });
+      pvPicksDotsWrap.appendChild(dot);
+    });
+    var pvPicksDots = Array.prototype.slice.call(pvPicksDotsWrap.children);
+
+    var pvPicksUpdateActiveDot = function () {
+      var scrollLeft = pvPicksTrack.scrollLeft;
+      var closestIndex = 0;
+      var closestDist = Infinity;
+      pvPicksCards.forEach(function (card, i) {
+        var dist = Math.abs((card.offsetLeft - pvPicksTrack.offsetLeft) - scrollLeft);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIndex = i;
+        }
+      });
+      pvPicksDots.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === closestIndex);
+      });
+    };
+
+    var pvPicksScrollTimer;
+    pvPicksTrack.addEventListener('scroll', function () {
+      clearTimeout(pvPicksScrollTimer);
+      pvPicksScrollTimer = setTimeout(pvPicksUpdateActiveDot, 100);
+    });
+
+    if (pvPicksPrevBtn) {
+      pvPicksPrevBtn.addEventListener('click', function () {
+        pvPicksTrack.scrollBy({ left: -pvPicksTrack.clientWidth * 0.9, behavior: 'smooth' });
+      });
+    }
+    if (pvPicksNextBtn) {
+      pvPicksNextBtn.addEventListener('click', function () {
+        pvPicksTrack.scrollBy({ left: pvPicksTrack.clientWidth * 0.9, behavior: 'smooth' });
+      });
+    }
+  }
+
+  // Testimonials carousel
+  var pvTestTrack = document.querySelector('[data-pv-test-track]');
+  if (pvTestTrack) {
+    var pvTestCards = Array.prototype.slice.call(pvTestTrack.children);
+    var pvTestDotsWrap = document.querySelector('[data-pv-test-dots]');
+    var pvTestPrevBtn = document.querySelector('[data-pv-test-prev]');
+    var pvTestNextBtn = document.querySelector('[data-pv-test-next]');
+
+    pvTestCards.forEach(function (card, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'pv-testimonials__dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
+      dot.addEventListener('click', function () {
+        pvTestTrack.scrollTo({ left: card.offsetLeft - pvTestTrack.offsetLeft, behavior: 'smooth' });
+      });
+      pvTestDotsWrap.appendChild(dot);
+    });
+    var pvTestDots = Array.prototype.slice.call(pvTestDotsWrap.children);
+
+    var pvTestUpdateActiveDot = function () {
+      var scrollLeft = pvTestTrack.scrollLeft;
+      var closestIndex = 0;
+      var closestDist = Infinity;
+      pvTestCards.forEach(function (card, i) {
+        var dist = Math.abs((card.offsetLeft - pvTestTrack.offsetLeft) - scrollLeft);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIndex = i;
+        }
+      });
+      pvTestDots.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === closestIndex);
+      });
+    };
+
+    var pvTestScrollTimer;
+    pvTestTrack.addEventListener('scroll', function () {
+      clearTimeout(pvTestScrollTimer);
+      pvTestScrollTimer = setTimeout(pvTestUpdateActiveDot, 100);
+    });
+
+    if (pvTestPrevBtn) {
+      pvTestPrevBtn.addEventListener('click', function () {
+        pvTestTrack.scrollBy({ left: -pvTestTrack.clientWidth * 0.9, behavior: 'smooth' });
+      });
+    }
+    if (pvTestNextBtn) {
+      pvTestNextBtn.addEventListener('click', function () {
+        pvTestTrack.scrollBy({ left: pvTestTrack.clientWidth * 0.9, behavior: 'smooth' });
+      });
+    }
+  }
+
+  // FAQ accordion
+  var pvFaqList = document.querySelector('[data-pv-faq-list]');
+  var pvFaqSide = document.querySelector('.pv-faq__side');
+
+  var pvEqualizeFaqHeight = function () {
+    if (!pvFaqList || !pvFaqSide) return;
+    if (window.matchMedia('(max-width: 989px)').matches) {
+      pvFaqSide.style.height = '';
+      return;
+    }
+    pvFaqSide.style.height = pvFaqList.offsetHeight + 'px';
+  };
+
+  if (pvFaqList) {
+    var pvFaqItems = Array.prototype.slice.call(pvFaqList.querySelectorAll('[data-pv-faq-item]'));
+    pvFaqItems.forEach(function (item) {
+      var toggle = item.querySelector('[data-pv-faq-toggle]');
+      toggle.addEventListener('click', function () {
+        var isOpen = item.classList.contains('is-open');
+        pvFaqItems.forEach(function (other) {
+          other.classList.remove('is-open');
+          other.querySelector('[data-pv-faq-toggle]').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('is-open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+        setTimeout(pvEqualizeFaqHeight, 280);
+      });
+    });
+  }
+
+  pvEqualizeFaqHeight();
+  window.addEventListener('load', pvEqualizeFaqHeight);
+  window.addEventListener('resize', pvEqualizeFaqHeight);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Petvona Home",
+  "settings": [
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number",
+      "info": "Include country code, digits only (e.g. 491701234567). Leave blank to hide the WhatsApp link in the FAQ section."
+    }
+  ]
+}
+{% endschema %}

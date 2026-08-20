@@ -1,88 +1,11 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "custom_hero": {
-      "type": "custom-hero-banner",
-      "blocks": {
-        "slide_1": {
-          "type": "slide",
-          "settings": {}
-        },
-        "slide_2": {
-          "type": "slide",
-          "settings": {}
-        },
-        "slide_3": {
-          "type": "slide",
-          "settings": {}
-        },
-        "feature_1": {
-          "type": "feature",
-          "settings": {
-            "title": "Real ingredients",
-            "subtitle": "Nothing artificial, ever."
-          }
-        },
-        "feature_2": {
-          "type": "feature",
-          "settings": {
-            "title": "Diffuser guarantee",
-            "subtitle": "Lifetime efficacy guarantees."
-          }
-        },
-        "feature_3": {
-          "type": "feature",
-          "settings": {
-            "title": "Natural & Vegan",
-            "subtitle": "Zero harmful chemicals."
-          }
-        },
-        "feature_4": {
-          "type": "feature",
-          "settings": {
-            "title": "Cruelty free",
-            "subtitle": "Never tested on animals."
-          }
-        }
-      },
-      "block_order": [
-        "slide_1",
-        "slide_2",
-        "slide_3",
-        "feature_1",
-        "feature_2",
-        "feature_3",
-        "feature_4"
-      ],
-      "settings": {
-        "container_width": 1400
-      }
-    },
-    "all_products": {
-      "type": "custom-all-products",
-      "settings": {}
-    },
-    "category_deals": {
-      "type": "custom-category-deals",
-      "settings": {}
-    },
-    "mega_sale": {
-      "type": "custom-mega-sale",
+    "petvona_home": {
+      "type": "custom-petvona-home",
       "settings": {}
     }
   },
   "order": [
-    "custom_hero",
-    "all_products",
-    "category_deals",
-    "mega_sale"
+    "petvona_home"
   ]
 }

@@ -102,9 +102,82 @@
   }
 
   @media screen and (max-width: 989px) {
+    .pet-mega-sale-section {
+      padding: 4rem 1.6rem;
+    }
     .pet-mega-sale-banner {
       grid-template-columns: 1fr;
       padding: 4rem 2rem;
+      text-align: center;
+    }
+    .pet-mega-sale__media {
+      display: none;
+    }
+    .pet-mega-sale__heading {
+      font-size: 3.6rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pet-mega-sale-section {
+      padding: 3rem 1.2rem;
+    }
+    .pet-mega-sale-banner {
+      padding: 3rem 1.6rem;
+      border-radius: 1.4rem;
+    }
+    .pet-mega-sale__heading {
+      font-size: 3rem;
+    }
+    .pet-mega-sale__subtext {
+      font-size: 1.4rem;
+    }
+    .pet-countdown-grid {
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .pet-countdown-num {
+      font-size: 2.6rem;
+    }
+    .pet-mega-sale-cta {
+      padding: 1.1rem 2.6rem;
+      font-size: 1.4rem;
+      min-height: 2.75rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pet-mega-sale-section {
+      padding: 2.4rem 1rem;
+    }
+    .pet-mega-sale-banner {
+      padding: 2.4rem 1.2rem;
+      border-radius: 1.2rem;
+      gap: 1.6rem;
+    }
+    .pet-mega-sale__heading {
+      font-size: 2.3rem;
+    }
+    .pet-mega-sale__subtext {
+      font-size: 1.2rem;
+    }
+    .pet-countdown-grid {
+      gap: 0.8rem;
+      margin: 0.6rem 0;
+    }
+    .pet-countdown-box {
+      gap: 0.2rem;
+    }
+    .pet-countdown-num {
+      font-size: 2rem;
+    }
+    .pet-countdown-unit {
+      font-size: 1.05rem;
+    }
+    .pet-mega-sale-cta {
+      width: 100%;
+      padding: 1rem 1.6rem;
     }
   }
 {%- endstyle -%}
@@ -112,37 +185,37 @@
 <section class="pet-mega-sale-section">
   <div class="pet-mega-sale-banner">
     <div class="pet-mega-sale__media">
-      <img src="{{ 'hero-dogs-bath.jpg' | asset_url }}" alt="Dog in pet bed">
+      <img src="{{ 'hero-dogs-bath.jpg' | asset_url }}" alt="{{ 'custom.mega_sale.img_alt_dog' | t }}">
     </div>
 
     <div class="pet-mega-sale__content">
-      <h2 class="pet-mega-sale__heading">Mega sale 70% OFF</h2>
-      <p class="pet-mega-sale__subtext">Hurry up! Biggest discounts of the year won't last.</p>
+      <h2 class="pet-mega-sale__heading">{{ 'custom.mega_sale.heading' | t }}</h2>
+      <p class="pet-mega-sale__subtext">{{ 'custom.mega_sale.subtext' | t }}</p>
 
       <div class="pet-countdown-grid">
         <div class="pet-countdown-box">
           <span class="pet-countdown-num">1</span>
-          <span class="pet-countdown-unit">Days</span>
+          <span class="pet-countdown-unit">{{ 'custom.mega_sale.unit_days' | t }}</span>
         </div>
         <div class="pet-countdown-box">
           <span class="pet-countdown-num">6</span>
-          <span class="pet-countdown-unit">Hours</span>
+          <span class="pet-countdown-unit">{{ 'custom.mega_sale.unit_hours' | t }}</span>
         </div>
         <div class="pet-countdown-box">
           <span class="pet-countdown-num">03</span>
-          <span class="pet-countdown-unit">Minutes</span>
+          <span class="pet-countdown-unit">{{ 'custom.mega_sale.unit_minutes' | t }}</span>
         </div>
         <div class="pet-countdown-box">
           <span class="pet-countdown-num">26</span>
-          <span class="pet-countdown-unit">Seconds</span>
+          <span class="pet-countdown-unit">{{ 'custom.mega_sale.unit_seconds' | t }}</span>
         </div>
       </div>
 
-      <a href="/collections/sales" class="pet-mega-sale-cta">Shop all sales</a>
+      <a href="/collections/sales" class="pet-mega-sale-cta">{{ 'custom.mega_sale.cta' | t }}</a>
     </div>
 
     <div class="pet-mega-sale__media">
-      <img src="{{ 'dog-food-menu.jpg' | asset_url }}" alt="Pet food bowl">
+      <img src="{{ 'dog-food-menu.jpg' | asset_url }}" alt="{{ 'custom.mega_sale.img_alt_food' | t }}">
     </div>
   </div>
 </section>

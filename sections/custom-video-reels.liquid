@@ -1,0 +1,653 @@
+{%- style -%}
+  .pet-video-reels-section {
+    padding: 6rem 2rem;
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pet-video-reels-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .pet-video-reels-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .pet-video-reels-badge {
+    display: inline-block;
+    padding: 0.4rem 1.6rem;
+    background-color: #e0e7ff;
+    color: #4c46c4;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+
+  .pet-video-reels-title {
+    font-size: 3.6rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.8rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .pet-video-reels-sub {
+    font-size: 1.5rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  /* SLIDER TRACK CONTAINER */
+  .pet-video-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .pet-video-slider-track {
+    display: flex;
+    gap: 1.6rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1rem 0.5rem 2rem 0.5rem;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+  }
+
+  .pet-video-slider-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  /* REEL CARD ITEM */
+  .pet-video-card {
+    flex: 0 0 calc(20% - 1.3rem);
+    min-width: 210px;
+    aspect-ratio: 9 / 16;
+    border-radius: 1.6rem;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background-color: #000000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pet-video-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(76, 70, 196, 0.2);
+  }
+
+  .pet-video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* REEL CARD OVERLAY BADGES */
+  .pet-video-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.4rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .pet-video-duration-tag {
+    align-self: flex-end;
+    margin-top: auto;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  .pet-video-center-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .pet-video-card:hover .pet-video-center-play-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* SLIDER NAV ARROWS */
+  .pet-slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transition: all 0.2s ease;
+  }
+
+  .pet-slider-arrow:hover {
+    background-color: #4c46c4;
+    color: #ffffff;
+    border-color: #4c46c4;
+  }
+
+  .pet-slider-arrow--prev { left: -1.8rem; }
+  .pet-slider-arrow--next { right: -1.8rem; }
+
+  /* OVERLAY MODAL POPUP */
+  .pet-video-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .pet-video-modal-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .pet-video-modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 85vh;
+    max-height: 750px;
+    background-color: #000000;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+  }
+
+  .pet-video-modal-backdrop.open .pet-video-modal-container {
+    transform: scale(1);
+  }
+
+  /* MODAL VIDEO */
+  .pet-modal-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+
+  /* MODAL TOP PROGRESS BAR */
+  .pet-modal-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.25);
+    z-index: 10;
+  }
+
+  .pet-modal-progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #ffffff;
+    transition: width 0.1s linear;
+  }
+
+  /* MODAL CLOSE BUTTON */
+  .pet-modal-close-btn {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 12;
+    transition: background 0.2s ease;
+  }
+
+  .pet-modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* MODAL CONTROLS BOTTOM RIGHT (PLAY/PAUSE & MUTE/UNMUTE) */
+  .pet-modal-controls-bottom {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    z-index: 12;
+  }
+
+  .pet-modal-control-btn {
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .pet-modal-control-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #111827;
+    transform: scale(1.08);
+  }
+
+  /* MODAL NAV ARROWS (LEFT / RIGHT) */
+  .pet-modal-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    transition: all 0.2s ease;
+  }
+
+  .pet-modal-nav-arrow:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #111827;
+  }
+
+  .pet-modal-nav-prev { left: max(2rem, calc(50vw - 280px)); }
+  .pet-modal-nav-next { right: max(2rem, calc(50vw - 280px)); }
+
+  @media screen and (max-width: 989px) {
+    .pet-video-reels-section {
+      padding: 4.5rem 2rem;
+    }
+    .pet-video-card {
+      flex: 0 0 calc(33.333% - 1.3rem);
+      min-width: 180px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pet-video-reels-section {
+      padding: 4rem 1.6rem;
+    }
+    .pet-video-reels-title {
+      font-size: 2.6rem;
+    }
+    .pet-video-reels-sub {
+      font-size: 1.4rem;
+    }
+    .pet-video-card {
+      flex: 0 0 calc(45% - 1rem);
+      min-width: 160px;
+    }
+    .pet-slider-arrow { display: none; }
+    .pet-modal-nav-arrow { display: none; }
+    .pet-video-modal-container {
+      width: 92vw;
+      height: 80vh;
+    }
+    .pet-modal-nav-prev { left: 1rem; }
+    .pet-modal-nav-next { right: 1rem; }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pet-video-reels-section {
+      padding: 3.2rem 1.2rem;
+    }
+    .pet-video-reels-header {
+      margin-bottom: 2.4rem;
+    }
+    .pet-video-reels-title {
+      font-size: 2.2rem;
+    }
+    .pet-video-slider-track {
+      gap: 1.2rem;
+    }
+    .pet-video-card {
+      flex: 0 0 calc(68% - 0.8rem);
+      min-width: 150px;
+    }
+    .pet-video-modal-container {
+      width: 94vw;
+      height: 78vh;
+      border-radius: 1.4rem;
+    }
+    .pet-modal-controls-bottom {
+      bottom: 1.4rem;
+      right: 1.4rem;
+      gap: 1rem;
+    }
+    .pet-modal-close-btn {
+      top: 1rem;
+      right: 1rem;
+      width: 3.6rem;
+      height: 3.6rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="pet-video-reels-section">
+  <div class="pet-video-reels-container">
+    <div class="pet-video-reels-header">
+      <span class="pet-video-reels-badge">{{ 'custom.video_reels.badge' | t }}</span>
+      <h2 class="pet-video-reels-title">{{ 'custom.video_reels.title' | t }}</h2>
+      <p class="pet-video-reels-sub">{{ 'custom.video_reels.subtitle' | t }}</p>
+    </div>
+
+    <div class="pet-video-slider-wrapper">
+      <button class="pet-slider-arrow pet-slider-arrow--prev" id="reelsPrevBtn" type="button" aria-label="{{ 'custom.video_reels.aria_prev' | t }}">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <div class="pet-video-slider-track" id="reelsTrack">
+
+        <!-- CARD 1 -->
+        <div class="pet-video-card" onclick="openReelModal(0)">
+          <video src="{{ 'video1.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
+          <div class="pet-video-play-overlay">
+            <span class="pet-video-duration-tag">00:15</span>
+          </div>
+          <div class="pet-video-center-play-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="pet-video-card" onclick="openReelModal(1)">
+          <video src="{{ 'video2.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
+          <div class="pet-video-play-overlay">
+            <span class="pet-video-duration-tag">00:25</span>
+          </div>
+          <div class="pet-video-center-play-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="pet-video-card" onclick="openReelModal(2)">
+          <video src="{{ 'video3.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
+          <div class="pet-video-play-overlay">
+            <span class="pet-video-duration-tag">00:30</span>
+          </div>
+          <div class="pet-video-center-play-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+
+        <!-- REPEATED CARDS FOR CONTINUOUS SLIDER EFFECT -->
+        <div class="pet-video-card" onclick="openReelModal(0)">
+          <video src="{{ 'video1.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
+          <div class="pet-video-play-overlay">
+            <span class="pet-video-duration-tag">00:15</span>
+          </div>
+          <div class="pet-video-center-play-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+
+        <div class="pet-video-card" onclick="openReelModal(1)">
+          <video src="{{ 'video2.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
+          <div class="pet-video-play-overlay">
+            <span class="pet-video-duration-tag">00:25</span>
+          </div>
+          <div class="pet-video-center-play-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="pet-slider-arrow pet-slider-arrow--next" id="reelsNextBtn" type="button" aria-label="{{ 'custom.video_reels.aria_next' | t }}">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FULLSCREEN VIDEO MODAL BACKDROP -->
+<div class="pet-video-modal-backdrop" id="reelModalBackdrop" onclick="closeReelModalOnBackdrop(event)">
+  <!-- LEFT NAV ARROW -->
+  <button class="pet-modal-nav-arrow pet-modal-nav-prev" onclick="prevReelModal(event)" aria-label="{{ 'custom.video_reels.aria_prev_video' | t }}">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+
+  <div class="pet-video-modal-container" onclick="event.stopPropagation()">
+    <!-- PROGRESS BAR -->
+    <div class="pet-modal-progress-bar">
+      <div class="pet-modal-progress-fill" id="reelModalProgress"></div>
+    </div>
+
+    <!-- CLOSE BUTTON -->
+    <button class="pet-modal-close-btn" onclick="closeReelModal()" aria-label="{{ 'custom.video_reels.aria_close_modal' | t }}">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- MAIN MODAL VIDEO -->
+    <video class="pet-modal-video" id="reelModalVideo" playsinline loop onclick="toggleReelPlayPause()"></video>
+
+    <!-- RIGHT FLOATING CONTROLS (PLAY/PAUSE & MUTE/UNMUTE) -->
+    <div class="pet-modal-controls-bottom">
+      <button class="pet-modal-control-btn" id="reelPlayPauseBtn" onclick="toggleReelPlayPause()" aria-label="{{ 'custom.video_reels.aria_play_pause' | t }}">
+        <!-- PAUSE ICON DEFAULT -->
+        <svg id="iconPause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <svg id="iconPlay" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+
+      <button class="pet-modal-control-btn" id="reelMuteBtn" onclick="toggleReelMute()" aria-label="{{ 'custom.video_reels.aria_mute_unmute' | t }}">
+        <!-- UNMUTED ICON DEFAULT -->
+        <svg id="iconVolumeHigh" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <svg id="iconVolumeMute" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- RIGHT NAV ARROW -->
+  <button class="pet-modal-nav-arrow pet-modal-nav-next" onclick="nextReelModal(event)" aria-label="{{ 'custom.video_reels.aria_next_video' | t }}">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
+
+<script>
+  var reelSources = [
+    '{{ "video1.mp4" | asset_url }}',
+    '{{ "video2.mp4" | asset_url }}',
+    '{{ "video3.mp4" | asset_url }}'
+  ];
+
+  var currentReelIndex = 0;
+  var reelModalBackdrop = document.getElementById('reelModalBackdrop');
+  var reelModalVideo = document.getElementById('reelModalVideo');
+  var reelModalProgress = document.getElementById('reelModalProgress');
+  var iconPause = document.getElementById('iconPause');
+  var iconPlay = document.getElementById('iconPlay');
+  var iconVolumeHigh = document.getElementById('iconVolumeHigh');
+  var iconVolumeMute = document.getElementById('iconVolumeMute');
+
+  // Slider buttons
+  var reelsTrack = document.getElementById('reelsTrack');
+  var reelsPrevBtn = document.getElementById('reelsPrevBtn');
+  var reelsNextBtn = document.getElementById('reelsNextBtn');
+
+  if (reelsPrevBtn && reelsNextBtn && reelsTrack) {
+    reelsPrevBtn.addEventListener('click', function() {
+      reelsTrack.scrollBy({ left: -260, behavior: 'smooth' });
+    });
+    reelsNextBtn.addEventListener('click', function() {
+      reelsTrack.scrollBy({ left: 260, behavior: 'smooth' });
+    });
+  }
+
+  function openReelModal(index) {
+    currentReelIndex = index;
+    loadReelVideo();
+    reelModalBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function loadReelVideo() {
+    reelModalVideo.src = reelSources[currentReelIndex];
+    reelModalVideo.muted = false; // Unmuted by default on user click!
+    updateVolumeIconState();
+    
+    var playPromise = reelModalVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.then(function() {
+        updatePlayPauseIconState(true);
+      }).catch(function() {
+        // Fallback to muted if browser blocks unmuted autoplay
+        reelModalVideo.muted = true;
+        updateVolumeIconState();
+        reelModalVideo.play();
+        updatePlayPauseIconState(true);
+      });
+    }
+  }
+
+  function closeReelModal() {
+    reelModalBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    reelModalVideo.pause();
+    reelModalVideo.currentTime = 0;
+  }
+
+  function closeReelModalOnBackdrop(e) {
+    if (e.target === reelModalBackdrop) {
+      closeReelModal();
+    }
+  }
+
+  function toggleReelPlayPause() {
+    if (reelModalVideo.paused) {
+      reelModalVideo.play();
+      updatePlayPauseIconState(true);
+    } else {
+      reelModalVideo.pause();
+      updatePlayPauseIconState(false);
+    }
+  }
+
+  function updatePlayPauseIconState(isPlaying) {
+    if (isPlaying) {
+      iconPause.style.display = 'block';
+      iconPlay.style.display = 'none';
+    } else {
+      iconPause.style.display = 'none';
+      iconPlay.style.display = 'block';
+    }
+  }
+
+  function toggleReelMute() {
+    reelModalVideo.muted = !reelModalVideo.muted;
+    updateVolumeIconState();
+  }
+
+  function updateVolumeIconState() {
+    if (reelModalVideo.muted) {
+      iconVolumeHigh.style.display = 'none';
+      iconVolumeMute.style.display = 'block';
+    } else {
+      iconVolumeHigh.style.display = 'block';
+      iconVolumeMute.style.display = 'none';
+    }
+  }
+
+  function nextReelModal(e) {
+    if (e) e.stopPropagation();
+    currentReelIndex = (currentReelIndex + 1) % reelSources.length;
+    loadReelVideo();
+  }
+
+  function prevReelModal(e) {
+    if (e) e.stopPropagation();
+    currentReelIndex = (currentReelIndex - 1 + reelSources.length) % reelSources.length;
+    loadReelVideo();
+  }
+
+  // Update progress bar
+  if (reelModalVideo) {
+    reelModalVideo.addEventListener('timeupdate', function() {
+      if (reelModalVideo.duration) {
+        var pct = (reelModalVideo.currentTime / reelModalVideo.duration) * 100;
+        reelModalProgress.style.width = pct + '%';
+      }
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Custom Video Reels",
+  "presets": [
+    {
+      "name": "Custom Video Reels"
+    }
+  ]
+}
+{% endschema %}

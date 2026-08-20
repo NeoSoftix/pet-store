@@ -295,40 +295,146 @@
   /* ============================================
      RESPONSIVE
      ============================================ */
-  @media screen and (max-width: 1024px) {
+
+  /* Tablet: 2-column grid, large card spans full width, keep side-by-side
+     content/image layout but give it more room */
+  @media screen and (max-width: 989px) {
+    .pet-category-deals-section {
+      padding: 3rem 1.2rem;
+    }
+
+    .pet-category-deals-title {
+      font-size: 2.8rem;
+    }
+
     .pet-deals-grid {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto;
+      gap: 1.2rem;
     }
+
     .pet-deal-card--large {
       grid-column: 1 / -1;
       grid-row: auto;
       min-height: 320px;
     }
-    .pet-deal-card__content { max-width: 50% !important; }
-  }
 
-  @media screen and (max-width: 768px) {
-    .pet-category-deals-section { padding: 2.5rem 1.2rem 3rem; }
-    .pet-category-deals-title { font-size: 2.6rem; }
-    .pet-deals-grid { grid-template-columns: 1fr; }
-    .pet-deal-card--large { min-height: 320px; }
-    .pet-deal-card { min-height: 260px; }
-    .pet-deal-card__content { max-width: 55% !important; }
-    .pet-deal-card__img { width: 50% !important; }
-    .pet-deal-card--large .pet-deal-card__title { font-size: 2.8rem; }
-  }
-
-  @media screen and (max-width: 480px) {
-    .pet-deal-card__content { max-width: 100% !important; }
-    .pet-deal-card__img {
-      position: relative;
-      top: auto; bottom: auto; right: auto;
-      width: 100% !important;
-      height: 200px;
-      margin-top: 1rem;
+    .pet-deal-card__content,
+    .pet-deal-card--large .pet-deal-card__content {
+      max-width: 55%;
     }
-    .pet-deal-card { min-height: auto; padding: 1.6rem 1.4rem; }
+
+    .pet-deal-card--large .pet-deal-card__title {
+      font-size: 2.8rem;
+    }
+  }
+
+  /* Mobile: stack content above image, full-width single column */
+  @media screen and (max-width: 749px) {
+    .pet-category-deals-section {
+      padding: 2.5rem 1rem 3rem;
+    }
+
+    .pet-category-deals-title {
+      font-size: 2.2rem;
+    }
+
+    .pet-deals-header__subtitle {
+      font-size: 1.05rem;
+    }
+
+    .pet-deals-grid {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+
+    .pet-deal-card,
+    .pet-deal-card--large {
+      grid-row: auto;
+      grid-column: auto;
+      min-height: auto;
+      padding: 1.8rem 1.5rem 1.6rem;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .pet-deal-card__content,
+    .pet-deal-card--large .pet-deal-card__content {
+      max-width: 100%;
+      margin-bottom: 1.6rem;
+    }
+
+    .pet-deal-card__img,
+    .pet-deal-card--large .pet-deal-card__img {
+      position: relative;
+      right: auto;
+      top: auto;
+      bottom: auto;
+      width: 100%;
+      height: 190px;
+      border-radius: 1rem;
+      box-shadow: none;
+    }
+
+    .pet-deal-card::before,
+    .pet-deal-card--large::before {
+      display: none;
+    }
+
+    .pet-deal-card__title {
+      font-size: 2rem;
+    }
+
+    .pet-deal-card--large .pet-deal-card__title {
+      font-size: 2.2rem;
+    }
+
+    .pet-deal-card__desc {
+      font-size: 1.1rem;
+    }
+
+    .pet-deal-btn {
+      min-height: 2.75rem;
+    }
+  }
+
+  /* Small phones */
+  @media screen and (max-width: 480px) {
+    .pet-category-deals-section {
+      padding: 2rem 0.8rem 2.4rem;
+    }
+
+    .pet-category-deals-title {
+      font-size: 1.9rem;
+    }
+
+    .pet-deal-card,
+    .pet-deal-card--large {
+      padding: 1.6rem 1.3rem;
+      min-height: auto;
+    }
+
+    .pet-deal-card__img,
+    .pet-deal-card--large .pet-deal-card__img {
+      height: 160px;
+      margin-top: 0.4rem;
+    }
+
+    .pet-deal-card__title,
+    .pet-deal-card--large .pet-deal-card__title {
+      font-size: 1.7rem;
+    }
+
+    .pet-deal-card__desc {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .pet-deal-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 0.8rem 1.4rem;
+    }
   }
 {%- endstyle -%}
 
@@ -359,8 +465,8 @@
       <div class="pet-deals-header__paw-top">
         <svg><use href="#deals-icon-paw"></use></svg>
       </div>
-      <h2 class="pet-category-deals-title">Epic Year-End Food Deals</h2>
-      <p class="pet-deals-header__subtitle">Premium nutrition. Irresistible deals. Happy pets, happy you!</p>
+      <h2 class="pet-category-deals-title">{{ 'custom.category_deals.title' | t }}</h2>
+      <p class="pet-deals-header__subtitle">{{ 'custom.category_deals.subtitle' | t }}</p>
       <div class="pet-deals-header__divider">
         <span class="pet-deals-header__divider-line"></span>
         <svg><use href="#deals-icon-paw"></use></svg>
@@ -372,12 +478,12 @@
 
       <a href="#" class="pet-deal-card pet-deal-card--large pet-deal-card--theme-raw">
         <div class="pet-deal-card__content">
-          <div class="pet-deal-card__badge">SALE UP TO 50% OFF</div>
-          <h3 class="pet-deal-card__title">Raw food</h3>
-          <p class="pet-deal-card__desc">Real ingredients.<br>Real benefits.</p>
-          <span class="pet-deal-btn">Shop Now <span class="pet-deal-btn__arrow">&rarr;</span></span>
+          <div class="pet-deal-card__badge">{{ 'custom.category_deals.raw_badge' | t }}</div>
+          <h3 class="pet-deal-card__title">{{ 'custom.category_deals.raw_title' | t }}</h3>
+          <p class="pet-deal-card__desc">{{ 'custom.category_deals.raw_desc' | t }}</p>
+          <span class="pet-deal-btn">{{ 'custom.category_deals.raw_cta' | t }} <span class="pet-deal-btn__arrow">&rarr;</span></span>
         </div>
-        <img src="{{ 'dog-food-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="Raw food for dogs" loading="lazy">
+        <img src="{{ 'dog-food-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="{{ 'custom.category_deals.raw_img_alt' | t }}" loading="lazy">
       </a>
 
       <a href="#" class="pet-deal-card pet-deal-card--theme-wet">
@@ -385,12 +491,12 @@
           <div class="pet-deal-card__icon-wrap">
             <svg><use href="#deals-icon-leaf"></use></svg>
           </div>
-          <p class="pet-deal-card__tagline">FRESH ARRIVALS</p>
-          <h3 class="pet-deal-card__title">Wet food</h3>
-          <p class="pet-deal-card__desc">Wholesome meals<br>your pet will love.</p>
-          <span class="pet-deal-btn">Shop Wet Food <span class="pet-deal-btn__arrow">&rarr;</span></span>
+          <p class="pet-deal-card__tagline">{{ 'custom.category_deals.wet_tagline' | t }}</p>
+          <h3 class="pet-deal-card__title">{{ 'custom.category_deals.wet_title' | t }}</h3>
+          <p class="pet-deal-card__desc">{{ 'custom.category_deals.wet_desc' | t }}</p>
+          <span class="pet-deal-btn">{{ 'custom.category_deals.wet_cta' | t }} <span class="pet-deal-btn__arrow">&rarr;</span></span>
         </div>
-        <img src="{{ 'cat-food-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="Wet food for cats" loading="lazy">
+        <img src="{{ 'cat-food-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="{{ 'custom.category_deals.wet_img_alt' | t }}" loading="lazy">
       </a>
 
       <a href="#" class="pet-deal-card pet-deal-card--theme-dry">
@@ -398,12 +504,12 @@
           <div class="pet-deal-card__icon-wrap">
             <svg><use href="#deals-icon-tag"></use></svg>
           </div>
-          <p class="pet-deal-card__tagline">CLEARANCE DEALS</p>
-          <h3 class="pet-deal-card__title">Dry food</h3>
-          <p class="pet-deal-card__desc">Big savings on<br>best-loved recipes.</p>
-          <span class="pet-deal-btn">Shop Dry Food <span class="pet-deal-btn__arrow">&rarr;</span></span>
+          <p class="pet-deal-card__tagline">{{ 'custom.category_deals.dry_tagline' | t }}</p>
+          <h3 class="pet-deal-card__title">{{ 'custom.category_deals.dry_title' | t }}</h3>
+          <p class="pet-deal-card__desc">{{ 'custom.category_deals.dry_desc' | t }}</p>
+          <span class="pet-deal-btn">{{ 'custom.category_deals.dry_cta' | t }} <span class="pet-deal-btn__arrow">&rarr;</span></span>
         </div>
-        <img src="{{ 'dog-treats-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="Dry food for dogs" loading="lazy">
+        <img src="{{ 'dog-treats-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="{{ 'custom.category_deals.dry_img_alt' | t }}" loading="lazy">
       </a>
 
       <a href="#" class="pet-deal-card pet-deal-card--theme-natural">
@@ -411,12 +517,12 @@
           <div class="pet-deal-card__icon-wrap">
             <svg><use href="#deals-icon-leaf"></use></svg>
           </div>
-          <p class="pet-deal-card__tagline">SPECIAL OFFERS</p>
-          <h3 class="pet-deal-card__title">Natural<br>ingredients</h3>
-          <p class="pet-deal-card__desc">Clean. Natural.<br>Perfect for every pet.</p>
-          <span class="pet-deal-btn">Shop Now <span class="pet-deal-btn__arrow">&rarr;</span></span>
+          <p class="pet-deal-card__tagline">{{ 'custom.category_deals.natural_tagline' | t }}</p>
+          <h3 class="pet-deal-card__title">{{ 'custom.category_deals.natural_title' | t }}</h3>
+          <p class="pet-deal-card__desc">{{ 'custom.category_deals.natural_desc' | t }}</p>
+          <span class="pet-deal-btn">{{ 'custom.category_deals.natural_cta' | t }} <span class="pet-deal-btn__arrow">&rarr;</span></span>
         </div>
-        <img src="{{ 'dog-toys-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="Natural ingredients" loading="lazy">
+        <img src="{{ 'dog-toys-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="{{ 'custom.category_deals.natural_img_alt' | t }}" loading="lazy">
       </a>
 
       <a href="#" class="pet-deal-card pet-deal-card--theme-freeze">
@@ -424,12 +530,12 @@
           <div class="pet-deal-card__icon-wrap">
             <svg><use href="#deals-icon-gift"></use></svg>
           </div>
-          <p class="pet-deal-card__tagline">BEST BUNDLE</p>
-          <h3 class="pet-deal-card__title">Freeze &<br>air dried</h3>
-          <p class="pet-deal-card__desc">Complete nutrition.<br>Maximum convenience.</p>
-          <span class="pet-deal-btn">Shop Bundles <span class="pet-deal-btn__arrow">&rarr;</span></span>
+          <p class="pet-deal-card__tagline">{{ 'custom.category_deals.freeze_tagline' | t }}</p>
+          <h3 class="pet-deal-card__title">{{ 'custom.category_deals.freeze_title' | t }}</h3>
+          <p class="pet-deal-card__desc">{{ 'custom.category_deals.freeze_desc' | t }}</p>
+          <span class="pet-deal-btn">{{ 'custom.category_deals.freeze_cta' | t }} <span class="pet-deal-btn__arrow">&rarr;</span></span>
         </div>
-        <img src="{{ 'dog-collars-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="Freeze and air dried food" loading="lazy">
+        <img src="{{ 'dog-collars-menu.jpg' | asset_url }}" class="pet-deal-card__img" alt="{{ 'custom.category_deals.freeze_img_alt' | t }}" loading="lazy">
       </a>
 
     </div>

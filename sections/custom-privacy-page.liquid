@@ -1,0 +1,354 @@
+{%- style -%}
+  .pv-legal {
+    background-color: #ffffff;
+    color: #1e1b3a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .pv-legal__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+  }
+
+  .pv-legal-label {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #4c46c4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 1.2rem 0;
+  }
+
+  /* ===== HERO ===== */
+  .pv-legal-hero {
+    background-color: #f6f4fc;
+    padding: 6rem 2.4rem;
+  }
+
+  .pv-legal-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pv-legal-hero__heading {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 1.6rem 0;
+  }
+
+  .pv-legal-hero__desc {
+    font-size: 1.5rem;
+    color: #4b4763;
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0;
+  }
+
+  /* ===== BODY LAYOUT ===== */
+  .pv-legal-body {
+    padding: 5.6rem 0 7.2rem;
+  }
+
+  .pv-legal-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .pv-legal-sidebar {
+    position: sticky;
+    top: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border: 1px solid #eeecf9;
+    border-radius: 1.6rem;
+    padding: 1.2rem;
+  }
+
+  .pv-legal-sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.1rem 1.2rem;
+    border-radius: 1rem;
+    color: #4b4763;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .pv-legal-sidebar__link:hover {
+    background-color: #f6f4fc;
+  }
+
+  .pv-legal-sidebar__link.is-active {
+    background-color: #f1eefc;
+    color: #4c46c4;
+  }
+
+  .pv-legal-sidebar__num {
+    flex-shrink: 0;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: #4c46c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    border: 1px solid #ded9f7;
+  }
+
+  .pv-legal-sidebar__link.is-active .pv-legal-sidebar__num {
+    background-color: #4c46c4;
+    color: #ffffff;
+    border-color: #4c46c4;
+  }
+
+  /* ===== CONTENT ===== */
+  .pv-legal-content {
+    min-width: 0;
+  }
+
+  .pv-legal-section {
+    padding: 2.4rem 0;
+    border-bottom: 1px solid #eeecf9;
+    scroll-margin-top: 2.4rem;
+  }
+
+  .pv-legal-section:first-child {
+    padding-top: 0;
+  }
+
+  .pv-legal-section:last-child {
+    border-bottom: none;
+  }
+
+  .pv-legal-section__title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 1.2rem 0;
+  }
+
+  .pv-legal-section__desc {
+    font-size: 1.5rem;
+    color: #4b4763;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .pv-legal-section__desc a {
+    color: #4c46c4;
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 989px) {
+    .pv-legal-hero {
+      padding: 4.8rem 2.4rem;
+    }
+    .pv-legal-hero__heading {
+      font-size: 3.2rem;
+    }
+    .pv-legal-body {
+      padding: 4.4rem 0 5.6rem;
+    }
+    .pv-legal-grid {
+      grid-template-columns: 240px 1fr;
+      gap: 2.8rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pv-legal__container {
+      padding: 0 2rem;
+    }
+    .pv-legal-hero {
+      padding: 4rem 2rem;
+    }
+    .pv-legal-hero__heading {
+      font-size: 2.6rem;
+    }
+    .pv-legal-hero__desc {
+      font-size: 1.4rem;
+    }
+    .pv-legal-body {
+      padding: 3.6rem 0 4.8rem;
+    }
+    .pv-legal-grid {
+      grid-template-columns: 1fr;
+      gap: 2.4rem;
+    }
+    .pv-legal-sidebar {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .pv-legal-sidebar__link {
+      font-size: 1.3rem;
+      padding: 0.8rem 1rem;
+    }
+    .pv-legal-sidebar__num {
+      width: 2.2rem;
+      height: 2.2rem;
+      font-size: 1.15rem;
+    }
+    .pv-legal-section__title {
+      font-size: 1.8rem;
+    }
+    .pv-legal-section__desc {
+      font-size: 1.4rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .pv-legal__container {
+      padding: 0 1.6rem;
+    }
+    .pv-legal-hero {
+      padding: 3.2rem 1.6rem;
+    }
+    .pv-legal-hero__heading {
+      font-size: 2.2rem;
+    }
+    .pv-legal-hero__desc {
+      font-size: 1.35rem;
+    }
+    .pv-legal-sidebar {
+      grid-template-columns: 1fr;
+      padding: 0.8rem;
+    }
+    .pv-legal-sidebar__link {
+      justify-content: flex-start;
+    }
+    .pv-legal-section__title {
+      font-size: 1.6rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="pv-legal">
+
+  <!-- ===== HERO ===== -->
+  <section class="pv-legal-hero">
+    <div class="pv-legal-hero__inner">
+      <p class="pv-legal-label">{{ 'custom.privacy_page.hero_label' | t }}</p>
+      <h1 class="pv-legal-hero__heading">{{ 'custom.privacy_page.hero_heading' | t }}</h1>
+      <p class="pv-legal-hero__desc">{{ 'custom.privacy_page.hero_desc' | t }}</p>
+    </div>
+  </section>
+
+  <!-- ===== BODY ===== -->
+  <section class="pv-legal-body">
+    <div class="pv-legal__container">
+      <div class="pv-legal-grid">
+        <nav class="pv-legal-sidebar" data-legal-sidebar aria-label="{{ 'custom.privacy_page.hero_heading' | t }}">
+          <a href="#privacy-section-1" class="pv-legal-sidebar__link is-active" data-target="privacy-section-1"><span class="pv-legal-sidebar__num">1</span>{{ 'custom.privacy_page.nav1' | t }}</a>
+          <a href="#privacy-section-2" class="pv-legal-sidebar__link" data-target="privacy-section-2"><span class="pv-legal-sidebar__num">2</span>{{ 'custom.privacy_page.nav2' | t }}</a>
+          <a href="#privacy-section-3" class="pv-legal-sidebar__link" data-target="privacy-section-3"><span class="pv-legal-sidebar__num">3</span>{{ 'custom.privacy_page.nav3' | t }}</a>
+          <a href="#privacy-section-4" class="pv-legal-sidebar__link" data-target="privacy-section-4"><span class="pv-legal-sidebar__num">4</span>{{ 'custom.privacy_page.nav4' | t }}</a>
+          <a href="#privacy-section-5" class="pv-legal-sidebar__link" data-target="privacy-section-5"><span class="pv-legal-sidebar__num">5</span>{{ 'custom.privacy_page.nav5' | t }}</a>
+          <a href="#privacy-section-6" class="pv-legal-sidebar__link" data-target="privacy-section-6"><span class="pv-legal-sidebar__num">6</span>{{ 'custom.privacy_page.nav6' | t }}</a>
+          <a href="#privacy-section-7" class="pv-legal-sidebar__link" data-target="privacy-section-7"><span class="pv-legal-sidebar__num">7</span>{{ 'custom.privacy_page.nav7' | t }}</a>
+          <a href="#privacy-section-8" class="pv-legal-sidebar__link" data-target="privacy-section-8"><span class="pv-legal-sidebar__num">8</span>{{ 'custom.privacy_page.nav8' | t }}</a>
+          <a href="#privacy-section-9" class="pv-legal-sidebar__link" data-target="privacy-section-9"><span class="pv-legal-sidebar__num">9</span>{{ 'custom.privacy_page.nav9' | t }}</a>
+          <a href="#privacy-section-10" class="pv-legal-sidebar__link" data-target="privacy-section-10"><span class="pv-legal-sidebar__num">10</span>{{ 'custom.privacy_page.nav10' | t }}</a>
+        </nav>
+
+        <div class="pv-legal-content">
+          <div id="privacy-section-1" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section1_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section1_desc' | t }}</p>
+          </div>
+          <div id="privacy-section-2" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section2_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section2_desc' | t }}</p>
+          </div>
+          <div id="privacy-section-3" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section3_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section3_desc' | t }}</p>
+          </div>
+          <div id="privacy-section-4" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section4_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section4_desc' | t }}</p>
+          </div>
+          <div id="privacy-section-5" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section5_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section5_desc' | t }}</p>
+          </div>
+          <div id="privacy-section-6" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section6_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section6_desc' | t }}</p>
+          </div>
+          <div id="privacy-section-7" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section7_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section7_desc' | t }}</p>
+          </div>
+          <div id="privacy-section-8" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section8_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section8_desc' | t }}</p>
+          </div>
+          <div id="privacy-section-9" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section9_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section9_desc' | t }}</p>
+          </div>
+          <div id="privacy-section-10" class="pv-legal-section">
+            <h2 class="pv-legal-section__title">{{ 'custom.privacy_page.section10_title' | t }}</h2>
+            <p class="pv-legal-section__desc">{{ 'custom.privacy_page.section10_desc_html' | t }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    var sidebar = document.currentScript.previousElementSibling.querySelector('[data-legal-sidebar]');
+    if (!sidebar) return;
+    var links = Array.prototype.slice.call(sidebar.querySelectorAll('.pv-legal-sidebar__link'));
+    var sections = links
+      .map(function (link) { return document.getElementById(link.getAttribute('data-target')); })
+      .filter(Boolean);
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var target = document.getElementById(link.getAttribute('data-target'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    if ('IntersectionObserver' in window && sections.length) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function (l) { l.classList.remove('is-active'); });
+          var activeLink = sidebar.querySelector('[data-target="' + entry.target.id + '"]');
+          if (activeLink) activeLink.classList.add('is-active');
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+      sections.forEach(function (section) { observer.observe(section); });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Petvona Privacy Page",
+  "settings": []
+}
+{% endschema %}
