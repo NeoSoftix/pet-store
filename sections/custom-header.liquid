@@ -61,9 +61,34 @@
     border: none;
   }
 
-  .pet-nav-link:hover,
+  .pet-nav-link:hover {
+    color: #5b4fe0;
+  }
+
   .pet-nav-link.is-active {
-    color: #4c46c4;
+    color: #5b4fe0;
+    border-bottom: 2.5px solid #5b4fe0;
+    padding-bottom: 0.4rem;
+  }
+
+  .pet-search-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: #5b4fe0;
+    color: #ffffff;
+    padding: 0.8rem 1.8rem;
+    border-radius: 2rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(91, 79, 224, 0.25);
+  }
+
+  .pet-search-btn:hover {
+    background-color: #483cc9;
+    box-shadow: 0 6px 16px rgba(91, 79, 224, 0.35);
   }
 
   .pet-dropdown-menu {
@@ -442,9 +467,16 @@
             <line x1="3" y1="6" x2="21" y2="6"/>
             <path d="M16 10a4 4 0 0 1-8 0"/>
           </svg>
-          {%- if cart.item_count > 0 -%}
-            <span id="petCartCount" class="pet-cart-count">{{ cart.item_count }}</span>
-          {%- endif -%}
+          <span id="petCartCount" class="pet-cart-count">{{ cart.item_count | default: 0 }}</span>
+        </a>
+
+        <!-- Search Button -->
+        <a href="{{ routes.search_url }}" class="pet-search-btn" aria-label="{{ 'custom.header.aria_search' | t }}">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          Search
         </a>
       </div>
     </div>
