@@ -592,31 +592,6 @@
     text-align: center;
   }
 
-  .pv-picks__dots {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    margin-top: 2.4rem;
-  }
-
-  .pv-picks__dot {
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    border: none;
-    background: #ded9f7;
-    cursor: pointer;
-    padding: 0;
-    transition: background-color 0.2s ease;
-  }
-
-  .pv-picks__dot.is-active {
-    background: #4c46c4;
-    width: 2rem;
-    border-radius: 1rem;
-  }
-
   /* ===== TRUST BADGES ROW ===== */
   .pv-badges-row {
     background: #f6f4fc;
@@ -1471,8 +1446,6 @@
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
-
-      <div class="pv-picks__dots" data-pv-picks-dots></div>
     </section>
 
     <!-- ===== TRUST BADGES ===== -->
@@ -1919,47 +1892,11 @@
     });
   }
 
-  // Top Picks slider (arrows + dots)
+  // Top Picks slider (arrows only)
   var pvPicksTrack = document.querySelector('[data-pv-product-grid]');
   if (pvPicksTrack && pvPicksTrack.children.length) {
-    var pvPicksCards = Array.prototype.slice.call(pvPicksTrack.children);
-    var pvPicksDotsWrap = document.querySelector('[data-pv-picks-dots]');
     var pvPicksPrevBtn = document.querySelector('[data-pv-picks-prev]');
     var pvPicksNextBtn = document.querySelector('[data-pv-picks-next]');
-
-    pvPicksCards.forEach(function (card, i) {
-      var dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'pv-picks__dot' + (i === 0 ? ' is-active' : '');
-      dot.setAttribute('aria-label', 'Product ' + (i + 1));
-      dot.addEventListener('click', function () {
-        pvPicksTrack.scrollTo({ left: card.offsetLeft - pvPicksTrack.offsetLeft, behavior: 'smooth' });
-      });
-      pvPicksDotsWrap.appendChild(dot);
-    });
-    var pvPicksDots = Array.prototype.slice.call(pvPicksDotsWrap.children);
-
-    var pvPicksUpdateActiveDot = function () {
-      var scrollLeft = pvPicksTrack.scrollLeft;
-      var closestIndex = 0;
-      var closestDist = Infinity;
-      pvPicksCards.forEach(function (card, i) {
-        var dist = Math.abs((card.offsetLeft - pvPicksTrack.offsetLeft) - scrollLeft);
-        if (dist < closestDist) {
-          closestDist = dist;
-          closestIndex = i;
-        }
-      });
-      pvPicksDots.forEach(function (d, i) {
-        d.classList.toggle('is-active', i === closestIndex);
-      });
-    };
-
-    var pvPicksScrollTimer;
-    pvPicksTrack.addEventListener('scroll', function () {
-      clearTimeout(pvPicksScrollTimer);
-      pvPicksScrollTimer = setTimeout(pvPicksUpdateActiveDot, 100);
-    });
 
     if (pvPicksPrevBtn) {
       pvPicksPrevBtn.addEventListener('click', function () {

@@ -613,7 +613,8 @@
       "product3_badge1": "beruhigender Plüsch",
       "product3_badge2": "Gelenkschonend",
       "view_details": "Details ansehen",
-      "no_products": "Keine Produkte gefunden."
+      "no_products": "Keine Produkte gefunden.",
+      "pagination_label": "Produkt-Seitennummerierung"
     },
     "category_deals": {
       "title": "Epische Jahresend-Futterangebote",

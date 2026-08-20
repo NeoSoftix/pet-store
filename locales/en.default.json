@@ -613,7 +613,8 @@
       "product3_badge1": "calming plush",
       "product3_badge2": "joint relief",
       "view_details": "View Details",
-      "no_products": "No products found."
+      "no_products": "No products found.",
+      "pagination_label": "Products pagination"
     },
     "category_deals": {
       "title": "Epic Year-End Food Deals",

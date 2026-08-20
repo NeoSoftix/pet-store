@@ -264,6 +264,53 @@
       width: 100%;
     }
   }
+
+  .pet-all-products-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .pet-all-products-pagination__link,
+  .pet-all-products-pagination__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.8rem;
+    height: 2.8rem;
+    padding: 0 0.6rem;
+    border-radius: 0.6rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #374151;
+  }
+
+  .pet-all-products-pagination__link {
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+  }
+
+  .pet-all-products-pagination__link:hover {
+    border-color: #4c46c4;
+    color: #4c46c4;
+  }
+
+  .pet-all-products-pagination__link.is-active {
+    background-color: #4c46c4;
+    border-color: #4c46c4;
+    color: #ffffff;
+    cursor: default;
+  }
+
+  .pet-all-products-pagination__link.is-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
 {%- endstyle -%}
 
 <section class="pet-all-products-section" id="pet-all-products-section">
@@ -273,29 +320,59 @@
       <p>{{ 'custom.all_products.subheading' | t }}</p>
     </div>
 
-    <div class="pet-all-products-grid">
-      {%- for product in collections.all.products -%}
-        <a href="{{ product.url }}" class="pet-product-card-full">
-          <div class="pet-product-card-full__image-box">
-            {%- if product.featured_image -%}
-              {{ product.featured_image | image_url: width: 500 | image_tag: alt: product.title, loading: 'lazy' }}
+    {%- paginate collections.all.products by 9 -%}
+      <div class="pet-all-products-grid">
+        {%- for product in collections.all.products -%}
+          <a href="{{ product.url }}" class="pet-product-card-full">
+            <div class="pet-product-card-full__image-box">
+              {%- if product.featured_image -%}
+                {{ product.featured_image | image_url: width: 500 | image_tag: alt: product.title, loading: 'lazy' }}
+              {%- endif -%}
+            </div>
+            <div class="pet-product-card-full__body">
+              <h3 class="pet-product-card-full__title">{{ product.title }}</h3>
+              <div class="pet-product-card-full__rating">
+                <span class="pet-product-card-full__stars">★★★★★</span>
+              </div>
+              <div class="pet-product-card-full__price-row">
+                <span class="pet-product-card-full__price">{{ product.price | money }}</span>
+                <span class="pet-product-card-full__btn">{{ 'custom.all_products.view_details' | t }}</span>
+              </div>
+            </div>
+          </a>
+        {%- else -%}
+          <p style="grid-column: 1 / -1; text-align: center; color: #6b7280;">{{ 'custom.all_products.no_products' | t }}</p>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="pet-all-products-pagination" aria-label="{{ 'custom.all_products.pagination_label' | t }}">
+          {%- if paginate.previous -%}
+            <a href="{{ paginate.previous.url }}" class="pet-all-products-pagination__link">‹</a>
+          {%- else -%}
+            <span class="pet-all-products-pagination__link is-disabled">‹</span>
+          {%- endif -%}
+
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}
+              <a href="{{ part.url }}" class="pet-all-products-pagination__link">{{ part.title }}</a>
+            {%- else -%}
+              {%- if part.title == paginate.current_page -%}
+                <span class="pet-all-products-pagination__link is-active">{{ part.title }}</span>
+              {%- else -%}
+                <span class="pet-all-products-pagination__ellipsis">{{ part.title }}</span>
+              {%- endif -%}
             {%- endif -%}
-          </div>
-          <div class="pet-product-card-full__body">
-            <h3 class="pet-product-card-full__title">{{ product.title }}</h3>
-            <div class="pet-product-card-full__rating">
-              <span class="pet-product-card-full__stars">★★★★★</span>
-            </div>
-            <div class="pet-product-card-full__price-row">
-              <span class="pet-product-card-full__price">{{ product.price | money }}</span>
-              <span class="pet-product-card-full__btn">{{ 'custom.all_products.view_details' | t }}</span>
-            </div>
-          </div>
-        </a>
-      {%- else -%}
-        <p style="grid-column: 1 / -1; text-align: center; color: #6b7280;">{{ 'custom.all_products.no_products' | t }}</p>
-      {%- endfor -%}
-    </div>
+          {%- endfor -%}
+
+          {%- if paginate.next -%}
+            <a href="{{ paginate.next.url }}" class="pet-all-products-pagination__link">›</a>
+          {%- else -%}
+            <span class="pet-all-products-pagination__link is-disabled">›</span>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
   </div>
 </section>
 
