@@ -761,6 +761,13 @@
 
       <div class="pet-catalog-controls">
         <!-- Categories Dropdown -->
+        {%- assign category_types = "" -%}
+        {%- for product in collections.all.products -%}
+          {%- unless product.type == blank -%}
+            {%- assign category_types = category_types | append: product.type | append: '||' -%}
+          {%- endunless -%}
+        {%- endfor -%}
+        {%- assign category_array = category_types | split: '||' | uniq | sort -%}
         <div class="pet-control-dropdown" data-category-dropdown>
           <button type="button" class="pet-control-btn" data-category-toggle aria-expanded="false">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
@@ -769,10 +776,9 @@
           </button>
           <div class="pet-filter-menu" data-category-menu hidden>
             <a href="#" data-cat="all" class="is-active">All Categories</a>
-            <a href="#" data-cat="dog">Dog Products</a>
-            <a href="#" data-cat="cat">Cat Products</a>
-            <a href="#" data-cat="toy">Toys &amp; Gear</a>
-            <a href="#" data-cat="food">Food &amp; Treats</a>
+            {%- for type in category_array -%}
+              <a href="#" data-cat="{{ type | handle }}">{{ type }}</a>
+            {%- endfor -%}
           </div>
         </div>
 
@@ -794,10 +800,10 @@
     </div>
 
     <!-- PRODUCTS GRID (6 COLUMNS) -->
-    {%- paginate collections.all.products by 12 -%}
+    {%- paginate collections.all.products by 50 -%}
       <div class="pet-products-grid-6" id="pet-products-grid">
         {%- for product in collections.all.products -%}
-          <div class="pet-grid-card" data-product-card data-title="{{ product.title | escape }}" data-price="{{ product.price }}">
+          <div class="pet-grid-card" data-product-card data-title="{{ product.title | escape }}" data-price="{{ product.price }}" data-type="{{ product.type | handle }}">
             <!-- Wishlist Heart -->
             <button type="button" class="pet-card-wishlist" aria-label="Add to Wishlist" onclick="event.preventDefault(); this.classList.toggle('is-active');">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -858,7 +864,7 @@
       </div>
 
       <!-- PAGINATION BAR -->
-      <nav class="pet-pagination-nav" aria-label="Products Pagination">
+      <nav class="pet-pagination-nav" id="pet-pagination-nav" aria-label="Products Pagination">
         {%- if paginate.previous -%}
           <a href="{{ paginate.previous.url }}" class="pet-page-item">‹</a>
         {%- else -%}
@@ -967,6 +973,148 @@
 
     setupDropdown('[data-category-toggle]', '[data-category-menu]');
     setupDropdown('[data-sort-toggle]', '[data-sort-menu]');
+
+    // ===== Category filter + Sort + Pagination (applies across ALL loaded products) =====
+    var grid = document.getElementById('pet-products-grid');
+    var paginationNav = document.getElementById('pet-pagination-nav');
+    var categoryMenu = document.querySelector('[data-category-menu]');
+    var categoryToggle = document.querySelector('[data-category-toggle]');
+    var selectedCategoryLabel = document.querySelector('[data-selected-category]');
+    var sortMenu = document.querySelector('[data-sort-menu]');
+    var sortToggle = document.querySelector('[data-sort-toggle]');
+    var selectedSortLabel = document.querySelector('[data-selected-sort]');
+
+    if (grid) {
+      var PAGE_SIZE = 12;
+      var allCards = Array.prototype.slice.call(grid.querySelectorAll('[data-product-card]'));
+      allCards.forEach(function (card, index) { card.dataset.order = index; });
+
+      var state = { category: 'all', sort: 'featured', page: 1 };
+
+      function getFilteredSorted() {
+        var list = allCards.filter(function (card) {
+          return state.category === 'all' || card.getAttribute('data-type') === state.category;
+        });
+
+        list.sort(function (a, b) {
+          if (state.sort === 'price-low') {
+            return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+          }
+          if (state.sort === 'price-high') {
+            return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
+          }
+          if (state.sort === 'title-az') {
+            return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
+          }
+          return parseInt(a.dataset.order, 10) - parseInt(b.dataset.order, 10);
+        });
+
+        return list;
+      }
+
+      function renderPagination(totalPages) {
+        if (!paginationNav) return;
+        paginationNav.innerHTML = '';
+
+        function makeItem(label, page, opts) {
+          opts = opts || {};
+          var el = document.createElement(opts.disabled ? 'span' : 'a');
+          el.className = 'pet-page-item' + (opts.active ? ' is-active' : '') + (opts.disabled ? ' is-disabled' : '');
+          el.textContent = label;
+          if (!opts.disabled) {
+            el.href = '#';
+            el.addEventListener('click', function (e) {
+              e.preventDefault();
+              state.page = page;
+              render();
+              grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+          }
+          return el;
+        }
+
+        paginationNav.appendChild(makeItem('‹', state.page - 1, { disabled: state.page <= 1 }));
+
+        for (var p = 1; p <= totalPages; p++) {
+          paginationNav.appendChild(makeItem(String(p), p, { active: p === state.page }));
+        }
+
+        paginationNav.appendChild(makeItem('›', state.page + 1, { disabled: state.page >= totalPages }));
+      }
+
+      function render() {
+        var filtered = getFilteredSorted();
+        var totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+        if (state.page > totalPages) state.page = totalPages;
+
+        var startIndex = (state.page - 1) * PAGE_SIZE;
+        var pageItems = filtered.slice(startIndex, startIndex + PAGE_SIZE);
+
+        allCards.forEach(function (card) { card.style.display = 'none'; });
+        pageItems.forEach(function (card) {
+          card.style.display = '';
+          grid.appendChild(card);
+        });
+
+        var emptyMsg = grid.querySelector('[data-empty-message]');
+        if (filtered.length === 0) {
+          if (!emptyMsg) {
+            emptyMsg = document.createElement('p');
+            emptyMsg.setAttribute('data-empty-message', '');
+            emptyMsg.style.gridColumn = '1 / -1';
+            emptyMsg.style.textAlign = 'center';
+            emptyMsg.style.color = '#6b7280';
+            emptyMsg.style.padding = '2rem 0';
+            emptyMsg.textContent = 'No products found in this category.';
+            grid.appendChild(emptyMsg);
+          }
+        } else if (emptyMsg) {
+          emptyMsg.remove();
+        }
+
+        renderPagination(totalPages);
+      }
+
+      if (categoryMenu) {
+        categoryMenu.addEventListener('click', function (e) {
+          var link = e.target.closest('a[data-cat]');
+          if (!link) return;
+          e.preventDefault();
+
+          categoryMenu.querySelectorAll('a').forEach(function (a) { a.classList.remove('is-active'); });
+          link.classList.add('is-active');
+          selectedCategoryLabel.textContent = link.textContent.trim();
+
+          state.category = link.getAttribute('data-cat');
+          state.page = 1;
+          render();
+
+          categoryMenu.setAttribute('hidden', '');
+          categoryToggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      if (sortMenu) {
+        sortMenu.addEventListener('click', function (e) {
+          var link = e.target.closest('a[data-sort]');
+          if (!link) return;
+          e.preventDefault();
+
+          sortMenu.querySelectorAll('a').forEach(function (a) { a.classList.remove('is-active'); });
+          link.classList.add('is-active');
+          selectedSortLabel.textContent = link.textContent.trim();
+
+          state.sort = link.getAttribute('data-sort');
+          state.page = 1;
+          render();
+
+          sortMenu.setAttribute('hidden', '');
+          sortToggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      render();
+    }
 
     // Quick add to cart
     document.querySelectorAll('[data-add-cart-variant]').forEach(function (btn) {
