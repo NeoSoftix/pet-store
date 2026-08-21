@@ -803,8 +803,9 @@
         </div>
 
         <!-- Categories Dropdown -->
+        {%- assign display_collection = section.settings.collection | default: collections.all -%}
         {%- assign category_types = "" -%}
-        {%- for product in collections.all.products -%}
+        {%- for product in display_collection.products -%}
           {%- unless product.type == blank -%}
             {%- assign category_types = category_types | append: product.type | append: '||' -%}
           {%- endunless -%}
@@ -842,9 +843,9 @@
     </div>
 
     <!-- PRODUCTS GRID (6 COLUMNS) -->
-    {%- paginate collections.all.products by 50 -%}
+    {%- paginate display_collection.products by 50 -%}
       <div class="pet-products-grid-6" id="pet-products-grid">
-        {%- for product in collections.all.products -%}
+        {%- for product in display_collection.products -%}
           <div class="pet-grid-card" data-product-card data-title="{{ product.title | escape }}" data-price="{{ product.price }}" data-type="{{ product.type | handle }}">
             <!-- Wishlist Heart -->
             <button type="button" class="pet-card-wishlist" aria-label="Add to Wishlist" onclick="event.preventDefault(); this.classList.toggle('is-active');">
@@ -1225,6 +1226,14 @@
 {% schema %}
 {
   "name": "Custom all products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Products are shown in this collection's sort order. Pick a collection with 'Manual' sorting in Shopify Admin to drag-and-drop reorder products. Leave blank to show every product in the store."
+    }
+  ],
   "presets": [
     {
       "name": "Custom all products"
