@@ -184,12 +184,17 @@
     margin: 0 0 3.2rem 0;
   }
 
+  .pv-video-slider-wrapper {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
   .pv-video-grid {
     display: flex;
     gap: 2.4rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    max-width: 1100px;
     margin: 0 auto;
     padding: 0.5rem 0.5rem 1rem;
     scrollbar-width: none;
@@ -212,6 +217,12 @@
     padding: 0;
     cursor: pointer;
     box-shadow: 0 8px 24px rgba(30, 27, 58, 0.1);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pv-video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(76, 70, 196, 0.18);
   }
 
   .pv-video-card__preview {
@@ -225,7 +236,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.85);
     width: 5.6rem;
     height: 5.6rem;
     border-radius: 50%;
@@ -234,15 +245,109 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
   }
 
   .pv-video-card:hover .pv-video-card__play {
+    opacity: 1;
     background: #4c46c4;
     color: #ffffff;
-    transform: translate(-50%, -50%) scale(1.08);
+    transform: translate(-50%, -50%) scale(1);
   }
 
+  .pv-video-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.6) 100%);
+    pointer-events: none;
+  }
+
+  .pv-video-card__caption {
+    position: absolute;
+    left: 1.2rem;
+    top: 1.2rem;
+    right: 1.2rem;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: left;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  .pv-video-card__duration {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    letter-spacing: 0.03em;
+  }
+
+  .pv-video-slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transition: all 0.2s ease;
+  }
+
+  .pv-video-slider-arrow:hover {
+    background-color: #4c46c4;
+    color: #ffffff;
+    border-color: #4c46c4;
+  }
+
+  .pv-video-slider-arrow--prev {
+    left: -1.4rem;
+  }
+
+  .pv-video-slider-arrow--next {
+    right: -1.4rem;
+  }
+
+  .pv-video-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-top: 1.8rem;
+  }
+
+  .pv-video-dot {
+    width: 2rem;
+    height: 0.5rem;
+    border-radius: 1rem;
+    background: #e0dcf5;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .pv-video-dot.active {
+    width: 3.4rem;
+    background: #4c46c4;
+  }
+
+  /* ===== VIDEO MODAL ===== */
   .pv-video-modal {
     position: fixed;
     inset: 0;
@@ -250,6 +355,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(17, 15, 35, 0.85);
+    backdrop-filter: blur(8px);
   }
 
   .pv-video-modal[hidden] {
@@ -259,7 +366,6 @@
   .pv-video-modal__backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(17, 15, 35, 0.85);
   }
 
   .pv-video-modal__inner {
@@ -271,36 +377,137 @@
     aspect-ratio: 9 / 16;
     margin: 2.4rem auto;
     box-sizing: border-box;
+    border-radius: 2rem;
+    overflow: hidden;
+    background: #000000;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
   }
 
   .pv-video-modal__video {
     width: 100%;
     height: 100%;
-    border-radius: 1.2rem;
+    object-fit: cover;
+    border-radius: 2rem;
     background: #000000;
     display: block;
+  }
+
+  .pv-video-modal__progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.25);
+    z-index: 10;
+  }
+
+  .pv-video-modal__progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #ffffff;
+    transition: width 0.1s linear;
   }
 
   .pv-video-modal__close {
     position: absolute;
     top: 1.2rem;
     right: 1.2rem;
-    z-index: 2;
+    z-index: 12;
     width: 3.6rem;
     height: 3.6rem;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
     border: none;
     color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .pv-video-modal__close:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .pv-video-modal__controls {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    z-index: 12;
+  }
+
+  .pv-video-modal__control-btn {
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .pv-video-modal__control-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #111827;
+    transform: scale(1.08);
+  }
+
+  .pv-video-modal__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+    transition: all 0.2s ease;
+  }
+
+  .pv-video-modal__nav:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #111827;
+  }
+
+  .pv-video-modal__nav--prev {
+    left: max(2rem, calc(50vw - 280px));
+  }
+
+  .pv-video-modal__nav--next {
+    right: max(2rem, calc(50vw - 280px));
   }
 
   @media screen and (max-width: 749px) {
     .pv-video-card {
       flex-basis: 68vw;
+    }
+    .pv-video-slider-arrow,
+    .pv-video-modal__nav {
+      display: none;
+    }
+    .pv-video-modal__inner {
+      width: 92vw;
+      height: 80vh;
+      max-height: none;
     }
   }
 
@@ -1335,27 +1542,66 @@
       <h2 class="pv-video-showcase__heading">{{ 'custom.pv_home.video_heading' | t }}</h2>
 
       {%- assign pv_showcase_videos = "video1.mp4||video2.mp4||video3.mp4||09910be52efc4e9586ec7ce7877225b2.HD-1080p-2.5Mbps-64382884.mp4||0b8eb4ff5fd441e89878a9267f251295.HD-720p-1.6Mbps-64382883.mp4||4838264-uhd_2160_3840_24fps.mp4||8b1e0efa485e463e924f6c7c5e45eaf8.HD-720p-4.5Mbps-17370881.mp4||PinDown.io_@mavigadget_1766195708.mp4||PinDown.io_@tpanther61_1766196182.mp4||ba23bb0bfc9a4051b81e698331a636d1.HD-1080p-2.5Mbps-64382881.mp4||fbad2.mp4||fbad3.mp4" | split: "||" -%}
-      <div class="pv-video-grid" data-pv-video-grid>
-        {%- for video_file in pv_showcase_videos -%}
-          <button type="button" class="pv-video-card" data-pv-video-open data-video-src="{{ video_file | asset_url }}">
-            <video class="pv-video-card__preview" src="{{ video_file | asset_url }}" muted loop autoplay playsinline preload="metadata"></video>
-            <span class="pv-video-card__play">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </span>
-          </button>
-        {%- endfor -%}
+      <div class="pv-video-slider-wrapper">
+        <button type="button" class="pv-video-slider-arrow pv-video-slider-arrow--prev" data-pv-video-prev aria-label="{{ 'custom.pv_home.close_video' | t }}">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
+        <div class="pv-video-grid" data-pv-video-grid>
+          {%- for video_file in pv_showcase_videos -%}
+            <button type="button" class="pv-video-card" data-pv-video-open data-video-src="{{ video_file | asset_url }}">
+              <video class="pv-video-card__preview" data-pv-video-preview src="{{ video_file | asset_url }}" muted loop autoplay playsinline preload="metadata"></video>
+              <div class="pv-video-card__overlay"></div>
+              <span class="pv-video-card__duration" data-pv-video-duration>--:--</span>
+              <span class="pv-video-card__play">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </button>
+          {%- endfor -%}
+        </div>
+
+        <button type="button" class="pv-video-slider-arrow pv-video-slider-arrow--next" data-pv-video-next aria-label="{{ 'custom.pv_home.close_video' | t }}">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
+
+      <div class="pv-video-dots" data-pv-video-dots></div>
     </div>
   </section>
 
   <div class="pv-video-modal" data-pv-video-modal hidden>
     <div class="pv-video-modal__backdrop" data-pv-video-close></div>
+
+    <button type="button" class="pv-video-modal__nav pv-video-modal__nav--prev" data-pv-video-modal-prev aria-label="{{ 'custom.pv_home.close_video' | t }}">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+
     <div class="pv-video-modal__inner">
+      <div class="pv-video-modal__progress">
+        <div class="pv-video-modal__progress-fill" data-pv-video-modal-progress></div>
+      </div>
+
       <button type="button" class="pv-video-modal__close" data-pv-video-close aria-label="{{ 'custom.pv_home.close_video' | t }}">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
-      <video class="pv-video-modal__video" data-pv-video-modal-player controls playsinline></video>
+
+      <video class="pv-video-modal__video" data-pv-video-modal-player playsinline loop></video>
+
+      <div class="pv-video-modal__controls">
+        <button type="button" class="pv-video-modal__control-btn" data-pv-video-playpause aria-label="{{ 'custom.pv_home.close_video' | t }}">
+          <svg data-pv-icon-pause viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          <svg data-pv-icon-play viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button type="button" class="pv-video-modal__control-btn" data-pv-video-mute aria-label="{{ 'custom.pv_home.close_video' | t }}">
+          <svg data-pv-icon-volume-high viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <svg data-pv-icon-volume-mute viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+      </div>
     </div>
+
+    <button type="button" class="pv-video-modal__nav pv-video-modal__nav--next" data-pv-video-modal-next aria-label="{{ 'custom.pv_home.close_video' | t }}">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
   </div>
 
   <div class="pv-container">
@@ -1791,36 +2037,184 @@
     );
   }
 
-  // Video showcase modal
-  var pvVideoModal = document.querySelector('[data-pv-video-modal]');
-  if (pvVideoModal) {
-    var pvVideoModalPlayer = pvVideoModal.querySelector('[data-pv-video-modal-player]');
+  // ===== Video showcase: slider arrows, dots, duration tags, modal =====
+  var pvVideoGrid = document.querySelector('[data-pv-video-grid]');
 
-    document.querySelectorAll('[data-pv-video-open]').forEach(function (card) {
-      card.addEventListener('click', function () {
-        pvVideoModalPlayer.src = card.getAttribute('data-video-src');
-        pvVideoModal.removeAttribute('hidden');
-        pvVideoModalPlayer.play().catch(function () {});
-        document.body.style.overflow = 'hidden';
+  if (pvVideoGrid) {
+    var pvVideoCards = Array.prototype.slice.call(pvVideoGrid.querySelectorAll('[data-pv-video-open]'));
+    var pvVideoSources = pvVideoCards.map(function (card) { return card.getAttribute('data-video-src'); });
+
+    // Auto-fill duration tags from real video metadata
+    pvVideoGrid.querySelectorAll('[data-pv-video-preview]').forEach(function (video) {
+      video.addEventListener('loadedmetadata', function () {
+        var tag = video.closest('[data-pv-video-open]').querySelector('[data-pv-video-duration]');
+        if (tag && isFinite(video.duration)) {
+          var totalSec = Math.round(video.duration);
+          var mins = Math.floor(totalSec / 60);
+          var secs = totalSec % 60;
+          tag.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+        }
       });
     });
 
-    function closePvVideoModal() {
-      pvVideoModalPlayer.pause();
-      pvVideoModalPlayer.removeAttribute('src');
-      pvVideoModal.setAttribute('hidden', '');
-      document.body.style.overflow = '';
+    // Slider arrows
+    var pvVideoPrevBtn = document.querySelector('[data-pv-video-prev]');
+    var pvVideoNextBtn = document.querySelector('[data-pv-video-next]');
+    if (pvVideoPrevBtn && pvVideoNextBtn) {
+      pvVideoPrevBtn.addEventListener('click', function () {
+        pvVideoGrid.scrollBy({ left: -pvVideoGrid.clientWidth * 0.8, behavior: 'smooth' });
+      });
+      pvVideoNextBtn.addEventListener('click', function () {
+        pvVideoGrid.scrollBy({ left: pvVideoGrid.clientWidth * 0.8, behavior: 'smooth' });
+      });
     }
 
-    pvVideoModal.querySelectorAll('[data-pv-video-close]').forEach(function (btn) {
-      btn.addEventListener('click', closePvVideoModal);
+    // Pagination dots (one per "screen" of the slider)
+    var pvVideoDotsWrap = document.querySelector('[data-pv-video-dots]');
+    function renderPvVideoDots() {
+      if (!pvVideoDotsWrap) return;
+      var pageCount = Math.max(1, Math.round(pvVideoGrid.scrollWidth / pvVideoGrid.clientWidth));
+      pvVideoDotsWrap.innerHTML = '';
+      for (var i = 0; i < pageCount; i++) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'pv-video-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('data-page', i);
+        dot.addEventListener('click', function () {
+          var page = parseInt(this.getAttribute('data-page'), 10);
+          pvVideoGrid.scrollTo({ left: page * pvVideoGrid.clientWidth, behavior: 'smooth' });
+        });
+        pvVideoDotsWrap.appendChild(dot);
+      }
+    }
+    renderPvVideoDots();
+    window.addEventListener('resize', renderPvVideoDots);
+
+    var pvVideoScrollTimer;
+    pvVideoGrid.addEventListener('scroll', function () {
+      clearTimeout(pvVideoScrollTimer);
+      pvVideoScrollTimer = setTimeout(function () {
+        if (!pvVideoDotsWrap) return;
+        var activePage = Math.round(pvVideoGrid.scrollLeft / pvVideoGrid.clientWidth);
+        pvVideoDotsWrap.querySelectorAll('.pv-video-dot').forEach(function (dot, i) {
+          dot.classList.toggle('active', i === activePage);
+        });
+      }, 100);
     });
 
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && !pvVideoModal.hasAttribute('hidden')) {
-        closePvVideoModal();
+    // Modal
+    var pvVideoModal = document.querySelector('[data-pv-video-modal]');
+    if (pvVideoModal) {
+      var pvVideoModalPlayer = pvVideoModal.querySelector('[data-pv-video-modal-player]');
+      var pvVideoModalProgress = pvVideoModal.querySelector('[data-pv-video-modal-progress]');
+      var pvPlayPauseBtn = pvVideoModal.querySelector('[data-pv-video-playpause]');
+      var pvMuteBtn = pvVideoModal.querySelector('[data-pv-video-mute]');
+      var pvIconPause = pvVideoModal.querySelector('[data-pv-icon-pause]');
+      var pvIconPlay = pvVideoModal.querySelector('[data-pv-icon-play]');
+      var pvIconVolumeHigh = pvVideoModal.querySelector('[data-pv-icon-volume-high]');
+      var pvIconVolumeMute = pvVideoModal.querySelector('[data-pv-icon-volume-mute]');
+      var pvCurrentVideoIndex = 0;
+
+      function pvUpdatePlayPauseIcon(isPlaying) {
+        pvIconPause.style.display = isPlaying ? 'block' : 'none';
+        pvIconPlay.style.display = isPlaying ? 'none' : 'block';
       }
-    });
+
+      function pvUpdateVolumeIcon() {
+        pvIconVolumeHigh.style.display = pvVideoModalPlayer.muted ? 'none' : 'block';
+        pvIconVolumeMute.style.display = pvVideoModalPlayer.muted ? 'block' : 'none';
+      }
+
+      function pvLoadModalVideo() {
+        pvVideoModalPlayer.src = pvVideoSources[pvCurrentVideoIndex];
+        pvVideoModalPlayer.muted = false;
+        pvUpdateVolumeIcon();
+
+        var playPromise = pvVideoModalPlayer.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function () {
+            pvUpdatePlayPauseIcon(true);
+          }).catch(function () {
+            pvVideoModalPlayer.muted = true;
+            pvUpdateVolumeIcon();
+            pvVideoModalPlayer.play();
+            pvUpdatePlayPauseIcon(true);
+          });
+        }
+      }
+
+      function openPvVideoModal(index) {
+        pvCurrentVideoIndex = index;
+        pvLoadModalVideo();
+        pvVideoModal.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePvVideoModal() {
+        pvVideoModalPlayer.pause();
+        pvVideoModalPlayer.removeAttribute('src');
+        pvVideoModal.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+      }
+
+      function pvNextModalVideo(e) {
+        if (e) e.stopPropagation();
+        pvCurrentVideoIndex = (pvCurrentVideoIndex + 1) % pvVideoSources.length;
+        pvLoadModalVideo();
+      }
+
+      function pvPrevModalVideo(e) {
+        if (e) e.stopPropagation();
+        pvCurrentVideoIndex = (pvCurrentVideoIndex - 1 + pvVideoSources.length) % pvVideoSources.length;
+        pvLoadModalVideo();
+      }
+
+      pvVideoCards.forEach(function (card, index) {
+        card.addEventListener('click', function () { openPvVideoModal(index); });
+      });
+
+      pvVideoModal.querySelectorAll('[data-pv-video-close]').forEach(function (btn) {
+        btn.addEventListener('click', closePvVideoModal);
+      });
+
+      var pvModalNextBtn = pvVideoModal.querySelector('[data-pv-video-modal-next]');
+      var pvModalPrevBtn = pvVideoModal.querySelector('[data-pv-video-modal-prev]');
+      if (pvModalNextBtn) pvModalNextBtn.addEventListener('click', pvNextModalVideo);
+      if (pvModalPrevBtn) pvModalPrevBtn.addEventListener('click', pvPrevModalVideo);
+
+      if (pvPlayPauseBtn) {
+        pvPlayPauseBtn.addEventListener('click', function () {
+          if (pvVideoModalPlayer.paused) {
+            pvVideoModalPlayer.play();
+            pvUpdatePlayPauseIcon(true);
+          } else {
+            pvVideoModalPlayer.pause();
+            pvUpdatePlayPauseIcon(false);
+          }
+        });
+      }
+
+      if (pvMuteBtn) {
+        pvMuteBtn.addEventListener('click', function () {
+          pvVideoModalPlayer.muted = !pvVideoModalPlayer.muted;
+          pvUpdateVolumeIcon();
+        });
+      }
+
+      pvVideoModalPlayer.addEventListener('timeupdate', function () {
+        if (pvVideoModalPlayer.duration && pvVideoModalProgress) {
+          var pct = (pvVideoModalPlayer.currentTime / pvVideoModalPlayer.duration) * 100;
+          pvVideoModalProgress.style.width = pct + '%';
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (pvVideoModal.hasAttribute('hidden')) return;
+        if (event.key === 'Escape') closePvVideoModal();
+        if (event.key === 'ArrowRight') pvNextModalVideo();
+        if (event.key === 'ArrowLeft') pvPrevModalVideo();
+      });
+    }
   }
 
   // Top Picks — add to cart / quantity stepper
