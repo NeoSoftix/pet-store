@@ -1034,22 +1034,34 @@
 
       var state = { category: 'all', sort: 'featured', page: 1, search: '' };
 
-      function matchesSearch(card) {
-        if (!state.search) return true;
+      function searchScore(card) {
+        if (!state.search) return 0;
         var title = (card.getAttribute('data-title') || '').toLowerCase();
         var words = state.search.toLowerCase().split(/\s+/).filter(Boolean);
-        return words.some(function (word) {
-          return title.indexOf(word) !== -1;
+        var score = 0;
+        words.forEach(function (word) {
+          if (title.indexOf(word) !== -1) {
+            score += 1;
+            if (title.indexOf(word) === 0 || title.indexOf(' ' + word) !== -1) score += 0.5;
+          }
         });
+        return score;
       }
 
       function getFilteredSorted() {
+        var hasSearch = !!state.search;
+
         var list = allCards.filter(function (card) {
           var categoryMatch = state.category === 'all' || card.getAttribute('data-type') === state.category;
-          return categoryMatch && matchesSearch(card);
+          var searchMatch = !hasSearch || searchScore(card) > 0;
+          return categoryMatch && searchMatch;
         });
 
         list.sort(function (a, b) {
+          if (hasSearch) {
+            var scoreDiff = searchScore(b) - searchScore(a);
+            if (scoreDiff !== 0) return scoreDiff;
+          }
           if (state.sort === 'price-low') {
             return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
           }
