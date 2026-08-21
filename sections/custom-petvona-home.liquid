@@ -185,16 +185,25 @@
   }
 
   .pv-video-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 2.4rem;
-    max-width: 780px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    max-width: 1100px;
     margin: 0 auto;
+    padding: 0.5rem 0.5rem 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .pv-video-grid::-webkit-scrollbar {
+    display: none;
   }
 
   .pv-video-card {
     position: relative;
-    width: 100%;
+    flex: 0 0 220px;
+    scroll-snap-align: start;
     border-radius: 1.8rem;
     overflow: hidden;
     background: #f1eefc;
@@ -290,11 +299,8 @@
   }
 
   @media screen and (max-width: 749px) {
-    .pv-video-grid {
-      grid-template-columns: 1fr;
-    }
     .pv-video-card {
-      aspect-ratio: 16 / 9;
+      flex-basis: 68vw;
     }
   }
 
@@ -1328,25 +1334,16 @@
       <p class="pv-pill-badge" style="margin: 0 auto 1.2rem auto; display: table;">{{ 'custom.pv_home.video_pill' | t }}</p>
       <h2 class="pv-video-showcase__heading">{{ 'custom.pv_home.video_heading' | t }}</h2>
 
+      {%- assign pv_showcase_videos = "video1.mp4||video2.mp4||video3.mp4||09910be52efc4e9586ec7ce7877225b2.HD-1080p-2.5Mbps-64382884.mp4||0b8eb4ff5fd441e89878a9267f251295.HD-720p-1.6Mbps-64382883.mp4||4838264-uhd_2160_3840_24fps.mp4||8b1e0efa485e463e924f6c7c5e45eaf8.HD-720p-4.5Mbps-17370881.mp4||PinDown.io_@mavigadget_1766195708.mp4||PinDown.io_@tpanther61_1766196182.mp4||ba23bb0bfc9a4051b81e698331a636d1.HD-1080p-2.5Mbps-64382881.mp4||fbad2.mp4||fbad3.mp4" | split: "||" -%}
       <div class="pv-video-grid" data-pv-video-grid>
-        <button type="button" class="pv-video-card" data-pv-video-open data-video-src="{{ 'video1.mp4' | asset_url }}">
-          <video class="pv-video-card__preview" src="{{ 'video1.mp4' | asset_url }}" muted loop autoplay playsinline preload="metadata"></video>
-          <span class="pv-video-card__play">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </span>
-        </button>
-        <button type="button" class="pv-video-card" data-pv-video-open data-video-src="{{ 'video2.mp4' | asset_url }}">
-          <video class="pv-video-card__preview" src="{{ 'video2.mp4' | asset_url }}" muted loop autoplay playsinline preload="metadata"></video>
-          <span class="pv-video-card__play">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </span>
-        </button>
-        <button type="button" class="pv-video-card" data-pv-video-open data-video-src="{{ 'video3.mp4' | asset_url }}">
-          <video class="pv-video-card__preview" src="{{ 'video3.mp4' | asset_url }}" muted loop autoplay playsinline preload="metadata"></video>
-          <span class="pv-video-card__play">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </span>
-        </button>
+        {%- for video_file in pv_showcase_videos -%}
+          <button type="button" class="pv-video-card" data-pv-video-open data-video-src="{{ video_file | asset_url }}">
+            <video class="pv-video-card__preview" src="{{ video_file | asset_url }}" muted loop autoplay playsinline preload="metadata"></video>
+            <span class="pv-video-card__play">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </button>
+        {%- endfor -%}
       </div>
     </div>
   </section>
