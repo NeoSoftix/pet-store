@@ -406,62 +406,19 @@
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
 
+      {%- assign reel_videos = "video1.mp4||video2.mp4||video3.mp4||09910be52efc4e9586ec7ce7877225b2.HD-1080p-2.5Mbps-64382884.mp4||0b8eb4ff5fd441e89878a9267f251295.HD-720p-1.6Mbps-64382883.mp4||4838264-uhd_2160_3840_24fps.mp4||8b1e0efa485e463e924f6c7c5e45eaf8.HD-720p-4.5Mbps-17370881.mp4||PinDown.io_@mavigadget_1766195708.mp4||PinDown.io_@tpanther61_1766196182.mp4||ba23bb0bfc9a4051b81e698331a636d1.HD-1080p-2.5Mbps-64382881.mp4||fbad2.mp4||fbad3.mp4" | split: "||" -%}
       <div class="pet-video-slider-track" id="reelsTrack">
-
-        <!-- CARD 1 -->
-        <div class="pet-video-card" onclick="openReelModal(0)">
-          <video src="{{ 'video1.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
-          <div class="pet-video-play-overlay">
-            <span class="pet-video-duration-tag">00:15</span>
+        {%- for video_file in reel_videos -%}
+          <div class="pet-video-card" onclick="openReelModal({{ forloop.index0 }})">
+            <video src="{{ video_file | asset_url }}" autoplay loop muted playsinline preload="metadata" data-reel-video></video>
+            <div class="pet-video-play-overlay">
+              <span class="pet-video-duration-tag" data-duration-tag>--:--</span>
+            </div>
+            <div class="pet-video-center-play-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
           </div>
-          <div class="pet-video-center-play-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="pet-video-card" onclick="openReelModal(1)">
-          <video src="{{ 'video2.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
-          <div class="pet-video-play-overlay">
-            <span class="pet-video-duration-tag">00:25</span>
-          </div>
-          <div class="pet-video-center-play-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-
-        <!-- CARD 3 -->
-        <div class="pet-video-card" onclick="openReelModal(2)">
-          <video src="{{ 'video3.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
-          <div class="pet-video-play-overlay">
-            <span class="pet-video-duration-tag">00:30</span>
-          </div>
-          <div class="pet-video-center-play-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-
-        <!-- REPEATED CARDS FOR CONTINUOUS SLIDER EFFECT -->
-        <div class="pet-video-card" onclick="openReelModal(0)">
-          <video src="{{ 'video1.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
-          <div class="pet-video-play-overlay">
-            <span class="pet-video-duration-tag">00:15</span>
-          </div>
-          <div class="pet-video-center-play-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-
-        <div class="pet-video-card" onclick="openReelModal(1)">
-          <video src="{{ 'video2.mp4' | asset_url }}" autoplay loop muted playsinline preload="metadata"></video>
-          <div class="pet-video-play-overlay">
-            <span class="pet-video-duration-tag">00:25</span>
-          </div>
-          <div class="pet-video-center-play-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-
+        {%- endfor -%}
       </div>
 
       <button class="pet-slider-arrow pet-slider-arrow--next" id="reelsNextBtn" type="button" aria-label="{{ 'custom.video_reels.aria_next' | t }}">
@@ -516,9 +473,9 @@
 
 <script>
   var reelSources = [
-    '{{ "video1.mp4" | asset_url }}',
-    '{{ "video2.mp4" | asset_url }}',
-    '{{ "video3.mp4" | asset_url }}'
+    {%- for video_file in reel_videos -%}
+      {{ video_file | asset_url | json }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
   ];
 
   var currentReelIndex = 0;
@@ -629,6 +586,19 @@
     currentReelIndex = (currentReelIndex - 1 + reelSources.length) % reelSources.length;
     loadReelVideo();
   }
+
+  // Auto-fill duration tags from actual video metadata
+  document.querySelectorAll('[data-reel-video]').forEach(function (video) {
+    video.addEventListener('loadedmetadata', function () {
+      var tag = video.parentElement.querySelector('[data-duration-tag]');
+      if (tag && isFinite(video.duration)) {
+        var totalSec = Math.round(video.duration);
+        var mins = Math.floor(totalSec / 60);
+        var secs = totalSec % 60;
+        tag.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+      }
+    });
+  });
 
   // Update progress bar
   if (reelModalVideo) {
