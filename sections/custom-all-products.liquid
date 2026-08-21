@@ -294,6 +294,42 @@
     position: relative;
   }
 
+  .pet-search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 2rem;
+    padding: 0.8rem 1.6rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.2s ease;
+    min-width: 220px;
+  }
+
+  .pet-search-box:focus-within {
+    border-color: #5b4fe0;
+  }
+
+  .pet-search-box svg {
+    color: #9ca3af;
+    flex-shrink: 0;
+  }
+
+  .pet-search-input {
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    font-family: inherit;
+    color: #374151;
+    width: 100%;
+    background: transparent;
+  }
+
+  .pet-search-input::placeholder {
+    color: #9ca3af;
+  }
+
   .pet-control-btn {
     display: inline-flex;
     align-items: center;
@@ -760,6 +796,12 @@
       </div>
 
       <div class="pet-catalog-controls">
+        <!-- Search Box -->
+        <div class="pet-search-box">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" class="pet-search-input" id="pet-product-search" placeholder="Search products..." aria-label="Search products">
+        </div>
+
         <!-- Categories Dropdown -->
         {%- assign category_types = "" -%}
         {%- for product in collections.all.products -%}
@@ -983,17 +1025,28 @@
     var sortMenu = document.querySelector('[data-sort-menu]');
     var sortToggle = document.querySelector('[data-sort-toggle]');
     var selectedSortLabel = document.querySelector('[data-selected-sort]');
+    var searchInput = document.getElementById('pet-product-search');
 
     if (grid) {
       var PAGE_SIZE = 12;
       var allCards = Array.prototype.slice.call(grid.querySelectorAll('[data-product-card]'));
       allCards.forEach(function (card, index) { card.dataset.order = index; });
 
-      var state = { category: 'all', sort: 'featured', page: 1 };
+      var state = { category: 'all', sort: 'featured', page: 1, search: '' };
+
+      function matchesSearch(card) {
+        if (!state.search) return true;
+        var title = (card.getAttribute('data-title') || '').toLowerCase();
+        var words = state.search.toLowerCase().split(/\s+/).filter(Boolean);
+        return words.some(function (word) {
+          return title.indexOf(word) !== -1;
+        });
+      }
 
       function getFilteredSorted() {
         var list = allCards.filter(function (card) {
-          return state.category === 'all' || card.getAttribute('data-type') === state.category;
+          var categoryMatch = state.category === 'all' || card.getAttribute('data-type') === state.category;
+          return categoryMatch && matchesSearch(card);
         });
 
         list.sort(function (a, b) {
@@ -1065,7 +1118,7 @@
             emptyMsg.style.textAlign = 'center';
             emptyMsg.style.color = '#6b7280';
             emptyMsg.style.padding = '2rem 0';
-            emptyMsg.textContent = 'No products found in this category.';
+            emptyMsg.textContent = 'No products found.';
             grid.appendChild(emptyMsg);
           }
         } else if (emptyMsg) {
@@ -1091,6 +1144,18 @@
 
           categoryMenu.setAttribute('hidden', '');
           categoryToggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      if (searchInput) {
+        var searchDebounce;
+        searchInput.addEventListener('input', function () {
+          clearTimeout(searchDebounce);
+          searchDebounce = setTimeout(function () {
+            state.search = searchInput.value.trim();
+            state.page = 1;
+            render();
+          }, 200);
         });
       }
 
