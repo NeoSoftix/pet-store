@@ -1211,11 +1211,7 @@
         })
         .then(function (res) { return res.json(); })
         .then(function () {
-          var countElem = document.getElementById('petCartCount');
-          if (countElem) {
-            var current = parseInt(countElem.textContent || '0', 10);
-            countElem.textContent = current + 1;
-          }
+          if (window.pvOpenCartDrawer) window.pvOpenCartDrawer();
         })
         .catch(function (err) { console.error('Cart add error:', err); });
       });

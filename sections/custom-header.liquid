@@ -401,6 +401,218 @@
       font-size: 0.9rem;
     }
   }
+
+  /* ===== CART DRAWER ===== */
+  .pv-cart-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 16, 48, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 998;
+  }
+
+  .pv-cart-drawer-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .pv-cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 40rem;
+    max-width: 92vw;
+    background: #ffffff;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -8px 0 30px rgba(20, 16, 48, 0.15);
+  }
+
+  .pv-cart-drawer.is-active {
+    transform: translateX(0);
+  }
+
+  .pv-cart-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.8rem 2rem;
+    border-bottom: 1px solid #f0eefa;
+  }
+
+  .pv-cart-drawer__title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .pv-cart-drawer__close {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    border: none;
+    background: #f6f4fc;
+    color: #1e1b3a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .pv-cart-drawer__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.4rem 2rem;
+  }
+
+  .pv-cart-drawer__empty {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: #6b667f;
+    font-size: 1.5rem;
+  }
+
+  .pv-cart-drawer__item {
+    display: flex;
+    gap: 1.2rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid #f0eefa;
+  }
+
+  .pv-cart-drawer__item-img {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #f6f4fc;
+    flex-shrink: 0;
+  }
+
+  .pv-cart-drawer__item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pv-cart-drawer__item-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pv-cart-drawer__item-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e1b3a;
+    text-decoration: none;
+  }
+
+  .pv-cart-drawer__item-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #4c46c4;
+  }
+
+  .pv-cart-drawer__item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .pv-cart-drawer__item-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border: 1px solid #ded9f7;
+    border-radius: 2.4rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .pv-cart-drawer__item-qty span {
+    font-size: 1.3rem;
+    font-weight: 700;
+    min-width: 1.4rem;
+    text-align: center;
+  }
+
+  .pv-cart-drawer__qty-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    border: none;
+    background: #f0eefa;
+    color: #4c46c4;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pv-cart-drawer__qty-btn:hover {
+    background: #4c46c4;
+    color: #ffffff;
+  }
+
+  .pv-cart-drawer__item-remove {
+    background: none;
+    border: none;
+    color: #9d99b3;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .pv-cart-drawer__footer {
+    border-top: 1px solid #f0eefa;
+    padding: 1.6rem 2rem 2rem;
+  }
+
+  .pv-cart-drawer__subtotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1.4rem;
+  }
+
+  .pv-cart-drawer__checkout {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #4c46c4;
+    color: #ffffff;
+    border: none;
+    border-radius: 3rem;
+    padding: 1.3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .pv-cart-drawer__checkout:hover {
+    background: #3a35a0;
+  }
+
+  body.pv-cart-drawer-open {
+    overflow: hidden;
+  }
 {%- endstyle -%}
 
 <!-- STICKY HEADER WRAPPER -->
@@ -461,7 +673,7 @@
         </div>
 
         <!-- Cart Icon -->
-        <a href="{{ routes.cart_url }}" id="petCartLink" class="pet-action-icon-btn" aria-label="{{ 'custom.header.aria_cart' | t }}">
+        <a href="{{ routes.cart_url }}" id="petCartLink" class="pet-action-icon-btn" aria-label="{{ 'custom.header.aria_cart' | t }}" aria-haspopup="dialog">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
             <line x1="3" y1="6" x2="21" y2="6"/>
@@ -483,7 +695,28 @@
   </header>
 </div>
 
-{% javascript %}
+<!-- CART DRAWER -->
+<div id="pvCartDrawerOverlay" class="pv-cart-drawer-overlay"></div>
+<aside id="pvCartDrawer" class="pv-cart-drawer" aria-label="{{ 'custom.header.aria_cart' | t }}">
+  <div class="pv-cart-drawer__header">
+    <h2 class="pv-cart-drawer__title">{{ 'custom.header.cart_title' | t }}</h2>
+    <button type="button" id="pvCartDrawerClose" class="pv-cart-drawer__close" aria-label="{{ 'custom.header.aria_close' | t }}">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="pvCartDrawerBody" class="pv-cart-drawer__body">
+    <p class="pv-cart-drawer__empty">{{ 'custom.header.cart_empty' | t }}</p>
+  </div>
+  <div id="pvCartDrawerFooter" class="pv-cart-drawer__footer" style="display: none;">
+    <div class="pv-cart-drawer__subtotal">
+      <span>{{ 'custom.header.cart_subtotal' | t }}</span>
+      <span id="pvCartDrawerSubtotal">-</span>
+    </div>
+    <a href="{{ routes.cart_url }}" class="pv-cart-drawer__checkout">{{ 'custom.header.cart_checkout' | t }}</a>
+  </div>
+</aside>
+
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     // Mobile nav toggle
     var mobileToggle = document.querySelector('[data-mobile-toggle]');
@@ -545,8 +778,140 @@
         }
       });
     }
+
+    // Cart drawer
+    var pvCartLink = document.getElementById('petCartLink');
+    var pvCartDrawer = document.getElementById('pvCartDrawer');
+    var pvCartDrawerOverlay = document.getElementById('pvCartDrawerOverlay');
+    var pvCartDrawerClose = document.getElementById('pvCartDrawerClose');
+    var pvCartDrawerBody = document.getElementById('pvCartDrawerBody');
+    var pvCartDrawerFooter = document.getElementById('pvCartDrawerFooter');
+    var pvCartDrawerSubtotal = document.getElementById('pvCartDrawerSubtotal');
+
+    function pvFormatMoney(cents, currency) {
+      try {
+        return new Intl.NumberFormat(document.documentElement.lang || 'en', {
+          style: 'currency',
+          currency: currency
+        }).format(cents / 100);
+      } catch (e) {
+        return (cents / 100).toFixed(2) + ' ' + currency;
+      }
+    }
+
+    function pvEscapeHtml(str) {
+      var div = document.createElement('div');
+      div.textContent = str || '';
+      return div.innerHTML;
+    }
+
+    function pvSetHeaderCartCount(count) {
+      var countEl = document.getElementById('petCartCount');
+      if (countEl) countEl.textContent = count;
+    }
+
+    function pvRenderCartDrawer() {
+      if (!pvCartDrawerBody) return;
+      fetch('/cart.js')
+        .then(function (res) { return res.json(); })
+        .then(function (cart) {
+          pvSetHeaderCartCount(cart.item_count);
+
+          if (!cart.items.length) {
+            pvCartDrawerBody.innerHTML = '<p class="pv-cart-drawer__empty">{{ "custom.header.cart_empty" | t }}</p>';
+            if (pvCartDrawerFooter) pvCartDrawerFooter.style.display = 'none';
+            return;
+          }
+
+          if (pvCartDrawerFooter) pvCartDrawerFooter.style.display = '';
+
+          pvCartDrawerBody.innerHTML = cart.items.map(function (item) {
+            var img = item.image ? item.image.replace(/(\.[a-zA-Z]+)(\?|$)/, '_150x150$1$2') : '';
+            return (
+              '<div class="pv-cart-drawer__item" data-pv-cart-line="' + item.key + '">' +
+                '<div class="pv-cart-drawer__item-img"><img src="' + img + '" alt="" loading="lazy"></div>' +
+                '<div class="pv-cart-drawer__item-info">' +
+                  '<a class="pv-cart-drawer__item-title" href="' + item.url + '">' + pvEscapeHtml(item.product_title) + '</a>' +
+                  '<span class="pv-cart-drawer__item-price">' + pvFormatMoney(item.final_line_price, cart.currency) + '</span>' +
+                  '<div class="pv-cart-drawer__item-row">' +
+                    '<div class="pv-cart-drawer__item-qty">' +
+                      '<button type="button" class="pv-cart-drawer__qty-btn" data-pv-cart-minus aria-label="{{ "custom.pv_home.decrease_qty" | t }}">−</button>' +
+                      '<span>' + item.quantity + '</span>' +
+                      '<button type="button" class="pv-cart-drawer__qty-btn" data-pv-cart-plus aria-label="{{ "custom.pv_home.increase_qty" | t }}">+</button>' +
+                    '</div>' +
+                    '<button type="button" class="pv-cart-drawer__item-remove" data-pv-cart-remove>{{ "custom.header.aria_close" | t }}</button>' +
+                  '</div>' +
+                '</div>' +
+              '</div>'
+            );
+          }).join('');
+
+          if (pvCartDrawerSubtotal) pvCartDrawerSubtotal.textContent = pvFormatMoney(cart.total_price, cart.currency);
+        })
+        .catch(function () {
+          pvCartDrawerBody.innerHTML = '<p class="pv-cart-drawer__empty">{{ "custom.header.cart_empty" | t }}</p>';
+        });
+    }
+
+    function pvOpenCartDrawer() {
+      if (!pvCartDrawer) return;
+      pvCartDrawer.classList.add('is-active');
+      if (pvCartDrawerOverlay) pvCartDrawerOverlay.classList.add('is-active');
+      document.body.classList.add('pv-cart-drawer-open');
+      pvRenderCartDrawer();
+    }
+
+    function pvCloseCartDrawer() {
+      if (!pvCartDrawer) return;
+      pvCartDrawer.classList.remove('is-active');
+      if (pvCartDrawerOverlay) pvCartDrawerOverlay.classList.remove('is-active');
+      document.body.classList.remove('pv-cart-drawer-open');
+    }
+
+    window.pvOpenCartDrawer = pvOpenCartDrawer;
+
+    if (pvCartLink) {
+      pvCartLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        pvOpenCartDrawer();
+      });
+    }
+    if (pvCartDrawerClose) pvCartDrawerClose.addEventListener('click', pvCloseCartDrawer);
+    if (pvCartDrawerOverlay) pvCartDrawerOverlay.addEventListener('click', pvCloseCartDrawer);
+
+    document.addEventListener('keyup', function (event) {
+      if (event.key === 'Escape') pvCloseCartDrawer();
+    });
+
+    if (pvCartDrawerBody) {
+      pvCartDrawerBody.addEventListener('click', function (event) {
+        var lineEl = event.target.closest('[data-pv-cart-line]');
+        if (!lineEl) return;
+
+        var minus = event.target.closest('[data-pv-cart-minus]');
+        var plus = event.target.closest('[data-pv-cart-plus]');
+        var remove = event.target.closest('[data-pv-cart-remove]');
+        if (!minus && !plus && !remove) return;
+
+        event.preventDefault();
+        var key = lineEl.getAttribute('data-pv-cart-line');
+        var qtySpan = lineEl.querySelector('.pv-cart-drawer__item-qty span');
+        var currentQty = parseInt(qtySpan.textContent, 10) || 0;
+        var newQty = remove ? 0 : currentQty + (plus ? 1 : -1);
+        if (newQty < 0) newQty = 0;
+
+        fetch('/cart/change.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: key, quantity: newQty })
+        })
+          .then(function (res) { return res.json(); })
+          .then(function () { pvRenderCartDrawer(); })
+          .catch(function () {});
+      });
+    }
   });
-{% endjavascript %}
+</script>
 
 {% schema %}
 {
