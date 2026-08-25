@@ -1209,11 +1209,19 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] })
         })
-        .then(function (res) { return res.json(); })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            if (!res.ok) throw new Error(data.description || data.message || 'Add to cart failed');
+            return data;
+          });
+        })
         .then(function () {
           if (window.pvOpenCartDrawer) window.pvOpenCartDrawer();
         })
-        .catch(function (err) { console.error('Cart add error:', err); });
+        .catch(function (err) {
+          console.error('Cart add error:', err);
+          alert(err.message || 'Could not add this product to your cart.');
+        });
       });
     });
   });
