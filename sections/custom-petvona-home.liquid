@@ -213,7 +213,7 @@
 
   .pv-video-card {
     position: relative;
-    flex: 0 0 220px;
+    flex: 0 0 260px;
     scroll-snap-align: start;
     border-radius: 1.8rem;
     overflow: hidden;
@@ -504,7 +504,7 @@
 
   @media screen and (max-width: 749px) {
     .pv-video-card {
-      flex-basis: 68vw;
+      flex-basis: 74vw;
     }
     .pv-video-slider-arrow,
     .pv-video-modal__nav {
@@ -2129,6 +2129,28 @@
         });
       }, 100);
     });
+
+    // Auto-advance the slider
+    var pvVideoAutoplayTimer;
+    function pvVideoAutoAdvance() {
+      var atEnd = pvVideoGrid.scrollLeft + pvVideoGrid.clientWidth >= pvVideoGrid.scrollWidth - 4;
+      if (atEnd) {
+        pvVideoGrid.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        pvVideoGrid.scrollBy({ left: pvVideoGrid.clientWidth * 0.8, behavior: 'smooth' });
+      }
+    }
+    function pvVideoStartAutoplay() {
+      pvVideoStopAutoplay();
+      pvVideoAutoplayTimer = setInterval(pvVideoAutoAdvance, 3500);
+    }
+    function pvVideoStopAutoplay() {
+      clearInterval(pvVideoAutoplayTimer);
+    }
+    pvVideoStartAutoplay();
+    pvVideoGrid.addEventListener('mouseenter', pvVideoStopAutoplay);
+    pvVideoGrid.addEventListener('mouseleave', pvVideoStartAutoplay);
+    pvVideoGrid.addEventListener('touchstart', pvVideoStopAutoplay, { passive: true });
 
     // Modal
     var pvVideoModal = document.querySelector('[data-pv-video-modal]');
