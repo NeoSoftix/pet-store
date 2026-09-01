@@ -140,51 +140,44 @@
     position: relative;
   }
 
-  .pet-lang-toggle {
-    display: flex;
+  .pet-lang-pill__track {
+    display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #6b7280;
-    padding: 0;
-  }
-
-  .pet-lang-toggle:hover {
-    color: #4c46c4;
-  }
-
-  .pet-lang-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 0.8rem;
+    gap: 0.2rem;
     background: #ffffff;
-    border-radius: 0.8rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
-    list-style: none;
-    padding: 0.6rem 0;
-    min-width: 140px;
-    z-index: 1100;
+    border: 1.5px solid #4c46c4;
+    border-radius: 999px;
+    padding: 0.3rem;
   }
 
-  .pet-lang-dropdown a {
-    display: block;
-    padding: 0.6rem 1.4rem;
-    color: #374151;
-    font-size: 1.3rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-
-  .pet-lang-dropdown a:hover,
-  .pet-lang-dropdown a.is-active {
-    background: #f3f1fd;
+  .pet-lang-pill__option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
     color: #4c46c4;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0.5rem 1.3rem;
+    border-radius: 999px;
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .pet-lang-pill__option:hover {
+    background: #f3f1fd;
+  }
+
+  .pet-lang-pill__option.is-active {
+    background: #4c46c4;
+    color: #ffffff;
+  }
+
+  .pet-lang-pill__option.is-active:hover {
+    background: #4c46c4;
   }
 
   .pet-action-icon-btn {
@@ -323,13 +316,6 @@
       gap: 0.8rem;
     }
 
-    .pet-lang-toggle span {
-      max-width: 6rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
     .pet-action-icon-btn {
       padding: 1rem;
       min-width: 4.2rem;
@@ -362,17 +348,9 @@
       padding: 0.8rem;
     }
 
-    .pet-lang-toggle {
-      font-size: 1.15rem;
-    }
-
-    .pet-lang-toggle span {
-      max-width: 4.4rem;
-    }
-
-    .pet-lang-dropdown {
-      right: -1rem;
-      min-width: 120px;
+    .pet-lang-pill__option {
+      font-size: 1.1rem;
+      padding: 0.4rem 1rem;
     }
 
     .pet-cart-count {
@@ -633,21 +611,17 @@
       <div class="pet-main-header__actions">
         <div class="pet-lang-switcher" data-lang-switcher>
           {%- form 'localization', id: 'HeaderLanguageForm', class: 'pet-lang-form' -%}
-            <button type="button" class="pet-lang-toggle" data-lang-toggle aria-expanded="false" aria-haspopup="listbox">
-              <span data-lang-current>{{ localization.language.endonym_name | capitalize }}</span>
-              <svg viewBox="0 0 24 24" width="10" height="10"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
-            </button>
-            <ul class="pet-lang-dropdown" data-lang-dropdown hidden>
+            <div class="pet-lang-pill__track" role="listbox" aria-label="{{ 'custom.header.aria_language' | t }}">
               {%- for language in localization.available_languages -%}
-                <li>
-                  <a
-                    href="#"
-                    data-value="{{ language.iso_code }}"
-                    class="pet-lang-option{% if language.iso_code == localization.language.iso_code %} is-active{% endif %}"
-                  >{{ language.endonym_name | capitalize }}</a>
-                </li>
+                <button
+                  type="button"
+                  data-value="{{ language.iso_code }}"
+                  class="pet-lang-pill__option{% if language.iso_code == localization.language.iso_code %} is-active{% endif %}"
+                  role="option"
+                  aria-selected="{% if language.iso_code == localization.language.iso_code %}true{% else %}false{% endif %}"
+                >{{ language.iso_code | upcase }}</button>
               {%- endfor -%}
-            </ul>
+            </div>
             <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}" data-lang-input>
           {%- endform -%}
         </div>
@@ -716,37 +690,17 @@
     // Language switcher
     var langSwitcher = document.querySelector('[data-lang-switcher]');
     if (langSwitcher) {
-      var langToggle = langSwitcher.querySelector('[data-lang-toggle]');
-      var langDropdown = langSwitcher.querySelector('[data-lang-dropdown]');
       var langInput = langSwitcher.querySelector('[data-lang-input]');
       var langForm = langSwitcher.querySelector('form');
-
-      langToggle.addEventListener('click', function (event) {
-        event.stopPropagation();
-        var isHidden = langDropdown.hasAttribute('hidden');
-        if (isHidden) {
-          langDropdown.removeAttribute('hidden');
-          langToggle.setAttribute('aria-expanded', 'true');
-        } else {
-          langDropdown.setAttribute('hidden', '');
-          langToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
 
       langSwitcher.querySelectorAll('[data-value]').forEach(function (option) {
         option.addEventListener('click', function (event) {
           event.preventDefault();
+          if (option.classList.contains('is-active')) return;
           langInput.value = option.getAttribute('data-value');
           document.cookie = 'pet_vona_lang_set=1; path=/; max-age=31536000';
           if (langForm) langForm.submit();
         });
-      });
-
-      document.addEventListener('click', function (event) {
-        if (!langSwitcher.contains(event.target)) {
-          langDropdown.setAttribute('hidden', '');
-          langToggle.setAttribute('aria-expanded', 'false');
-        }
       });
     }
 
